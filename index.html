@@ -43,6 +43,7 @@
 				--danger: #ef4444; 
 				--success: #10b981;
 				--info: #3b82f6;
+				--warning: #f59e0b;
 				--img-placeholder: #f1f5f9;
 				--radius-card: 24px;
 				--radius-btn: 16px;
@@ -455,7 +456,7 @@
 
 			.admin-actions-zone {
 				display: flex;
-				gap: 6px;
+				gap: 4px;
 				margin-bottom: 14px;
 				width: 100%;
 				justify-content: flex-end;
@@ -477,6 +478,8 @@
 			[data-theme="dark"] .admin-card-btn {
 				background: rgba(255, 255, 255, 0.08);
 			}
+			.admin-card-btn.btn-edit-text { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+			.admin-card-btn.btn-edit-text:hover { background: var(--warning); color: white; }
 			.admin-card-btn.btn-delete { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
 			.admin-card-btn.btn-delete:hover { background: var(--danger); color: white; }
 			.admin-card-btn.btn-img-edit { background: rgba(59, 130, 246, 0.15); color: var(--info); }
@@ -847,7 +850,6 @@
 
 				const newFont = { name: name, price: price, type: type, img: img };
 				
-				// 🌟 កែត្រង់ចំណុចនេះ៖ ប្រើ .push() ដើម្បីឱ្យពុម្ពបន្ថែមថ្មីធ្លាក់ទៅក្រោមគេបង្អស់ (ចុង Array)
 				fontsData.push(newFont);
 
 				localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
@@ -857,6 +859,43 @@
 				
 				renderFonts();
 				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីទៅជួរចុងក្រោយបង្អស់!");
+			}
+
+			function adminEditFontText(index, event) {
+				if (event) event.stopPropagation();
+				if (!isAdminLoggedIn) return;
+
+				const currentName = fontsData[index].name;
+				const currentPrice = fontsData[index].price || "$ 10";
+
+				const newName = prompt("កែប្រែឈ្មោះពុម្ពអក្សរ៖", currentName);
+				if (newName === null) return; // ចុច Cancel
+
+				const newPrice = prompt("កែប្រែតម្លៃពុម្ពអក្សរ៖", currentPrice);
+				if (newPrice === null) return; // ចុច Cancel
+
+				if (newName.trim() === "") {
+					alert("ឈ្មោះពុម្ពអក្សរមិនអាចទទេបានទេ!");
+					return;
+				}
+
+				// រក្សាទុកតម្លៃចាស់នៅក្នុង Favorites បើសិនជាមានការប្តូរឈ្មោះ
+				if (currentName !== newName.trim()) {
+					if (favoriteFonts.includes(currentName)) {
+						favoriteFonts = favoriteFonts.map(f => f === currentName ? newName.trim() : f);
+						localStorage.setItem("toathmor_favorites", JSON.stringify(favoriteFonts));
+					}
+					if (selectedFonts.includes(currentName)) {
+						selectedFonts = selectedFonts.map(f => f === currentName ? newName.trim() : f);
+					}
+				}
+
+				fontsData[index].name = newName.trim();
+				fontsData[index].price = newPrice.trim() !== "" ? newPrice.trim() : "$ 10";
+
+				localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
+				renderFonts();
+				showToast("📝 បានកែប្រែទិន្នន័យពុម្ពអក្សរជោគជ័យ!");
 			}
 
 			function adminDeleteFont(index, event) {
@@ -900,7 +939,7 @@
 			function exportFontsData() {
 				const dataStr = JSON.stringify(fontsData, null, "\t");
 				navigator.clipboard.writeText(dataStr).then(() => {
-					alert("📋 ជោគជ័យ! ប្រព័ន្ធបានចម្លងកូដទិន្នន័យពុម្ពអក្សរទាំងអស់ដែលមានលីងរូបភាពរួចរាល់ហើយ។\n\n👉 Toathmor គ្រាន់តែបើកហ្វាយ HTML នេះ រួចយកទៅ Paste (បិទភ្ជាប់) ជំនួសត្រង់កន្លែង [ let defaultFonts = [...] ] ទាំងមូលជាការស្រេច (ពុំបាច់អង្គុយកែមួយជួរៗទៀតទេ) Gas!");
+					alert("📋 ជោគជ័យ! ប្រព័ន្ធបានចម្លងកូដទិន្នន័យពុម្ពអក្សរទាំងអស់ដែលមានលីងរូបភាពរួចរាល់ហើយ。\n\n👉 Toathmor គ្រាន់តែបើកហ្វាយ HTML នេះ រួចយកទៅ Paste (បិទភ្ជាប់) ជំនួសត្រង់កន្លែង [ let defaultFonts = [...] ] ទាំងមូលជាការស្រេច (ពុំបាច់អង្គុយកែមួយជួរៗទៀតទេ) Gas!");
 				}).catch(err => {
 					console.error("Error copy: ", err);
 				});
@@ -924,10 +963,8 @@
 				if (sortValue === "az") {
 					filtered.sort((a, b) => a.name.localeCompare(b.name));
 				} else if (sortValue === "oldest") {
-					// ចាស់ - ថ្មី (ពុម្ពដែលនៅលើគេក្នុង Array គឺចាស់ជាងគេ)
 					filtered.sort((a, b) => fontsData.indexOf(a) - fontsData.indexOf(b));
 				} else if (sortValue === "newest") {
-					// ថ្មី - ចាស់ (ពុម្ពបន្ថែមថ្មីនៅខាងក្រោម Array គឺថ្មីជាងគេ)
 					filtered.sort((a, b) => fontsData.indexOf(b) - fontsData.indexOf(a));
 				}
 
@@ -962,6 +999,7 @@
 						</div>
 
 						<div class="admin-only admin-actions-zone">
+							<button class="admin-card-btn btn-edit-text" onclick="adminEditFontText(${actualIndex}, event)">📝 កែឈ្មោះ/តម្លៃ</button>
 							<button class="admin-card-btn btn-img-edit" onclick="adminEditFontImage(${actualIndex}, event)">🖼️ ដាក់រូប</button>
 							<button class="admin-card-btn btn-img-clear" onclick="adminClearFontImage(${actualIndex}, event)">❌ លុបរូប</button>
 							<button class="admin-card-btn btn-delete" onclick="adminDeleteFont(${actualIndex}, event)">🗑️ លុបពុម្ព</button>
