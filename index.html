@@ -1,1111 +1,692 @@
-<!DOCTYPE html>
-<html lang="km">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
-		/>
-		<title>Toathmor Fonts App V4 - Premium Edition</title>
-
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta
-			name="apple-mobile-web-app-status-bar-style"
-			content="black-translucent"
-		/>
-		<meta name="apple-mobile-web-app-title" content="តោថ្ម ហ្វុន" />
-		<link
-			rel="apple-touch-icon"
-			href="https://thmor-fonts.github.io/logo.png"
-		/>
-
-		<link
-			href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap"
-			rel="stylesheet"
-		/>
-
-		<style>
-			:root {
-				--bg-main: #f8fafc; 
-				--bg-card: #ffffff;
-				--text-main: #0f172a;
-				--text-muted: #64748b;
-				--accent: #c5a059; 
-				--accent-gradient: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
-				--accent-light: rgba(212, 175, 55, 0.06);
-				--telegram: #229ED9;
-				--telegram-hover: #1e8fc4;
-				--facebook: #1877f2;
-				--border: #e2e8f0; 
-				--shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-				--shadow-md: 0 12px 30px rgba(15, 23, 42, 0.06); 
-				--shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.12);
-				--danger: #ef4444; 
-				--success: #10b981;
-				--info: #3b82f6;
-				--warning: #f59e0b;
-				--img-placeholder: #f1f5f9;
-				--radius-card: 24px;
-				--radius-btn: 16px;
-			}
-
-			[data-theme="dark"] {
-				--bg-main: #090d16;
-				--bg-card: #111a2e;
-				--text-main: #f8fafc;
-				--text-muted: #94a3b8;
-				--accent: #f59e0b;
-				--accent-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-				--accent-light: rgba(251, 191, 36, 0.08);
-				--border: #1e293b;
-				--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-				--shadow-md: 0 12px 30px rgba(0, 0, 0, 0.3);
-				--shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.4);
-				--danger: #f87171;
-				--img-placeholder: #1e293b;
-			}
-
-			body, input, button, span, div, p, h1, h3, select {
-				font-family: "Kantumruy Pro", sans-serif;
-				-webkit-user-select: none;
-				user-select: none;
-			}
-
-			body {
-				background-color: var(--bg-main);
-				color: var(--text-main);
-				margin: 0;
-				padding: calc(20px + env(safe-area-inset-top)) 0 calc(80px + env(safe-area-inset-bottom)) 0;
-				transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-			}
-
-			.container {
-				width: 100%;
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 0 16px; 
-				box-sizing: border-box;
-				min-height: calc(100vh - 180px);
-			}
-
-			header {
-				background: linear-gradient(145deg, #0f172a, #1e293b);
-				border-radius: 32px;
-				padding: 30px 20px; 
-				box-shadow: var(--shadow-lg);
-				margin-bottom: 30px;
-				border: 1px solid rgba(212, 175, 55, 0.15);
-				position: relative;
-				overflow: hidden;
-			}
-
-			header::before {
-				content: '';
-				position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-				background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 60%);
-				pointer-events: none;
-			}
-
-			.header-top {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				flex-wrap: wrap;
-				gap: 20px;
-			}
-
-			.brand-zone {
-				display: flex;
-				align-items: center;
-				gap: 16px;
-			}
-
-			.brand-logo {
-				width: 65px;
-				height: 65px;
-				object-fit: contain;
-				border-radius: 14px;
-				background: rgba(255, 255, 255, 0.05);
-				padding: 4px;
-				border: 1px solid rgba(212, 175, 55, 0.2);
-				flex-shrink: 0;
-			}
-
-			.brand-text {
-				display: flex;
-				flex-direction: column;
-			}
-
-			.brand-text h1 {
-				margin: 0;
-				font-size: 28px; 
-				font-weight: 800;
-				letter-spacing: 1.5px;
-				color: #ffffff;
-			}
-			.brand-text h1 span { 
-				background: var(--accent-gradient);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				filter: drop-shadow(0 2px 8px rgba(212,175,55,0.2));
-			}
-			.brand-text p { margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-weight: 400; }
-
-			.header-right-controls { display: flex; align-items: center; gap: 12px; }
-
-			.top-counter-badge {
-				background: rgba(212, 175, 55, 0.12);
-				border: 1px solid rgba(212, 175, 55, 0.3);
-				color: #f59e0b;
-				padding: 8px 16px;
-				border-radius: 14px;
-				font-size: 14px;
-				font-weight: 600;
-			}
-
-			.theme-btn, .admin-toggle-btn {
-				background: rgba(255, 255, 255, 0.06);
-				border: 1px solid rgba(255, 255, 255, 0.1);
-				color: #ffffff;
-				width: 44px;
-				height: 44px;
-				border-radius: 50%;
-				cursor: pointer;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 18px;
-				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-			}
-			.theme-btn:hover, .admin-toggle-btn:hover {
-				background: rgba(255, 255, 255, 0.15);
-				transform: translateY(-2px);
-			}
-			.admin-toggle-btn.active {
-				background: var(--accent-gradient);
-				color: #0f172a;
-				border-color: transparent;
-				box-shadow: 0 0 20px rgba(212,175,55,0.4);
-			}
-
-			.contacts-bar {
-				display: flex;
-				gap: 12px;
-				margin-top: 25px;
-				border-top: 1px solid rgba(255, 255, 255, 0.08);
-				padding-top: 20px;
-			}
-
-			.contact-link {
-				flex: 1;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 10px;
-				background: rgba(255, 255, 255, 0.04);
-				color: #ffffff;
-				text-decoration: none;
-				font-size: 14px;
-				font-weight: 500;
-				padding: 14px 8px;
-				border-radius: 16px;
-				transition: all 0.25s ease;
-				border: 1px solid rgba(255, 255, 255, 0.02);
-			}
-			.contact-link:hover {
-				background: rgba(255, 255, 255, 0.1);
-				transform: translateY(-3px);
-				border-color: rgba(255, 255, 255, 0.1);
-			}
-
-			.sticky-controls {
-				position: sticky;
-				top: 0;
-				background: rgba(248, 250, 252, 0.85);
-				backdrop-filter: blur(20px);
-				-webkit-backdrop-filter: blur(20px);
-				z-index: 999;
-				padding: 10px 0 20px 0;
-				transition: background 0.4s;
-			}
-			[data-theme="dark"] .sticky-controls {
-				background: rgba(9, 13, 22, 0.85);
-			}
-
-			.input-box { position: relative; margin-bottom: 16px; }
-			.input-box::before {
-				content: attr(data-icon);
-				position: absolute; left: 20px; top: 50%;
-				transform: translateY(-50%); font-size: 18px; z-index: 2;
-				opacity: 0.6;
-			}
-			.input-box input {
-				width: 100%;
-				padding: 16px 16px 16px 54px;
-				border: 1px solid var(--border);
-				border-radius: 20px;
-				font-size: 15px;
-				box-sizing: border-box;
-				background: var(--bg-card);
-				color: var(--text-main);
-				box-shadow: var(--shadow-sm);
-				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-			}
-			.input-box input:focus {
-				outline: none;
-				border-color: var(--accent);
-				box-shadow: 0 8px 25px rgba(212, 175, 55, 0.12);
-			}
-
-			.tabs { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; }
-			.tabs::-webkit-scrollbar { height: 0px; }
-			.tab-btn {
-				background: var(--bg-card);
-				color: var(--text-muted);
-				border: 1px solid var(--border);
-				padding: 12px 22px;
-				border-radius: 30px;
-				font-size: 14px;
-				font-weight: 500;
-				cursor: pointer;
-				white-space: nowrap;
-				transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-				box-shadow: var(--shadow-sm);
-			}
-			.tab-btn:hover { color: var(--text-main); border-color: var(--text-muted); transform: translateY(-1px); }
-			.tab-btn.active { background: var(--text-main); color: var(--bg-card); border-color: var(--text-main); font-weight: 600; }
-
-			.sort-zone {
-				margin-top: 14px;
-				display: flex;
-				justify-content: flex-end;
-				align-items: center;
-				gap: 8px;
-			}
-			.sort-select {
-				padding: 8px 14px;
-				border-radius: 12px;
-				border: 1px solid var(--border);
-				background: var(--bg-card);
-				color: var(--text-main);
-				font-size: 13px;
-				font-weight: 500;
-				outline: none;
-				cursor: pointer;
-				box-shadow: var(--shadow-sm);
-				transition: border-color 0.2s;
-			}
-			.sort-select:focus {
-				border-color: var(--accent);
-			}
-
-			.admin-form-panel {
-				background: var(--bg-card);
-				border: 2px dashed var(--accent);
-				border-radius: var(--radius-card);
-				padding: 24px;
-				margin-bottom: 25px;
-				box-shadow: var(--shadow-md);
-				animation: fadeIn 0.35s ease;
-			}
-			.admin-form-title {
-				margin: 0 0 16px 0;
-				font-size: 18px;
-				font-weight: 700;
-				color: var(--accent);
-				display: flex;
-				align-items: center;
-				gap: 10px;
-			}
-			.admin-grid-inputs {
-				display: grid;
-				grid-template-columns: 1fr;
-				gap: 14px;
-				margin-bottom: 16px;
-			}
-			@media (min-width: 768px) {
-				.admin-grid-inputs { grid-template-columns: 2fr 1fr 2fr 1fr; }
-			}
-			.admin-input, .admin-select {
-				width: 100%;
-				padding: 14px 16px;
-				border: 1px solid var(--border);
-				border-radius: var(--radius-btn);
-				background: var(--bg-main);
-				color: var(--text-main);
-				font-size: 14px;
-				box-sizing: border-box;
-				-webkit-user-select: text;
-				user-select: text;
-			}
-			.admin-input:focus, .admin-select:focus {
-				outline: none;
-				border-color: var(--accent);
-			}
-			.btn-add-font {
-				background: var(--success);
-				color: white;
-				border: none;
-				padding: 14px 24px;
-				border-radius: var(--radius-btn);
-				font-weight: 700;
-				font-size: 14px;
-				cursor: pointer;
-				width: 100%;
-				transition: background 0.2s, transform 0.2s;
-			}
-			.btn-add-font:hover { background: #0ca673; transform: translateY(-1px); }
-
-			.btn-export-data {
-				background: var(--info);
-				color: white;
-				border: none;
-				padding: 12px 24px;
-				border-radius: var(--radius-btn);
-				font-weight: 600;
-				font-size: 13px;
-				cursor: pointer;
-				margin-top: 12px;
-				display: inline-flex;
-				align-items: center;
-				gap: 8px;
-				transition: opacity 0.2s;
-			}
-			.btn-export-data:hover { opacity: 0.9; }
-
-			@keyframes fadeIn {
-				from { opacity: 0; transform: translateY(-12px); }
-				to { opacity: 1; transform: translateY(0); }
-			}
-
-			.font-list {
-				display: grid;
-				grid-template-columns: 1fr; 
-				gap: 20px;
-				width: 100%;
-				box-sizing: border-box;
-			}
-			@media (min-width: 600px) { .font-list { grid-template-columns: repeat(2, 1fr); } } 
-			@media (min-width: 1024px) { .font-list { grid-template-columns: repeat(3, 1fr); } } 
-
-			.font-card {
-				background: var(--bg-card);
-				border-radius: var(--radius-card);
-				padding: 20px; 
-				border: 1px solid var(--border);
-				box-shadow: var(--shadow-md);
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-				cursor: pointer;
-				position: relative;
-				box-sizing: border-box;
-				width: 100%; 
-				overflow: hidden;
-			}
-			.font-card:hover {
-				transform: translateY(-5px);
-				box-shadow: var(--shadow-lg);
-				border-color: rgba(212, 175, 55, 0.3);
-			}
-			.font-card.selected { 
-				border-color: var(--accent); 
-				background: var(--accent-light); 
-				box-shadow: 0 12px 30px rgba(212, 175, 55, 0.12); 
-			}
-
-			.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; width: 100%; }
-			.font-title-wrapper { display: flex; align-items: center; gap: 10px; flex: 1; overflow: hidden; }
-			.font-checkbox { 
-				width: 20px; height: 20px; accent-color: var(--accent); cursor: pointer; 
-				border-radius: 6px; border: 2px solid var(--border); flex-shrink: 0;
-			}
-			.font-num { background: var(--text-main); color: var(--bg-card); font-size: 11px; padding: 3px 8px; border-radius: 8px; font-weight: 600; flex-shrink: 0; }
-			.font-title { font-weight: 700; font-size: 15px; color: var(--text-main); transition: color 0.2s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-			.font-card:hover .font-title { color: var(--accent); }
-			
-			.btn-fav { background: transparent; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 5; padding: 0; flex-shrink: 0; }
-			.btn-fav:hover { transform: scale(1.2); }
-
-			.image-container {
-				width: 100%;
-				height: 160px; 
-				background-color: var(--img-placeholder);
-				border-radius: 18px;
-				margin-bottom: 16px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				overflow: hidden;
-				border: 1px solid var(--border);
-				position: relative;
-				transition: background 0.3s;
-				box-sizing: border-box;
-			}
-			.font-image-sample { 
-				width: 100%; 
-				height: 100%; 
-				object-fit: cover; 
-				pointer-events: none; 
-				box-sizing: border-box;
-			}
-
-			.admin-only { display: none !important; }
-			body.admin-mode-on .admin-only { display: inline-flex !important; display: flex !important; }
-
-			.admin-actions-zone {
-				display: flex;
-				gap: 4px;
-				margin-bottom: 14px;
-				width: 100%;
-				justify-content: flex-end;
-				flex-wrap: wrap;
-			}
-
-			.admin-card-btn {
-				background: rgba(15, 23, 42, 0.08);
-				color: var(--text-main); 
-				border: none; 
-				padding: 6px 10px; 
-				font-size: 11px; 
-				border-radius: 8px; 
-				cursor: pointer; 
-				z-index: 10;
-				font-weight: 600; 
-				transition: background 0.2s, color 0.2s;
-			}
-			[data-theme="dark"] .admin-card-btn {
-				background: rgba(255, 255, 255, 0.08);
-			}
-			.admin-card-btn.btn-edit-text { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
-			.admin-card-btn.btn-edit-text:hover { background: var(--warning); color: white; }
-			.admin-card-btn.btn-delete { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
-			.admin-card-btn.btn-delete:hover { background: var(--danger); color: white; }
-			.admin-card-btn.btn-img-edit { background: rgba(59, 130, 246, 0.15); color: var(--info); }
-			.admin-card-btn.btn-img-edit:hover { background: var(--info); color: white; }
-			.admin-card-btn.btn-img-clear { background: rgba(100, 116, 139, 0.15); color: var(--text-muted); }
-			.admin-card-btn.btn-img-clear:hover { background: var(--text-muted); color: var(--bg-card); }
-
-			.card-acts-row {
-				display: flex;
-				align-items: center;
-				gap: 10px;
-				width: 100%;
-				z-index: 5;
-				box-sizing: border-box;
-			}
-			.font-price-tag {
-				background: var(--bg-main);
-				color: var(--text-main);
-				padding: 12px 14px;
-				border-radius: var(--radius-btn);
-				font-weight: 700;
-				font-size: 14px;
-				border: 1px solid var(--border);
-				text-align: center;
-				min-width: 65px;
-				box-sizing: border-box;
-				transition: all 0.3s;
-			}
-			.font-card:hover .font-price-tag {
-				border-color: rgba(212, 175, 55, 0.3);
-				background: rgba(212, 175, 55, 0.05);
-				color: var(--accent);
-			}
-
-			.btn-action {
-				display: flex; align-items: center; justify-content: center; gap: 6px;
-				padding: 12px 16px; border-radius: var(--radius-btn); font-weight: 600;
-				font-size: 13px; border: none; cursor: pointer; transition: all 0.25s ease;
-				text-decoration: none; box-sizing: border-box;
-			}
-			.btn-primary { 
-				background: var(--accent-gradient); 
-				color: #0f172a; 
-				font-weight: 700;
-				flex: 1; 
-				box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-			}
-			.btn-primary:hover { 
-				transform: translateY(-2px);
-				box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
-				opacity: 0.95;
-			}
-
-			.multi-select-bar {
-				position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150%);
-				width: calc(100% - 32px); max-width: 550px; background: var(--bg-card); 
-				box-shadow: var(--shadow-lg);
-				padding: 16px; box-sizing: border-box; border-radius: 24px; z-index: 1000; 
-				display: flex; flex-direction: column; gap: 12px; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-				border: 1px solid var(--border);
-			}
-			.multi-select-bar.show { transform: translateX(-50%) translateY(0); }
-			.multi-actions-row { display: flex; gap: 10px; }
-			.btn-secondary { background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border); flex: 1; }
-			.btn-secondary:hover { background: var(--border); transform: translateY(-1px); }
-
-			#toast {
-				position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%);
-				background: #0f172a; color: white; padding: 14px 28px; border-radius: 30px; 
-				font-size: 13px; font-weight: 500; z-index: 99999; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-				pointer-events: none; box-shadow: var(--shadow-lg);
-				border: 1px solid rgba(255,255,255,0.1);
-				white-space: nowrap;
-			}
-			[data-theme="dark"] #toast { background: #ffffff; color: #0f172a; }
-			#toast.show { bottom: 40px; }
-
-			footer {
-				margin-top: 60px;
-				padding: 30px 16px;
-				text-align: center;
-				background: var(--bg-card);
-				border-top: 1px solid var(--border);
-				font-size: 13px;
-				color: var(--text-muted);
-				transition: background 0.4s, border-color 0.4s;
-			}
-			footer p { margin: 6px 0; }
-			footer .footer-brand {
-				font-weight: 700;
-				color: var(--text-main);
-				letter-spacing: 0.5px;
-			}
-			footer .footer-brand span { 
-				background: var(--accent-gradient);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<header>
-				<div class="header-top">
-					<div class="brand-zone">
-						<img src="https://i.postimg.cc/fT4zYqJV/IMG-3128.png" alt="Toathmor Logo" class="brand-logo" />
-						<div class="brand-text">
-							<h1>TOATHMOR <span>FONTS</span></h1>
-							<p>តារាងពុម្ពអក្សរតោថ្ម - PREMIUM SELECTION</p>
-							<p>រចនាដោយ : យ៉ុង យាង (YONG YEANG)</p>
-						</div>
-					</div>
-					
-					<div class="header-right-controls">
-						<div class="top-counter-badge" id="topCounter">សរុប: 0</div>
-						<button class="theme-btn" onclick="toggleTheme()" id="themeIcon">🌙</button>
-						<button class="admin-toggle-btn" onclick="handleAdminToggle()" id="adminBtnIcon">⚙️</button>
-					</div>
-				</div>
-				<div class="contacts-bar">
-					<a href="https://t.me/Yong_Yeang" target="_blank" class="contact-link">✈️ Telegram</a>
-					<a href="https://m.me/ToathmorKH" target="_blank" class="contact-link">🔵 Facebook</a>
-				</div>
-			</header>
-
-			<div class="sticky-controls">
-				<div class="input-box" data-icon="🔍">
-					<input type="text" id="searchId" placeholder="ស្វែងរកឈ្មោះពុម្ពអក្សរដែលអ្នកពេញចិត្ត..." oninput="filterData()" autocomplete="off" />
-				</div>
-
-				<div class="tabs">
-					<button class="tab-btn active" onclick="switchTab('all', this)">ទាំងអស់</button>
-					<button class="tab-btn" onclick="switchTab('favorite', this)">📌 បានខ្ទាស់ទុក</button>
-					<button class="tab-btn" onclick="switchTab('moul', this)">អក្សរមូល</button>
-					<button class="tab-btn" onclick="switchTab('chreang', this)">អក្សរជ្រៀង/ត្រង់</button>
-					<button class="tab-btn" onclick="switchTab('writing', this)">អក្សរដៃ</button>
-				</div>
-
-				<div class="sort-zone">
-					<span style="font-size: 13px; color: var(--text-muted);">តម្រៀបតាម៖</span>
-					<select id="sortSelect" class="sort-select" onchange="renderFonts()">
-						<option value="newest">ថ្មី - ចាស់</option>
-						<option value="oldest">ចាស់ - ថ្មី</option>
-						<option value="az">ឈ្មោះពុម្ព (A - Z)</option>
-					</select>
-				</div>
-			</div>
-
-			<div class="admin-form-panel admin-only" id="adminFormPanel">
-				<h3 class="admin-form-title">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី</h3>
-				<div class="admin-grid-inputs">
-					<input type="text" id="newFontName" class="admin-input" placeholder="ឈ្មោះពុម្ព (ឧ៖ Toathmor New)" autocomplete="off">
-					<input type="text" id="newFontPrice" class="admin-input" placeholder="តម្លៃ (ឧ៖ $ 15)" autocomplete="off">
-					<input type="text" id="newFontImg" class="admin-input" placeholder="លីងរូបភាព Direct Link (បើមាន)" autocomplete="off">
-					<select id="newFontType" class="admin-select">
-						<option value="moul">អក្សរមូល</option>
-						<option value="chreang">អក្សរជ្រៀង/ត្រង់</option>
-						<option value="writing">អក្សរដៃ</option>
-					</select>
-				</div>
-				<button class="btn-add-font" onclick="adminAddNewFont()">➕ រក្សាទុកពុម្ពអក្សរថ្មី</button>
-				
-				<button class="btn-export-data" onclick="exportFontsData()">📥 ទាញយកទិន្នន័យកូដ (Export)</button>
-			</div>
-
-			<div class="font-list" id="listContainer"></div>
-		</div>
-
-		<footer>
-			<p class="footer-brand">© 2026 <span>TOATHMOR FONTS</span>. All Rights Reserved.</p>
-			<p>បង្កើតឡើងដោយក្ដីស្រឡាញ់ចំពោះអក្សរសាស្ត្រ និងទម្រង់ពុម្ពអក្សរខ្មែរឌីជីថល</p>
-		</footer>
-
-		<div class="multi-select-bar" id="multiSelectBar">
-			<span id="multiSelectCount" style="font-weight:700; font-size:15px; color: var(--text-main);">បានជ្រើសរើស: 0 ពុម្ព</span>
-			<div class="multi-actions-row">
-				<button class="btn-action btn-secondary" onclick="clearAllSelections()">✕ លុបចោល</button>
-				<button class="btn-action btn-primary" onclick="sendMultiOrder()">📥 កុម្ម៉ង់ពុម្ពដែលបានជ្រើសរើស</button>
-			</div>
-		</div>
-
-		<div id="toast">បានចម្លងរួចរាល់!</div>
-
-		<script>
-			document.addEventListener('contextmenu', e => e.preventDefault());
-			document.onkeydown = function(e) {
-				if (e.keyCode == 123) return false; 
-				if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) return false;
-				if (e.ctrlKey && e.keyCode == 85) return false; 
-			};
-
-			async function hashPassword(string) {
-				const utf8 = new TextEncoder().encode(string);
-				const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
-				const hashArray = Array.from(new Uint8Array(hashBuffer));
-				return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-			}
-
-			const telegramUser = "Yong_Yeang";
-			let currentCategory = "all";
-			let selectedFonts = [];
-			let isAdminLoggedIn = false;
-			
-			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
-
-			let defaultFonts = [
-				{ name: "Toathmor Komaradthan", price: "$ 15", type: "moul", img: "" },
-				{ name: "Toathmor Sangahak", price: "$ 30", type: "moul", img: "" },
-				{ name: "Toathmor Kaccay Pali-Sanskrit", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Kaccayanupatthambhaka", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Moul Daunta", price: "$ 30", type: "moul", img: "" },
-				{ name: "Toathmor Moul Daunta A2", price: "$ 30", type: "moul", img: "" },
-				{ name: "Toathmor Moul Daunta A3", price: "$ 30", type: "moul", img: "" },
-				{ name: "Toathmor Moul", price: "$ 10", type: "moul", img: "" },
-				{ name: "Toathmor Moul RK", price: "$ 15", type: "moul", img: "" },
-				{ name: "Toathmor Moul Seda", price: "$ 10", type: "moul", img: "" },
-				{ name: "Toathmor MoulHand", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor Moul Hand V2", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor Moul Nea Vea", price: "$ 10", type: "moul", img: "" },
-				{ name: "Toathmor Chreang text", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor Chreang text2", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor KH H.M.V. Huot Tat", price: "$ 20", type: "moul", img: "" },
-				{ name: "Toathmor Buddhist Era 2500", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Sampoan", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Sampoan-Italic", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Sampoan X", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Sek Sork", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Sek Sork Plus", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Sievphov", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor SR. Jrung", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor Preah Suramarith", price: "$ 15", type: "moul", img: "" },
-				{ name: "Toathmor Prey Leak Mchas", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Prey Leak Mchas v2", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Nimitt", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Nireas", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Klen", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Vassa", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor NaKry", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor NaKry Plus", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor NiTean", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor NiTean V2", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor PeaNor", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor PeaNorent", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Penh", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor PheaSaKhmer", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor North", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Lekha", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor Lekha V2", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor Lekha V3", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor Friday", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Friday Solo UI", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Friday Moon", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor TaPenh", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Silbak UI", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor ChittBous", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Maha Therak", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Kampaeng Thmor", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Kbach", price: "$ 10", type: "moul", img: "" },
-				{ name: "Toathmor Kbach Seda", price: "$ 10", type: "moul", img: "" },
-				{ name: "Toathmor Phka Ktomp", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Phkay Proek", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor R.Jrung", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Rodtha", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Rooster", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Samnadaichas", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Theara MS", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Thmorkream", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Komutt A", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Komutt B", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Kouteok", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor Kraaochhouk", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor LetfHand", price: "$ 10", type: "writing", img: "" },
-				{ name: "Toathmor Link", price: "$ 10", type: "chreang", img: "" },
-				{ name: "Toathmor T. Chhim HW 022", price: "$ 30", type: "writing", img: "" },
-				{ name: "Toathmor T. Chhim HW 022 Sd", price: "$ 30", type: "writing", img: "" },
-				{ name: "Toathmor Khveak Dai", price: "$ 30", type: "writing", img: "" },
-				{ name: "Toathmor Khveak Dai Sdoeung", price: "$ 30", type: "writing", img: "" },
-				{ name: "Toathmor Ta Chaet 006 A1", price: "$ 30", type: "writing", img: "" },
-				{ name: "Toathmor Ta Chaet 006 A2", price: "$ 30", type: "writing", img: "" },
-				{ name: "Toathmor Ta Chaet 006 A3", price: "$ 30", type: "writing", img: "" },
-				{ name: "Toathmor Writehand Khveak", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor Sinn Sisamouth HW", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor Samnerdai A1", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor Samnerdai A2", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor MuraFastHand", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor MuraHand V2", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor Left Handwriting", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor Left Handwriting Plus", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor FreeHand", price: "$ 10", type: "writing", img: "" },
-				{ name: "Toathmor T. Chhim Handwriting", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor T. Chhim Handwriting 2", price: "$ 15", type: "writing", img: "" },
-				{ name: "Toathmor Writehand", price: "$ 10", type: "writing", img: "" },
-				{ name: "Toathmor Kalyan", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor Dai Chass Text", price: "$ 25", type: "chreang", img: "" },
-				{ name: "Toathmor MY Special Text", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Banteay Dek", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor Moul Phumara", price: "$ 30", type: "moul", img: "" },
-				{ name: "Toathmor Lomchong", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor S. SiSamouth C.S.", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor S. SiSamouth C.S. 2", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Smile25", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor itthea", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor Header 72", price: "$ 25", type: "moul", img: "" },
-				{ name: "Toathmor CHENDA", price: "$ 25", type: "chreang", img: "" },
-				{ name: "Toathmor CHENDA 2", price: "$ 25", type: "chreang", img: "" },
-				{ name: "Toathmor Ortaki", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Pruetthi", price: "$ 20", type: "moul", img: "" },
-				{ name: "Toathmor B.C. 2500", price: "$ 25", type: "chreang", img: "" },
-				{ name: "Toathmor Satya", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Angeara Text", price: "$ 15", type: "chreang", img: "" },
-				{ name: "Toathmor Anungk 2", price: "$ 25", type: "chreang", img: "" },
-				{ name: "Toathmor Anungk 3", price: "$ 25", type: "chreang", img: "" },
-				{ name: "Toathmor Anungk 3 Chrieng", price: "$ 25", type: "chreang", img: "" },
-				{ name: "Toathmor 001 Re", price: "$ 25", type: "chreang", img: "" },
-				{ name: "Toathmor 001 Mo", price: "$ 25", type: "moul", img: "" },
-				{ name: "Toathmor 001 Smo", price: "$ 25", type: "moul", img: "" },
-				{ name: "Toathmor 001 Smooth", price: "$ 25", type: "moul", img: "" },
-				{ name: "Toathmor Primary", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Primary Medium", price: "$ 20", type: "chreang", img: "" },
-				{ name: "Toathmor Aphiruh", price: "$ 20", type: "chreang", img: "" }
-			];
-
-			let customFonts = JSON.parse(localStorage.getItem("toathmor_custom_list"));
-			let fontsData = customFonts ? customFonts : defaultFonts;
-
-			async function handleAdminToggle() {
-				if (isAdminLoggedIn) {
-					isAdminLoggedIn = false;
-					document.body.classList.remove("admin-mode-on");
-					document.getElementById("adminBtnIcon").classList.remove("active");
-					showToast("🔒 បានចាកចេញពីមុខងារ Admin");
-				} else {
-					const pass = prompt("សូមបញ្ចូលលេខសម្ងាត់ Admin៖");
-					if (!pass) return;
-					
-					const hashed = await hashPassword(pass);
-					if (hashed === "01909479fc1d9a5127c375d3075867fce826422a363fdeb4a7196eb644725b1d") {
-						isAdminLoggedIn = true;
-						document.body.classList.add("admin-mode-on");
-						document.getElementById("adminBtnIcon").classList.add("active");
-						showToast("🔓 បានចូលទៅក្នុងមុខងារ Admin ជោគជ័យ!");
-					} else {
-						alert("🔒 លេខសម្ងាត់មិនត្រឹមត្រូវទេ!");
-					}
-				}
-				renderFonts();
-			}
-
-			function adminAddNewFont() {
-				if (!isAdminLoggedIn) return;
-				
-				const nameInput = document.getElementById("newFontName");
-				const priceInput = document.getElementById("newFontPrice");
-				const imgInput = document.getElementById("newFontImg");
-				const typeSelect = document.getElementById("newFontType");
-
-				const name = nameInput.value.trim();
-				let price = priceInput.value.trim();
-				const img = imgInput.value.trim();
-				const type = typeSelect.value;
-
-				if (!name) {
-					alert("សូមបញ្ចូលឈ្មោះពុម្ពអក្សរ!");
-					nameInput.focus();
-					return;
-				}
-				if (!price) { price = "$ 10"; }
-
-				const newFont = { name: name, price: price, type: type, img: img };
-				
-				fontsData.push(newFont);
-
-				localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
-				nameInput.value = "";
-				priceInput.value = "";
-				imgInput.value = "";
-				
-				renderFonts();
-				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីទៅជួរចុងក្រោយបង្អស់!");
-			}
-
-			function adminEditFontText(index, event) {
-				if (event) event.stopPropagation();
-				if (!isAdminLoggedIn) return;
-
-				const currentName = fontsData[index].name;
-				const currentPrice = fontsData[index].price || "$ 10";
-
-				const newName = prompt("កែប្រែឈ្មោះពុម្ពអក្សរ៖", currentName);
-				if (newName === null) return; // ចុច Cancel
-
-				const newPrice = prompt("កែប្រែតម្លៃពុម្ពអក្សរ៖", currentPrice);
-				if (newPrice === null) return; // ចុច Cancel
-
-				if (newName.trim() === "") {
-					alert("ឈ្មោះពុម្ពអក្សរមិនអាចទទេបានទេ!");
-					return;
-				}
-
-				// រក្សាទុកតម្លៃចាស់នៅក្នុង Favorites បើសិនជាមានការប្តូរឈ្មោះ
-				if (currentName !== newName.trim()) {
-					if (favoriteFonts.includes(currentName)) {
-						favoriteFonts = favoriteFonts.map(f => f === currentName ? newName.trim() : f);
-						localStorage.setItem("toathmor_favorites", JSON.stringify(favoriteFonts));
-					}
-					if (selectedFonts.includes(currentName)) {
-						selectedFonts = selectedFonts.map(f => f === currentName ? newName.trim() : f);
-					}
-				}
-
-				fontsData[index].name = newName.trim();
-				fontsData[index].price = newPrice.trim() !== "" ? newPrice.trim() : "$ 10";
-
-				localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
-				renderFonts();
-				showToast("📝 បានកែប្រែទិន្នន័យពុម្ពអក្សរជោគជ័យ!");
-			}
-
-			function adminDeleteFont(index, event) {
-				if (event) event.stopPropagation();
-				if (!isAdminLoggedIn) return;
-				if (confirm("តើអ្នកពិតជាចង់លុបពុម្ពអក្សរនេះមែនទេ?")) {
-					fontsData.splice(index, 1);
-					localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
-					renderFonts();
-					showToast("🗑️ បានលុបពុម្ពអក្សររួចរាល់!");
-				}
-			}
-
-			function adminEditFontImage(index, event) {
-				if (event) event.stopPropagation();
-				if (!isAdminLoggedIn) return;
-				
-				const currentImg = fontsData[index].img || "";
-				const newImg = prompt("សូមដាក់លីងរូបភាព (Direct Link)៖", currentImg);
-				
-				if (newImg !== null) {
-					fontsData[index].img = newImg.trim();
-					localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
-					renderFonts();
-					showToast("🖼️ បានរក្សាទុករូបភាពគំរូអូតូ!");
-				}
-			}
-
-			function adminClearFontImage(index, event) {
-				if (event) event.stopPropagation();
-				if (!isAdminLoggedIn) return;
-				
-				if (confirm("តើអ្នកពិតជាចង់លុបរូបភាពគំរូចេញមែនទេ?")) {
-					fontsData[index].img = "";
-					localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
-					renderFonts();
-					showToast("❌ បានលុបរូបភាពគំរូចេញ!");
-				}
-			}
-
-			function exportFontsData() {
-				const dataStr = JSON.stringify(fontsData, null, "\t");
-				navigator.clipboard.writeText(dataStr).then(() => {
-					alert("📋 ជោគជ័យ! ប្រព័ន្ធបានចម្លងកូដទិន្នន័យពុម្ពអក្សរទាំងអស់ដែលមានលីងរូបភាពរួចរាល់ហើយ。\n\n👉 Toathmor គ្រាន់តែបើកហ្វាយ HTML នេះ រួចយកទៅ Paste (បិទភ្ជាប់) ជំនួសត្រង់កន្លែង [ let defaultFonts = [...] ] ទាំងមូលជាការស្រេច (ពុំបាច់អង្គុយកែមួយជួរៗទៀតទេ) Gas!");
-				}).catch(err => {
-					console.error("Error copy: ", err);
-				});
-			}
-
-			function renderFonts() {
-				const container = document.getElementById("listContainer");
-				container.innerHTML = "";
-				let searchTxt = document.getElementById("searchId").value.toLowerCase().trim();
-				
-				let filtered = fontsData.filter(f => {
-					const matchSearch = f.name.toLowerCase().includes(searchTxt);
-					const matchCat = (currentCategory === "all") || 
-									 (currentCategory === "favorite" && favoriteFonts.includes(f.name)) || 
-									 (f.type === currentCategory);
-					return matchSearch && matchCat;
-				});
-
-				const sortValue = document.getElementById("sortSelect") ? document.getElementById("sortSelect").value : "newest";
-				
-				if (sortValue === "az") {
-					filtered.sort((a, b) => a.name.localeCompare(b.name));
-				} else if (sortValue === "oldest") {
-					filtered.sort((a, b) => fontsData.indexOf(a) - fontsData.indexOf(b));
-				} else if (sortValue === "newest") {
-					filtered.sort((a, b) => fontsData.indexOf(b) - fontsData.indexOf(a));
-				}
-
-				document.getElementById("topCounter").innerText = `សរុប: ${filtered.length}`;
-
-				filtered.forEach((font, idx) => {
-					const isFav = favoriteFonts.includes(font.name);
-					const isChecked = selectedFonts.includes(font.name);
-					const actualIndex = fontsData.indexOf(font);
-					
-					const hasImg = font.img && font.img.trim() !== "";
-					const imgHtml = hasImg ? `<img src="${font.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted); font-weight: 300;">មិនទាន់មានរូបភាពគំរូ</span>`;
-
-					const card = document.createElement("div");
-					card.className = `font-card ${isChecked ? 'selected' : ''}`;
-					card.onclick = () => handleCardClick(font.name, card);
-					
-					card.innerHTML = `
-						<div class="card-top">
-							<div class="font-title-wrapper">
-								<input type="checkbox" class="font-checkbox" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); toggleSelectFont('${font.name}', this)">
-								<span class="font-num">${idx + 1}</span>
-								<div style="cursor:pointer; overflow:hidden;" onclick="event.stopPropagation(); copyFontName('${font.name}')">
-									<span class="font-title">${font.name}</span>
-								</div>
-							</div>
-							<button class="btn-fav" onclick="event.stopPropagation(); toggleFavorite('${font.name}')">${isFav ? '📌' : '☆'}</button>
-						</div>
-
-						<div class="image-container">
-							${imgHtml}
-						</div>
-
-						<div class="admin-only admin-actions-zone">
-							<button class="admin-card-btn btn-edit-text" onclick="adminEditFontText(${actualIndex}, event)">📝 កែឈ្មោះ/តម្លៃ</button>
-							<button class="admin-card-btn btn-img-edit" onclick="adminEditFontImage(${actualIndex}, event)">🖼️ ដាក់រូប</button>
-							<button class="admin-card-btn btn-img-clear" onclick="adminClearFontImage(${actualIndex}, event)">❌ លុបរូប</button>
-							<button class="admin-card-btn btn-delete" onclick="adminDeleteFont(${actualIndex}, event)">🗑️ លុបពុម្ព</button>
-						</div>
-
-						<div class="card-acts-row" onclick="event.stopPropagation();">
-							<div class="font-price-tag">${font.price || '$ 10'}</div>
-							<a href="https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + font.name)}" target="_blank" class="btn-action btn-primary">✈️ ទិញពុម្ពនេះ</a>
-						</div>
-					`;
-					container.appendChild(card);
-				});
-			}
-
-			function handleCardClick(name, cardElement) {
-				const chk = cardElement.querySelector('.font-checkbox');
-				chk.checked = !chk.checked;
-				toggleSelectFont(name, chk);
-			}
-
-			function filterData() { renderFonts(); }
-
-			function switchTab(cat, btn) {
-				currentCategory = cat;
-				document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-				btn.classList.add("active");
-				renderFonts();
-			}
-
-			function toggleFavorite(name) {
-				if (favoriteFonts.includes(name)) {
-					favoriteFonts = favoriteFonts.filter(f => f !== name);
-				} else {
-					favoriteFonts.push(name);
-				}
-				localStorage.setItem("toathmor_favorites", JSON.stringify(favoriteFonts));
-				renderFonts();
-			}
-
-			function toggleSelectFont(name, chk) {
-				if (chk.checked) {
-					if (!selectedFonts.includes(name)) selectedFonts.push(name);
-				} else {
-					selectedFonts = selectedFonts.filter(f => f !== name);
-				}
-				updateMultiSelectBar();
-			}
-
-			function updateMultiSelectBar() {
-				const bar = document.getElementById("multiSelectBar");
-				const countTxt = document.getElementById("multiSelectCount");
-				if (selectedFonts.length > 0) {
-					countTxt.innerText = `បានជ្រើសរើស: ${selectedFonts.length} ពុម្ពអក្សរ`;
-					bar.classList.add("show");
-				} else {
-					bar.classList.remove("show");
-				}
-				renderFonts();
-			}
-
-			function clearAllSelections() {
-				selectedFonts = [];
-				updateMultiSelectBar();
-			}
-
-			function sendMultiOrder() {
-				if (selectedFonts.length === 0) return;
-				const text = `សួស្តីតោថ្ម ខ្ញុំចង់ជាវពុម្ពអក្សរចំនួន ${selectedFonts.length} ម៉ូដដូចខាងក្រោម៖\n` + selectedFonts.map(f => `- ${f}`).join("\n");
-				window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent(text)}`, "_blank");
-			}
-
-			function copyFontName(name) {
-				navigator.clipboard.writeText(name).then(() => {
-					showToast(`📋 បានចម្លងឈ្មោះ៖ ${name}`);
-				});
-			}
-
-			function showToast(msg) {
-				const toast = document.getElementById("toast");
-				toast.innerText = msg;
-				toast.classList.add("show");
-				setTimeout(() => { toast.classList.remove("show"); }, 2500);
-			}
-
-			function toggleTheme() {
-				const currentTheme = document.documentElement.getAttribute("data-theme");
-				if (currentTheme === "dark") {
-					document.documentElement.removeAttribute("data-theme");
-					localStorage.setItem("toathmor_theme", "light");
-					document.getElementById("themeIcon").innerText = "🌙";
-				} else {
-					document.documentElement.setAttribute("data-theme", "dark");
-					localStorage.setItem("toathmor_theme", "dark");
-					document.getElementById("themeIcon").innerText = "☀️";
-				}
-				renderFonts();
-			}
-
-			window.onload = () => {
-				const savedTheme = localStorage.getItem("toathmor_theme");
-				if (savedTheme === "dark") {
-					document.documentElement.setAttribute("data-theme", "dark");
-					document.getElementById("themeIcon").innerText = "☀️";
-				}
-				renderFonts();
-			};
-		</script>
-	</body>
-</html>
+[
+	{
+		"name": "Toathmor Komaradthan",
+		"price": "$ 15",
+		"type": "moul",
+		"img": "https://i.postimg.cc/RCj388tJ/phonto.png"
+	},
+	{
+		"name": "Toathmor Sangahak",
+		"price": "$ 30",
+		"type": "moul",
+		"img": "https://i.postimg.cc/N0FjcBYz/phonto.png"
+	},
+	{
+		"name": "Toathmor Kaccay Pali-Sanskrit",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": "https://i.postimg.cc/rmwWVryN/phonto.png"
+	},
+	{
+		"name": "Toathmor Kaccayanupatthambhaka",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": "https://i.postimg.cc/NfHXjYt6/phonto.png"
+	},
+	{
+		"name": "Toathmor Moul Daunta",
+		"price": "$ 30",
+		"type": "moul",
+		"img": "https://i.postimg.cc/ncGm6xty/phonto.png"
+	},
+	{
+		"name": "Toathmor Moul Daunta A2",
+		"price": "$ 30",
+		"type": "moul",
+		"img": "https://i.postimg.cc/pd45DXDt/phonto.png"
+	},
+	{
+		"name": "Toathmor Moul Daunta A3",
+		"price": "$ 30",
+		"type": "moul",
+		"img": "https://i.postimg.cc/PJzLsW0p/phonto.png"
+	},
+	{
+		"name": "Toathmor Moul",
+		"price": "$ 10",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Moul RK",
+		"price": "$ 15",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Moul Seda",
+		"price": "$ 10",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor MoulHand",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Moul Hand V2",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Moul Nea Vea",
+		"price": "$ 10",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Chreang text",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Chreang text2",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor KH H.M.V. Huot Tat",
+		"price": "$ 20",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Buddhist Era 2500",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Sampoan",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Sampoan-Italic",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Sampoan X",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Sek Sork",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Sek Sork Plus",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Sievphov",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor SR. Jrung",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Preah Suramarith",
+		"price": "$ 15",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Prey Leak Mchas",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Prey Leak Mchas v2",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Nimitt",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Nireas",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Klen",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Vassa",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor NaKry",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor NaKry Plus",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor NiTean",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor NiTean V2",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor PeaNor",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor PeaNorent",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Penh",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor PheaSaKhmer",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor North",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Lekha",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Lekha V2",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Lekha V3",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Friday",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Friday Solo UI",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Friday Moon",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor TaPenh",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Silbak UI",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor ChittBous",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Maha Therak",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Kampaeng Thmor",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Kbach",
+		"price": "$ 10",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Kbach Seda",
+		"price": "$ 10",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Phka Ktomp",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Phkay Proek",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor R.Jrung",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Rodtha",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Rooster",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Samnadaichas",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Theara MS",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Thmorkream",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Komutt A",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Komutt B",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Kouteok",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Kraaochhouk",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor LetfHand",
+		"price": "$ 10",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Link",
+		"price": "$ 10",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor T. Chhim HW 022",
+		"price": "$ 30",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor T. Chhim HW 022 Sd",
+		"price": "$ 30",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Khveak Dai",
+		"price": "$ 30",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Khveak Dai Sdoeung",
+		"price": "$ 30",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Ta Chaet 006 A1",
+		"price": "$ 30",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Ta Chaet 006 A2",
+		"price": "$ 30",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Ta Chaet 006 A3",
+		"price": "$ 30",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Writehand Khveak",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Sinn Sisamouth HW",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Samnerdai A1",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Samnerdai A2",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor MuraFastHand",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor MuraHand V2",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Left Handwriting",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Left Handwriting Plus",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor FreeHand",
+		"price": "$ 10",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor T. Chhim Handwriting",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor T. Chhim Handwriting 2",
+		"price": "$ 15",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Writehand",
+		"price": "$ 10",
+		"type": "writing",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Kalyan",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Dai Chass Text",
+		"price": "$ 25",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor MY Special Text",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Banteay Dek",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Moul Phumara",
+		"price": "$ 30",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Lomchong",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor S. SiSamouth C.S.",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": "https://i.postimg.cc/tCpvJgfc/phonto.png"
+	},
+	{
+		"name": "Toathmor S. SiSamouth C.S. 2",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": "https://i.postimg.cc/vTLPXR16/phonto.png"
+	},
+	{
+		"name": "Toathmor Smile25",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor itthea",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Header 72",
+		"price": "$ 25",
+		"type": "moul",
+		"img": "https://i.postimg.cc/wM3Fpt3H/phonto.png"
+	},
+	{
+		"name": "Toathmor CHENDA",
+		"price": "$ 25",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor CHENDA 2",
+		"price": "$ 25",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Ortaki",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Pruetthi",
+		"price": "$ 20",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor B.C. 2500",
+		"price": "$ 25",
+		"type": "chreang",
+		"img": "https://i.postimg.cc/6qZC9CVn/phonto.png"
+	},
+	{
+		"name": "Toathmor Satya",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Angeara Text",
+		"price": "$ 15",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Anungk 2",
+		"price": "$ 25",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Anungk 3",
+		"price": "$ 25",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Anungk 3 Chrieng",
+		"price": "$ 25",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor 001 Re",
+		"price": "$ 25",
+		"type": "chreang",
+		"img": ""
+	},
+	{
+		"name": "Toathmor 001 Mo",
+		"price": "$ 25",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor 001 Smo",
+		"price": "$ 25",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor 001 Smooth",
+		"price": "$ 25",
+		"type": "moul",
+		"img": ""
+	},
+	{
+		"name": "Toathmor Primary",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": "https://i.postimg.cc/rwcLJg7f/phonto.png"
+	},
+	{
+		"name": "Toathmor Primary Medium",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": "https://i.postimg.cc/PxLGx78t/phonto.png"
+	},
+	{
+		"name": "Toathmor Aphiruh",
+		"price": "$ 20",
+		"type": "chreang",
+		"img": "https://i.postimg.cc/g22bQsH0/phonto.png"
+	},
+	{
+		"name": "Toathmor Aphiruh 2",
+		"price": "$ 20",
+		"type": "moul",
+		"img": "https://i.postimg.cc/LsPLptHK/phonto.png"
+	}
+]
