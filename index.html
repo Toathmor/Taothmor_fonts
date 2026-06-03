@@ -195,6 +195,7 @@
 				border-color: rgba(255, 255, 255, 0.1);
 			}
 
+			/* កែសម្រួល Sticky Controls ឲ្យមានការអូស (Scroll) ប្តូរ Border ស្អាត */
 			.sticky-controls {
 				position: sticky;
 				top: 0;
@@ -202,11 +203,21 @@
 				backdrop-filter: blur(20px);
 				-webkit-backdrop-filter: blur(20px);
 				z-index: 999;
-				padding: 10px 0 20px 0;
-				transition: background 0.4s;
+				padding: 15px 10px 20px 10px;
+				margin: 0 -10px;
+				border-radius: 0px;
+				border-bottom: 1px solid transparent;
+				transition: all 0.3s ease;
 			}
 			[data-theme="dark"] .sticky-controls {
 				background: rgba(9, 13, 22, 0.85);
+			}
+			/* ពេល Scroll ចុះក្រោម វានឹងថែម Class នេះដោយស្វ័យប្រវត្តិ */
+			.sticky-controls.sticky-active {
+				border-bottom: 1px solid var(--border);
+				box-shadow: var(--shadow-sm);
+				padding-top: 15px;
+				padding-bottom: 15px;
 			}
 
 			.input-box { position: relative; margin-bottom: 16px; }
@@ -376,10 +387,9 @@
 			.btn-fav { background: transparent; border: none; font-size: 22px; cursor: pointer; color: var(--text-muted); transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 5; padding: 0;}
 			.btn-fav:hover { transform: scale(1.3); }
 
-			/* ១. កូដកែសម្រួលឱ្យរូបភាពបង្ហាញពេញប្រអប់ស្អាត */
 			.image-container {
 				width: 100%;
-				height: 180px; /* កំណត់កម្ពស់ស្តង់ដារមួយច្បាស់លាស់ */
+				height: 180px; 
 				background-color: var(--img-placeholder);
 				border-radius: 18px;
 				margin-bottom: 20px;
@@ -394,7 +404,7 @@
 			.font-image-sample { 
 				width: 100%; 
 				height: 100%; 
-				object-fit: cover; /* រូបភាពនឹងរត់ពេញប្រអប់ និងកាត់តម្រឹមស្អាតអូតូ */
+				object-fit: cover; 
 				pointer-events: none; 
 				box-sizing: border-box;
 			}
@@ -544,7 +554,7 @@
 				</div>
 			</header>
 
-			<div class="sticky-controls">
+			<div class="sticky-controls" id="stickyBar">
 				<div class="input-box" data-icon="🔍">
 					<input type="text" id="searchId" placeholder="ស្វែងរកឈ្មោះពុម្ពអក្សរដែលអ្នកពេញចិត្ត..." oninput="filterData()" autocomplete="off" />
 				</div>
@@ -615,7 +625,6 @@
 			
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 
-			// នេះជាកន្លែងកូដទិន្នន័យដើម
 			let defaultFonts = [
 				{ name: "Toathmor Komaradthan", price: "$ 15", type: "moul", img: "" },
 				{ name: "Toathmor Sangahak", price: "$ 30", type: "moul", img: "" },
@@ -829,7 +838,6 @@
 				}
 			}
 
-			// ២. មុខងារទាញយកទិន្នន័យ ដើម្បីកុំឱ្យពិបាកកែកូដច្រើនដំណាក់កាល
 			function exportFontsData() {
 				const dataStr = JSON.stringify(fontsData, null, "\t");
 				navigator.clipboard.writeText(dataStr).then(() => {
@@ -841,6 +849,7 @@
 
 			function renderFonts() {
 				const container = document.getElementById("listContainer");
+				if(!container) return;
 				container.innerHTML = "";
 				let searchTxt = document.getElementById("searchId").value.toLowerCase().trim();
 				
@@ -852,7 +861,8 @@
 					return matchSearch && matchCat;
 				});
 
-				document.getElementById("topCounter").innerText = `សរុប: ${filtered.length}`;
+				const counterEl = document.getElementById("topCounter");
+				if(counterEl) counterEl.innerText = `សរុប: ${filtered.length}`;
 
 				filtered.forEach((font, idx) => {
 					const isFav = favoriteFonts.includes(font.name);
@@ -899,8 +909,10 @@
 
 			function handleCardClick(name, cardElement) {
 				const chk = cardElement.querySelector('.font-checkbox');
-				chk.checked = !chk.checked;
-				toggleSelectFont(name, chk);
+				if(chk) {
+					chk.checked = !chk.checked;
+					toggleSelectFont(name, chk);
+				}
 			}
 
 			function filterData() { renderFonts(); }
@@ -934,6 +946,8 @@
 			function updateMultiSelectBar() {
 				const bar = document.getElementById("multiSelectBar");
 				const countTxt = document.getElementById("multiSelectCount");
+				if(!bar || !countTxt) return;
+				
 				if (selectedFonts.length > 0) {
 					countTxt.innerText = `បានជ្រើសរើស: ${selectedFonts.length} ពុម្ពអក្សរ`;
 					bar.classList.add("show");
@@ -962,6 +976,7 @@
 
 			function showToast(msg) {
 				const toast = document.getElementById("toast");
+				if(!toast) return;
 				toast.innerText = msg;
 				toast.classList.add("show");
 				setTimeout(() => { toast.classList.remove("show"); }, 2500);
@@ -969,26 +984,40 @@
 
 			function toggleTheme() {
 				const currentTheme = document.documentElement.getAttribute("data-theme");
+				const themeIcon = document.getElementById("themeIcon");
 				if (currentTheme === "dark") {
 					document.documentElement.removeAttribute("data-theme");
 					localStorage.setItem("toathmor_theme", "light");
-					document.getElementById("themeIcon").innerText = "🌙";
+					if(themeIcon) themeIcon.innerText = "🌙";
 				} else {
 					document.documentElement.setAttribute("data-theme", "dark");
 					localStorage.setItem("toathmor_theme", "dark");
-					document.getElementById("themeIcon").innerText = "☀️";
+					if(themeIcon) themeIcon.innerText = "☀️";
 				}
 				renderFonts();
 			}
 
-			window.onload = () => {
+			// កែសម្រួលប្រព័ន្ធ Scroll Listener និងតម្លើងប្រព័ន្ធទិន្នន័យឲ្យមានសុវត្ថិភាពខ្ពស់
+			window.addEventListener('scroll', () => {
+				const stickyBar = document.getElementById('stickyBar');
+				if (stickyBar) {
+					if (window.scrollY > 180) {
+						stickyBar.classList.add('sticky-active');
+					} else {
+						stickyBar.classList.remove('sticky-active');
+					}
+				}
+			});
+
+			window.addEventListener('DOMContentLoaded', () => {
 				const savedTheme = localStorage.getItem("toathmor_theme");
 				if (savedTheme === "dark") {
 					document.documentElement.setAttribute("data-theme", "dark");
-					document.getElementById("themeIcon").innerText = "☀️";
+					const themeIcon = document.getElementById("themeIcon");
+					if(themeIcon) themeIcon.innerText = "☀️";
 				}
 				renderFonts();
-			};
+			});
 		</script>
 	</body>
 </html>
