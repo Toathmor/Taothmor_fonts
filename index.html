@@ -82,7 +82,7 @@
 				width: 100%;
 				max-width: 1200px;
 				margin: 0 auto;
-				padding: 0 16px; /* កែសម្រួលគែមឆ្វេងស្តាំឱ្យសមល្មមលើ Mobile */
+				padding: 0 16px; 
 				box-sizing: border-box;
 				min-height: calc(100vh - 180px);
 			}
@@ -90,7 +90,7 @@
 			header {
 				background: linear-gradient(145deg, #0f172a, #1e293b);
 				border-radius: 32px;
-				padding: 30px 20px; /* បង្រួមខាងក្នុងបន្តិចសម្រាប់ទូរស័ព្ទ */
+				padding: 30px 20px; 
 				box-shadow: var(--shadow-lg);
 				margin-bottom: 30px;
 				border: 1px solid rgba(212, 175, 55, 0.15);
@@ -113,20 +113,43 @@
 				gap: 20px;
 			}
 
-			.brand-zone h1 {
+			/* 🌟 កូដកែសម្រួលថ្មី៖ រៀបឡូហ្គោ និងអក្សរឱ្យរត់ជាជួរដេក */
+			.brand-zone {
+				display: flex;
+				align-items: center;
+				gap: 16px;
+			}
+
+			.brand-logo {
+				width: 65px;
+				height: 65px;
+				object-fit: contain;
+				border-radius: 14px;
+				background: rgba(255, 255, 255, 0.05);
+				padding: 4px;
+				border: 1px solid rgba(212, 175, 55, 0.2);
+				flex-shrink: 0;
+			}
+
+			.brand-text {
+				display: flex;
+				flex-direction: column;
+			}
+
+			.brand-text h1 {
 				margin: 0;
-				font-size: 28px; /* បន្ថយទំហំអក្សរតិចតួចកុំឱ្យលយ */
+				font-size: 28px; 
 				font-weight: 800;
 				letter-spacing: 1.5px;
 				color: #ffffff;
 			}
-			.brand-zone h1 span { 
+			.brand-text h1 span { 
 				background: var(--accent-gradient);
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
 				filter: drop-shadow(0 2px 8px rgba(212,175,55,0.2));
 			}
-			.brand-zone p { margin: 8px 0 0 0; font-size: 13px; color: #94a3b8; font-weight: 400; }
+			.brand-text p { margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-weight: 400; }
 
 			.header-right-controls { display: flex; align-items: center; gap: 12px; }
 
@@ -331,21 +354,20 @@
 				to { opacity: 1; transform: translateY(0); }
 			}
 
-			/* 🌟 កូដកែសម្រួល Grid លីសពុម្ពអក្សរឱ្យរួញតាមទូរស័ព្ទដៃបានល្អ */
 			.font-list {
 				display: grid;
-				grid-template-columns: 1fr; /* លើទូរស័ព្ទដើរជា ១ ជួរឈរពេញៗ */
+				grid-template-columns: 1fr; 
 				gap: 20px;
 				width: 100%;
 				box-sizing: border-box;
 			}
-			@media (min-width: 600px) { .font-list { grid-template-columns: repeat(2, 1fr); } } /* លើអេក្រង់មធ្យមជា ២ ជួរ */
-			@media (min-width: 1024px) { .font-list { grid-template-columns: repeat(3, 1fr); } } /* លើកុំព្យូទ័រជា ៣ ជួរ */
+			@media (min-width: 600px) { .font-list { grid-template-columns: repeat(2, 1fr); } } 
+			@media (min-width: 1024px) { .font-list { grid-template-columns: repeat(3, 1fr); } } 
 
 			.font-card {
 				background: var(--bg-card);
 				border-radius: var(--radius-card);
-				padding: 20px; /* បន្ថយ padding បន្តិចដើម្បីកុំឱ្យធំពេកលើទូរស័ព្ទ */
+				padding: 20px; 
 				border: 1px solid var(--border);
 				box-shadow: var(--shadow-md);
 				display: flex;
@@ -355,7 +377,7 @@
 				cursor: pointer;
 				position: relative;
 				box-sizing: border-box;
-				width: 100%; /* ធានាថាកាតមិនលយហួសប្រអប់មេ */
+				width: 100%; 
 				overflow: hidden;
 			}
 			.font-card:hover {
@@ -384,7 +406,7 @@
 
 			.image-container {
 				width: 100%;
-				height: 160px; /* បន្ថយកម្ពស់ប្រអប់រូបភាពបន្តិចឱ្យសមាមាត្រលើអេក្រង់ Mobile */
+				height: 160px; 
 				background-color: var(--img-placeholder);
 				border-radius: 18px;
 				margin-bottom: 16px;
@@ -536,11 +558,16 @@
 		<div class="container">
 			<header>
 				<div class="header-top">
+					
 					<div class="brand-zone">
-						<h1>TOATHMOR <span>FONTS</span></h1>
-						<p>តារាងពុម្ពអក្សរតោថ្ម - PREMIUM SELECTION</p>
-						<p>រចនាដោយ : យ៉ុង យាង (YONG YEANG)</p>
+						<img src="https://i.postimg.cc/fT4zYqJV/IMG-3128.png" alt="Toathmor Logo" class="brand-logo" />
+						<div class="brand-text">
+							<h1>TOATHMOR <span>FONTS</span></h1>
+							<p>តារាងពុម្ពអក្សរតោថ្ម - PREMIUM SELECTION</p>
+							<p>រចនាដោយ : យ៉ុង យាង (YONG YEANG)</p>
+						</div>
 					</div>
+					
 					<div class="header-right-controls">
 						<div class="top-counter-badge" id="topCounter">សរុប: 0</div>
 						<button class="theme-btn" onclick="toggleTheme()" id="themeIcon">🌙</button>
@@ -840,7 +867,7 @@
 			function exportFontsData() {
 				const dataStr = JSON.stringify(fontsData, null, "\t");
 				navigator.clipboard.writeText(dataStr).then(() => {
-					alert("📋 ជោគជ័យ! ប្រព័ន្ធបានចម្លងកូដទិន្នន័យពុម្ពអក្សរទាំងអស់ដែលមានលីងរូបភាពរួចរាល់ហើយ។\n\n👉 Toathmor គ្រាន់តែបើកហ្វាយ HTML នេះ រួចយកទៅ Paste (បិទភ្ជាប់) ជំនួសត្រង់កន្លែង [ let defaultFonts = [...] ] ទាំងមូលជាការស្រេច (ពុំបាច់អង្គុយកែមួយជួរៗទៀតទេ)។");
+					alert("📋 ជោគជ័យ! ប្រព័ន្ធបានចម្លងកូដទិន្នន័យពុម្ពអក្សរទាំងអស់ដែលមានលីងរូបភាពរួចរាល់ហើយ។\n\n👉 Toathmor គ្រាន់តែបើកហ្វាយ HTML នេះ រួចយកទៅ Paste (បិទភ្ជាប់) ជំនួសត្រង់កន្លែង [ let defaultFonts = [...] ] ទាំងមូលជាការស្រេច (ពុំបាច់អង្គុយកែមួយជួរៗទៀតទេ) Gas!");
 				}).catch(err => {
 					console.error("Error copy: ", err);
 				});
