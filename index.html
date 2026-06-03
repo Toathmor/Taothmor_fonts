@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4 - Premium Edition</title>
+		<title>Toathmor Fonts App V5.5 - Ultimate Edition</title>
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta
@@ -34,14 +34,13 @@
 				--accent-gradient: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
 				--accent-light: rgba(212, 175, 55, 0.06);
 				--telegram: #229ED9;
-				--telegram-hover: #1e8fc4;
-				--facebook: #1877f2;
 				--border: #e2e8f0; 
 				--shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
 				--shadow-md: 0 12px 30px rgba(15, 23, 42, 0.06); 
 				--shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.12);
 				--danger: #ef4444; 
 				--success: #10b981;
+				--info: #3b82f6;
 				--img-placeholder: #f1f5f9;
 				--radius-card: 24px;
 				--radius-btn: 16px;
@@ -275,8 +274,8 @@
 				gap: 14px;
 				margin-bottom: 16px;
 			}
-			@media (min-width: 600px) {
-				.admin-grid-inputs { grid-template-columns: 2fr 1fr 1fr; }
+			@media (min-width: 768px) {
+				.admin-grid-inputs { grid-template-columns: 2fr 1fr 2fr 1fr 1.5fr; }
 			}
 			.admin-input, .admin-select {
 				width: 100%;
@@ -293,6 +292,24 @@
 			.admin-input:focus, .admin-select:focus {
 				outline: none;
 				border-color: var(--accent);
+			}
+			.admin-file-label {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: var(--bg-main);
+				border: 1px dashed var(--border);
+				border-radius: var(--radius-btn);
+				padding: 12px;
+				font-size: 13px;
+				cursor: pointer;
+				color: var(--text-muted);
+				font-weight: 500;
+				transition: all 0.2s;
+			}
+			.admin-file-label:hover {
+				border-color: var(--accent);
+				color: var(--accent);
 			}
 			.btn-add-font {
 				background: var(--success);
@@ -360,7 +377,7 @@
 
 			.image-container {
 				width: 100%;
-				min-height: 150px;
+				height: 160px;
 				background-color: var(--img-placeholder);
 				border-radius: 18px;
 				margin-bottom: 20px;
@@ -372,18 +389,31 @@
 				position: relative;
 				transition: background 0.3s;
 			}
-			.font-image-sample { width: 100%; height: auto; object-fit: contain; pointer-events: none; padding: 10px; box-sizing: border-box;}
+			.font-image-sample { width: 100%; height: 100%; object-fit: contain; pointer-events: none; padding: 10px; box-sizing: border-box;}
 
 			.admin-only { display: none !important; }
 			body.admin-mode-on .admin-only { display: inline-flex !important; display: flex !important; }
 
-			.admin-upload-btn {
-				position: absolute; bottom: 10px; right: 10px;
-				background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);
-				color: #fff; border: none; padding: 8px 14px; font-size: 12px; border-radius: 10px; cursor: pointer; z-index: 10;
-				font-weight: 500; transition: background 0.2s;
+			.admin-card-controls {
+				display: flex;
+				gap: 8px;
+				margin-bottom: 14px;
+				width: 100%;
 			}
-			.admin-upload-btn:hover { background: #0f172a; }
+			.admin-card-btn {
+				flex: 1;
+				border: none;
+				padding: 8px 12px;
+				font-size: 12px;
+				border-radius: 10px;
+				cursor: pointer;
+				font-weight: 600;
+				color: white;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 4px;
+			}
 
 			.card-acts-row {
 				display: flex;
@@ -514,8 +544,15 @@
 			<div class="admin-form-panel admin-only" id="adminFormPanel">
 				<h3 class="admin-form-title">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី</h3>
 				<div class="admin-grid-inputs">
-					<input type="text" id="newFontName" class="admin-input" placeholder="បញ្ចូលឈ្មោះពុម្ពអក្សរ (ឧទាហរណ៍៖ Toathmor New)" autocomplete="off">
-					<input type="text" id="newFontPrice" class="admin-input" placeholder="តម្លៃ (ឧទាហរណ៍៖ $ 15)" autocomplete="off">
+					<input type="text" id="newFontName" class="admin-input" placeholder="បញ្ចូលឈ្មោះពុម្ពអក្សរ" autocomplete="off">
+					<input type="text" id="newFontPrice" class="admin-input" placeholder="តម្លៃ (ឧ៖ $ 15)" autocomplete="off">
+					<input type="text" id="newFontImgUrl" class="admin-input" placeholder="លីងរូបភាពអនឡាញ (Image URL - បើមាន)" autocomplete="off">
+					
+					<label class="admin-file-label" id="fileLabelZone">
+						📁 ជ្រើសរើសរូបពីម៉ាស៊ីន
+						<input type="file" id="newFontFile" accept="image/*" style="display:none;" onchange="handleFileChoose(this)">
+					</label>
+
 					<select id="newFontType" class="admin-select">
 						<option value="moul">អក្សរមូល</option>
 						<option value="chreang">អក្សរជ្រៀង/ត្រង់</option>
@@ -527,6 +564,8 @@
 
 			<div class="font-list" id="listContainer"></div>
 		</div>
+
+		<input type="file" id="hiddenCardFileInput" accept="image/*" style="display:none;" onchange="handleCardFileChange()">
 
 		<footer>
 			<p class="footer-brand">© 2026 <span>TOATHMOR FONTS</span>. All Rights Reserved.</p>
@@ -544,7 +583,6 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			// ប្រព័ន្ធសុវត្ថិភាពការពារ DevTools
 			document.addEventListener('contextmenu', e => e.preventDefault());
 			document.onkeydown = function(e) {
 				if (e.keyCode == 123) return false; 
@@ -563,10 +601,11 @@
 			let currentCategory = "all";
 			let selectedFonts = [];
 			let isAdminLoggedIn = false;
+			let temporaryBase64 = "";
+			let activeEditingIndex = null;
 			
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 
-			// កន្លែងសម្រាប់ដាក់ទិន្នន័យពុម្ពអក្សរ និងតំណភ្ជាប់រូបភាព (Image URL)
 			let defaultFonts = [
 				{ name: "Toathmor Komaradthan", price: "$ 15", type: "moul", img: "" },
 				{ name: "Toathmor Sangahak", price: "$ 30", type: "moul", img: "" },
@@ -710,15 +749,30 @@
 				renderFonts();
 			}
 
+			// មុខងារបំប្លែងឯកសាររូបភាពពីឧបករណ៍ទៅជាកូដ Base64
+			function handleFileChoose(input) {
+				if (input.files && input.files[0]) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						temporaryBase64 = e.target.result;
+						document.getElementById("fileLabelZone").innerHTML = "✅ ជ្រើសរើសរូបបានជោគជ័យ";
+						document.getElementById("fileLabelZone").style.color = "var(--success)";
+					};
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+
 			function adminAddNewFont() {
 				if (!isAdminLoggedIn) return;
 				
 				const nameInput = document.getElementById("newFontName");
 				const priceInput = document.getElementById("newFontPrice");
+				const urlInput = document.getElementById("newFontImgUrl");
 				const typeSelect = document.getElementById("newFontType");
 
 				const name = nameInput.value.trim();
 				let price = priceInput.value.trim();
+				let imgUrl = urlInput.value.trim();
 				const type = typeSelect.value;
 
 				if (!name) {
@@ -726,20 +780,63 @@
 					nameInput.focus();
 					return;
 				}
-				if (!price) {
-					price = "$ 10";
-				}
+				if (!price) price = "$ 10";
 
-				// បញ្ចូលពុម្ពអក្សរថ្មីដោយទុកប្រអប់រូបភាព img ទំនេរចាំមកកែតាមក្រោយ
-				const newFont = { name: name, price: price, type: type, img: "" };
+				// ប្រសិនបើមានរូបភាព Upload វានឹងយកតាម Upload បើអត់ទេវាយកតាម Link URL 
+				let finalImg = temporaryBase64 !== "" ? temporaryBase64 : imgUrl;
+
+				const newFont = { name: name, price: price, type: type, img: finalImg };
 				fontsData.unshift(newFont);
 
 				localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
+				
+				// សម្អាតតម្លៃចាស់ចោល
 				nameInput.value = "";
 				priceInput.value = "";
+				urlInput.value = "";
+				document.getElementById("newFontFile").value = "";
+				temporaryBase64 = "";
+				document.getElementById("fileLabelZone").innerHTML = "📁 ជ្រើសរើសរូបពីម៉ាស៊ីន";
+				document.getElementById("fileLabelZone").style.color = "var(--text-muted)";
 				
 				renderFonts();
 				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីជោគជ័យ!");
+			}
+
+			// មុខងារពេលចុចប៊ូតុង «ប្ដូររូបភាព» លើកាតនីមួយៗ
+			function openCardFileSelector(index, event) {
+				event.stopPropagation();
+				activeEditingIndex = index;
+				document.getElementById("hiddenCardFileInput").click();
+			}
+
+			function handleCardFileChange() {
+				const input = document.getElementById("hiddenCardFileInput");
+				if (input.files && input.files[0] && activeEditingIndex !== null) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						fontsData[activeEditingIndex].img = e.target.result;
+						localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
+						renderFonts();
+						showToast("📸 បានប្ដូររូបភាពគំរូរួចរាល់!");
+						activeEditingIndex = null;
+						input.value = "";
+					};
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+
+			// មុខងារសម្រាប់ដាក់លីងអនឡាញឱ្យហ្វុនដែលមានស្រាប់លឿនៗ
+			function openCardUrlPrompt(index, event) {
+				event.stopPropagation();
+				let currentUrl = fontsData[index].img || "";
+				let newUrl = prompt("សូមបញ្ចូល ឬបិទភ្ជាប់លីងរូបភាព (Image URL)៖", currentUrl);
+				if (newUrl !== null) {
+					fontsData[index].img = newUrl.trim();
+					localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
+					renderFonts();
+					showToast("🔗 បានដាក់លីងរូបភាពរួចរាល់!");
+				}
 			}
 
 			function adminDeleteFont(index, event) {
@@ -771,8 +868,8 @@
 				filtered.forEach((font, idx) => {
 					const isFav = favoriteFonts.includes(font.name);
 					const isChecked = selectedFonts.includes(font.name);
+					const actualIndexInGlobal = fontsData.indexOf(font);
 					
-					// ទាញយករូបភាពដោយផ្ទាល់ពីលក្ខណៈ img នៅក្នុង Array ទិន្នន័យ
 					const hasImg = font.img && font.img.trim() !== "";
 					const imgHtml = hasImg ? `<img src="${font.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted); font-weight: 300;">មិនទាន់មានរូបភាពគំរូ</span>`;
 
@@ -796,8 +893,10 @@
 							${imgHtml}
 						</div>
 
-						<div class="admin-only" style="margin-bottom: 14px; display:flex; justify-content:flex-end; width:100%;">
-							<button class="admin-upload-btn" style="position:static; background:var(--danger);" onclick="adminDeleteFont(${fontsData.indexOf(font)}, event)">🗑️ លុប (Admin)</button>
+						<div class="admin-only admin-card-controls" onclick="event.stopPropagation();">
+							<button class="admin-card-btn" style="background:var(--info);" onclick="openCardFileSelector(${actualIndexInGlobal}, event)">📸 រូបថត</button>
+							<button class="admin-card-btn" style="background:var(--accent);" onclick="openCardUrlPrompt(${actualIndexInGlobal}, event)">🔗 លីង URL</button>
+							<button class="admin-card-btn" style="background:var(--danger);" onclick="adminDeleteFont(${actualIndexInGlobal}, event)">🗑️ លុប</button>
 						</div>
 
 						<div class="card-acts-row" onclick="event.stopPropagation();">
