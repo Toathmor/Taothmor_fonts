@@ -274,7 +274,6 @@
 			.tab-btn:hover { color: var(--text-main); border-color: var(--text-muted); transform: translateY(-1px); }
 			.tab-btn.active { background: var(--text-main); color: var(--bg-card); border-color: var(--text-main); font-weight: 600; }
 
-			/* 🌟 កូដស្ទាយបន្ថែមសម្រាប់ ប្រអប់ជ្រើសរើសតម្រៀប (Sorting Area) */
 			.sort-zone {
 				margin-top: 14px;
 				display: flex;
@@ -847,7 +846,9 @@
 				if (!price) { price = "$ 10"; }
 
 				const newFont = { name: name, price: price, type: type, img: img };
-				fontsData.unshift(newFont);
+				
+				// 🌟 កែត្រង់ចំណុចនេះ៖ ប្រើ .push() ដើម្បីឱ្យពុម្ពបន្ថែមថ្មីធ្លាក់ទៅក្រោមគេបង្អស់ (ចុង Array)
+				fontsData.push(newFont);
 
 				localStorage.setItem("toathmor_custom_list", JSON.stringify(fontsData));
 				nameInput.value = "";
@@ -855,7 +856,7 @@
 				imgInput.value = "";
 				
 				renderFonts();
-				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីរួចរាល់!");
+				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីទៅជួរចុងក្រោយបង្អស់!");
 			}
 
 			function adminDeleteFont(index, event) {
@@ -910,7 +911,6 @@
 				container.innerHTML = "";
 				let searchTxt = document.getElementById("searchId").value.toLowerCase().trim();
 				
-				// 1. ធ្វើការ Filter តាមការ Search និងប្រភេទ Tab ជាមុនសិន
 				let filtered = fontsData.filter(f => {
 					const matchSearch = f.name.toLowerCase().includes(searchTxt);
 					const matchCat = (currentCategory === "all") || 
@@ -919,23 +919,20 @@
 					return matchSearch && matchCat;
 				});
 
-				// 2. 🌟 មុខងារបន្ថែម៖ តម្រៀប (Sort) តាមលក្ខខណ្ឌដែលអ្នកប្រើប្រាស់ជ្រើសរើស
 				const sortValue = document.getElementById("sortSelect") ? document.getElementById("sortSelect").value : "newest";
 				
 				if (sortValue === "az") {
-					// រៀបតាមលំដាប់អក្សរ A ដល់ Z
 					filtered.sort((a, b) => a.name.localeCompare(b.name));
 				} else if (sortValue === "oldest") {
-					// ចាស់ - ថ្មី (រៀបពីក្រោមឡើងលើ ផ្អែកលើ Array ដើម)
-					filtered.sort((a, b) => fontsData.indexOf(b) - fontsData.indexOf(a));
-				} else if (sortValue === "newest") {
-					// ថ្មី - ចាស់ (រៀបពីលើចុះក្រោម ផ្អែកលើ Array ដើម)
+					// ចាស់ - ថ្មី (ពុម្ពដែលនៅលើគេក្នុង Array គឺចាស់ជាងគេ)
 					filtered.sort((a, b) => fontsData.indexOf(a) - fontsData.indexOf(b));
+				} else if (sortValue === "newest") {
+					// ថ្មី - ចាស់ (ពុម្ពបន្ថែមថ្មីនៅខាងក្រោម Array គឺថ្មីជាងគេ)
+					filtered.sort((a, b) => fontsData.indexOf(b) - fontsData.indexOf(a));
 				}
 
 				document.getElementById("topCounter").innerText = `សរុប: ${filtered.length}`;
 
-				// 3. បង្ហាញកាតពុម្ពអក្សរលើអេក្រង់
 				filtered.forEach((font, idx) => {
 					const isFav = favoriteFonts.includes(font.name);
 					const isChecked = selectedFonts.includes(font.name);
