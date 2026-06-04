@@ -547,697 +547,696 @@
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 
 			let defaultFonts = [
-	{
-		"name": "Toathmor Komaradthan",
-		"price": "$ 15",
-		"type": "moul",
-		"img": "https://i.postimg.cc/RCj388tJ/phonto.png"
-	},
-	{
-		"name": "Toathmor Sangahak",
-		"price": "$ 30",
-		"type": "moul",
-		"img": "https://i.postimg.cc/N0FjcBYz/phonto.png"
-	},
-	{
-		"name": "Toathmor Kaccay Pali-Sanskrit",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/rmwWVryN/phonto.png"
-	},
-	{
-		"name": "Toathmor Kaccayanupatthambhaka",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/NfHXjYt6/phonto.png"
-	},
-	{
-		"name": "Toathmor Moul Daunta",
-		"price": "$ 30",
-		"type": "moul",
-		"img": "https://i.postimg.cc/ncGm6xty/phonto.png"
-	},
-	{
-		"name": "Toathmor Moul Daunta A2",
-		"price": "$ 30",
-		"type": "moul",
-		"img": "https://i.postimg.cc/pd45DXDt/phonto.png"
-	},
-	{
-		"name": "Toathmor Moul Daunta A3",
-		"price": "$ 30",
-		"type": "moul",
-		"img": "https://i.postimg.cc/PJzLsW0p/phonto.png"
-	},
-	{
-		"name": "Toathmor Moul",
-		"price": "$ 10",
-		"type": "moul",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Moul RK",
-		"price": "$ 15",
-		"type": "moul",
-		"img": "https://i.postimg.cc/zXPNy3mp/phonto.png"
-	},
-	{
-		"name": "Toathmor Moul Seda",
-		"price": "$ 10",
-		"type": "moul",
-		"img": ""
-	},
-	{
-		"name": "Toathmor MoulHand",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Moul Hand V2",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Moul Nea Vea",
-		"price": "$ 10",
-		"type": "moul",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Chreang text",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Chreang text2",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor KH H.M.V. Huot Tat",
-		"price": "$ 20",
-		"type": "moul",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Buddhist Era 2500",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Sampoan",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Sampoan-Italic",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Sampoan X",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Sek Sork",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Sek Sork Plus",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Sievphov",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor SR. Jrung",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Preah Suramarith",
-		"price": "$ 15",
-		"type": "moul",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Prey Leak Mchas",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Prey Leak Mchas v2",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Nimitt",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Nireas",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Klen",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Vassa",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor NaKry",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/rmt0P712/phonto.png"
-	},
-	{
-		"name": "Toathmor NaKry Plus",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/mgXP2Tj3/phonto.png"
-	},
-	{
-		"name": "Toathmor NiTean",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor NiTean V2",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor PeaNor",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor PeaNorent",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Penh",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor PheaSaKhmer",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor North",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Lekha",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Lekha V2",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Lekha V3",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Friday",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Friday Solo UI",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Friday Moon",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor TaPenh",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Silbak UI",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor ChittBous",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/9Mv833sW/phonto.png"
-	},
-	{
-		"name": "Toathmor Maha Therak",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Kampaeng Thmor",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Kbach",
-		"price": "$ 10",
-		"type": "moul",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Kbach Seda",
-		"price": "$ 10",
-		"type": "moul",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Phka Ktomp",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Phkay Proek",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor R.Jrung",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Rodtha",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Rooster",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Samnadaichas",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Theara MS",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Thmorkream",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Komutt A",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Komutt B",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Kouteok",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Kraaochhouk",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor LetfHand",
-		"price": "$ 10",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Link",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor T. Chhim HW 022",
-		"price": "$ 30",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor T. Chhim HW 022 Sd",
-		"price": "$ 30",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Khveak Dai",
-		"price": "$ 30",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Khveak Dai Sdoeung",
-		"price": "$ 30",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Ta Chaet 006 A1",
-		"price": "$ 30",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Ta Chaet 006 A2",
-		"price": "$ 30",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Ta Chaet 006 A3",
-		"price": "$ 30",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Writehand Khveak",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Sinn Sisamouth HW",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Samnerdai A1",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Samnerdai A2",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor MuraFastHand",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor MuraHand V2",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Left Handwriting",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Left Handwriting Plus",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor FreeHand",
-		"price": "$ 10",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor T. Chhim Handwriting",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor T. Chhim Handwriting 2",
-		"price": "$ 15",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Writehand",
-		"price": "$ 10",
-		"type": "writing",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Kalyan",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Dai Chass Text",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor MY Special Text",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Banteay Dek",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Moul Phumara",
-		"price": "$ 30",
-		"type": "moul",
-		"img": "https://i.postimg.cc/pXV82cxW/phonto.png"
-	},
-	{
-		"name": "Toathmor Lomchong",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor S. SiSamouth C.S.",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/tCpvJgfc/phonto.png"
-	},
-	{
-		"name": "Toathmor S. SiSamouth C.S. 2",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/vTLPXR16/phonto.png"
-	},
-	{
-		"name": "Toathmor Smile25",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor itthea",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Header 72",
-		"price": "$ 25",
-		"type": "moul",
-		"img": "https://i.postimg.cc/wM3Fpt3H/phonto.png"
-	},
-	{
-		"name": "Toathmor CHENDA",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/bwvGhXzX/phonto.png"
-	},
-	{
-		"name": "Toathmor CHENDA 2",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/c4R7HNyc/phonto.png"
-	},
-	{
-		"name": "Toathmor Ortaki",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Pruetthi",
-		"price": "$ 20",
-		"type": "moul",
-		"img": "https://i.postimg.cc/CKH9H2qB/phonto.png"
-	},
-	{
-		"name": "Toathmor B.C. 2500",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/6qZC9CVn/phonto.png"
-	},
-	{
-		"name": "Toathmor Satya",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/tgcyVwQS/phonto.png"
-	},
-	{
-		"name": "Toathmor Angeara Text",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Anungk 2",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Anungk 3",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor Anungk 3 Chrieng",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": ""
-	},
-	{
-		"name": "Toathmor 001 Re",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/NfsF6h2T/phonto.png"
-	},
-	{
-		"name": "Toathmor 001 Mo",
-		"price": "$ 25",
-		"type": "moul",
-		"img": "https://i.postimg.cc/0y3N1bWz/phonto.png"
-	},
-	{
-		"name": "Toathmor 001 Smo",
-		"price": "$ 25",
-		"type": "moul",
-		"img": "https://i.postimg.cc/bJ0YnLzn/phonto.png"
-	},
-	{
-		"name": "Toathmor 001 Smooth",
-		"price": "$ 25",
-		"type": "moul",
-		"img": "https://i.postimg.cc/Fz9rVcz9/phonto.png"
-	},
-	{
-		"name": "Toathmor Primary",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/rwcLJg7f/phonto.png"
-	},
-	{
-		"name": "Toathmor Primary Medium",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/PxLGx78t/phonto.png"
-	},
-	{
-		"name": "Toathmor Aphiruh",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/g22bQsH0/phonto.png"
-	},
-	{
-		"name": "Toathmor Aphiruh 2",
-		"price": "$ 20",
-		"type": "moul",
-		"img": "https://i.postimg.cc/LsPLptHK/phonto.png"
-	}
-          
+				{
+					"name": "Toathmor Komaradthan",
+					"price": "$ 15",
+					"type": "moul",
+					"img": "https://i.postimg.cc/RCj388tJ/phonto.png"
+				},
+				{
+					"name": "Toathmor Sangahak",
+					"price": "$ 30",
+					"type": "moul",
+					"img": "https://i.postimg.cc/N0FjcBYz/phonto.png"
+				},
+				{
+					"name": "Toathmor Kaccay Pali-Sanskrit",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/rmwWVryN/phonto.png"
+				},
+				{
+					"name": "Toathmor Kaccayanupatthambhaka",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/NfHXjYt6/phonto.png"
+				},
+				{
+					"name": "Toathmor Moul Daunta",
+					"price": "$ 30",
+					"type": "moul",
+					"img": "https://i.postimg.cc/ncGm6xty/phonto.png"
+				},
+				{
+					"name": "Toathmor Moul Daunta A2",
+					"price": "$ 30",
+					"type": "moul",
+					"img": "https://i.postimg.cc/pd45DXDt/phonto.png"
+				},
+				{
+					"name": "Toathmor Moul Daunta A3",
+					"price": "$ 30",
+					"type": "moul",
+					"img": "https://i.postimg.cc/PJzLsW0p/phonto.png"
+				},
+				{
+					"name": "Toathmor Moul",
+					"price": "$ 10",
+					"type": "moul",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Moul RK",
+					"price": "$ 15",
+					"type": "moul",
+					"img": "https://i.postimg.cc/zXPNy3mp/phonto.png"
+				},
+				{
+					"name": "Toathmor Moul Seda",
+					"price": "$ 10",
+					"type": "moul",
+					"img": ""
+				},
+				{
+					"name": "Toathmor MoulHand",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Moul Hand V2",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Moul Nea Vea",
+					"price": "$ 10",
+					"type": "moul",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Chreang text",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Chreang text2",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor KH H.M.V. Huot Tat",
+					"price": "$ 20",
+					"type": "moul",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Buddhist Era 2500",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Sampoan",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Sampoan-Italic",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Sampoan X",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Sek Sork",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Sek Sork Plus",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Sievphov",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor SR. Jrung",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Preah Suramarith",
+					"price": "$ 15",
+					"type": "moul",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Prey Leak Mchas",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Prey Leak Mchas v2",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Nimitt",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Nireas",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Klen",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Vassa",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor NaKry",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/rmt0P712/phonto.png"
+				},
+				{
+					"name": "Toathmor NaKry Plus",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/mgXP2Tj3/phonto.png"
+				},
+				{
+					"name": "Toathmor NiTean",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor NiTean V2",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor PeaNor",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor PeaNorent",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Penh",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor PheaSaKhmer",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor North",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Lekha",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Lekha V2",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Lekha V3",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Friday",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Friday Solo UI",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Friday Moon",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor TaPenh",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Silbak UI",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor ChittBous",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/9Mv833sW/phonto.png"
+				},
+				{
+					"name": "Toathmor Maha Therak",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Kampaeng Thmor",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Kbach",
+					"price": "$ 10",
+					"type": "moul",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Kbach Seda",
+					"price": "$ 10",
+					"type": "moul",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Phka Ktomp",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Phkay Proek",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor R.Jrung",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Rodtha",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Rooster",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Samnadaichas",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Theara MS",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Thmorkream",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Komutt A",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Komutt B",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Kouteok",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Kraaochhouk",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor LetfHand",
+					"price": "$ 10",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Link",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor T. Chhim HW 022",
+					"price": "$ 30",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor T. Chhim HW 022 Sd",
+					"price": "$ 30",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Khveak Dai",
+					"price": "$ 30",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Khveak Dai Sdoeung",
+					"price": "$ 30",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Ta Chaet 006 A1",
+					"price": "$ 30",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Ta Chaet 006 A2",
+					"price": "$ 30",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Ta Chaet 006 A3",
+					"price": "$ 30",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Writehand Khveak",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Sinn Sisamouth HW",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Samnerdai A1",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Samnerdai A2",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor MuraFastHand",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor MuraHand V2",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Left Handwriting",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Left Handwriting Plus",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor FreeHand",
+					"price": "$ 10",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor T. Chhim Handwriting",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor T. Chhim Handwriting 2",
+					"price": "$ 15",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Writehand",
+					"price": "$ 10",
+					"type": "writing",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Kalyan",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Dai Chass Text",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor MY Special Text",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Banteay Dek",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Moul Phumara",
+					"price": "$ 30",
+					"type": "moul",
+					"img": "https://i.postimg.cc/pXV82cxW/phonto.png"
+				},
+				{
+					"name": "Toathmor Lomchong",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor S. SiSamouth C.S.",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/tCpvJgfc/phonto.png"
+				},
+				{
+					"name": "Toathmor S. SiSamouth C.S. 2",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/vTLPXR16/phonto.png"
+				},
+				{
+					"name": "Toathmor Smile25",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor itthea",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Header 72",
+					"price": "$ 25",
+					"type": "moul",
+					"img": "https://i.postimg.cc/wM3Fpt3H/phonto.png"
+				},
+				{
+					"name": "Toathmor CHENDA",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/bwvGhXzX/phonto.png"
+				},
+				{
+					"name": "Toathmor CHENDA 2",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/c4R7HNyc/phonto.png"
+				},
+				{
+					"name": "Toathmor Ortaki",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Pruetthi",
+					"price": "$ 20",
+					"type": "moul",
+					"img": "https://i.postimg.cc/CKH9H2qB/phonto.png"
+				},
+				{
+					"name": "Toathmor B.C. 2500",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/6qZC9CVn/phonto.png"
+				},
+				{
+					"name": "Toathmor Satya",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/tgcyVwQS/phonto.png"
+				},
+				{
+					"name": "Toathmor Angeara Text",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Anungk 2",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Anungk 3",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor Anungk 3 Chrieng",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": ""
+				},
+				{
+					"name": "Toathmor 001 Re",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/NfsF6h2T/phonto.png"
+				},
+				{
+					"name": "Toathmor 001 Mo",
+					"price": "$ 25",
+					"type": "moul",
+					"img": "https://i.postimg.cc/0y3N1bWz/phonto.png"
+				},
+				{
+					"name": "Toathmor 001 Smo",
+					"price": "$ 25",
+					"type": "moul",
+					"img": "https://i.postimg.cc/bJ0YnLzn/phonto.png"
+				},
+				{
+					"name": "Toathmor 001 Smooth",
+					"price": "$ 25",
+					"type": "moul",
+					"img": "https://i.postimg.cc/Fz9rVcz9/phonto.png"
+				},
+				{
+					"name": "Toathmor Primary",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/rwcLJg7f/phonto.png"
+				},
+				{
+					"name": "Toathmor Primary Medium",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/PxLGx78t/phonto.png"
+				},
+				{
+					"name": "Toathmor Aphiruh",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/g22bQsH0/phonto.png"
+				},
+				{
+					"name": "Toathmor Aphiruh 2",
+					"price": "$ 20",
+					"type": "moul",
+					"img": "https://i.postimg.cc/LsPLptHK/phonto.png"
+				}
 			];
 
 			let customFonts = JSON.parse(localStorage.getItem("toathmor_custom_list"));
@@ -1257,7 +1256,7 @@
 					document.getElementById("adminBtnIcon").classList.remove("active");
 					showToast("🔒 បានចាកចេញពីមុខងារ Admin");
 				} else {
-					const pass = prompt("សូមបញ្ចូលលេខសម្ងាត់ Admin៖");
+					const pass = prompt("Admin : Toathmor");
 					if (!pass) return;
 					const hashed = await hashPassword(pass);
 					if (hashed === "01909479fc1d9a5127c375d3075867fce826422a363fdeb4a7196eb644725b1d") {
@@ -1363,13 +1362,17 @@
 
 				filtered.forEach((font, idx) => {
 					const isFav = favoriteFonts.includes(font.name);
-					const isChecked = selectedFonts.includes(font.name);
+					
+					// កែសម្រួលត្រង់នេះ៖ ភ្ជាប់តម្លៃទៅនឹងឈ្មោះដើម្បីឆែក Checkbox ឱ្យត្រូវគ្នា
+					const fontWithPrice = `${font.name} (${font.price || '$ 10'})`;
+					const isChecked = selectedFonts.includes(fontWithPrice);
+					
 					const actualIndex = fontsData.indexOf(font);
 					const imgHtml = font.img ? `<img src="${font.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`;
 
 					const card = document.createElement("div");
 					card.className = `font-card ${isChecked ? 'selected' : ''}`;
-					card.onclick = () => handleCardClick(font.name, card);
+					card.onclick = () => handleCardClick(font.name, font.price, card);
 					
 					const favIconSvg = isFav 
 						? `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`
@@ -1378,7 +1381,7 @@
 					card.innerHTML = `
 						<div class="card-top">
 							<div class="font-title-wrapper">
-								<input type="checkbox" class="font-checkbox" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); toggleSelectFont('${font.name}', this)">
+								<input type="checkbox" class="font-checkbox" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); toggleSelectFont('${font.name}', '${font.price}', this)">
 								<span class="font-num">${idx + 1}</span>
 								<span class="font-title" onclick="event.stopPropagation(); copyFontName('${font.name}')">${font.name}</span>
 							</div>
@@ -1394,7 +1397,10 @@
 						<div class="card-acts-row" onclick="event.stopPropagation();">
 							<div class="font-price-tag">${font.price || '$ 10'}</div>
 							<a href="https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + font.name)}" target="_blank" class="btn-action btn-primary">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="margin-right:2px;"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.562 8.161c-.18 1.897-.961 6.505-1.359 8.641-.168.9-.5 1.201-.82 1.231-.71.06-1.25-.471-1.94-.921-1.079-.71-1.69-1.149-2.74-1.839-1.21-.8-1.261-1.24-.06-2.481.31-.32 5.751-5.271 5.851-5.711.01-.06.02-.271-.1-.381-.13-.11-.31-.07-.45-.04-.2.04-3.32 2.1-9.37 6.161-.88.61-1.69.91-2.42.891-.81-.02-2.361-.46-3.511-.841-1.41-.46-1.53-.711-.14-1.281 7.42-3.23 12.37-5.36 14.84-6.4 7.04-2.93.42-2.341.42.81 0 .28-.01.591-.04.921z"/></svg>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<line x1="22" y1="2" x2="11" y2="13"></line>
+									<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+								</svg>
 								ទិញពុម្ពនេះ
 							</a>
 						</div>
@@ -1403,10 +1409,17 @@
 				});
 			}
 
-			function handleCardClick(name, cardElement) {
+			function handleCardClick(name, price, cardElement) {
 				const chk = cardElement.querySelector('.font-checkbox');
 				chk.checked = !chk.checked;
-				toggleSelectFont(name, chk);
+				
+				// កែសម្រួលត្រង់នេះ៖ ប្តូរពណ៌កាតភ្លាមៗ ដោយមិនបាច់ហៅ renderFonts() ឡើងវិញនាំឱ្យទាក់ឡើយ
+				if (chk.checked) {
+					cardElement.classList.add('selected');
+				} else {
+					cardElement.classList.remove('selected');
+				}
+				toggleSelectFont(name, price, chk);
 			}
 
 			function filterData() { renderFonts(); }
@@ -1425,9 +1438,13 @@
 				renderFonts();
 			}
 
-			function toggleSelectFont(name, chk) {
-				if (chk.checked) { if (!selectedFonts.includes(name)) selectedFonts.push(name); }
-				else { selectedFonts = selectedFonts.filter(f => f !== name); }
+			function toggleSelectFont(name, price, chk) {
+				const fontWithPrice = `${name} (${price || '$ 10'})`;
+				if (chk.checked) { 
+					if (!selectedFonts.includes(fontWithPrice)) selectedFonts.push(fontWithPrice); 
+				} else { 
+					selectedFonts = selectedFonts.filter(f => f !== fontWithPrice); 
+				}
 				updateMultiSelectBar();
 			}
 
@@ -1440,10 +1457,14 @@
 				} else {
 					bar.classList.remove("show");
 				}
-				renderFonts();
+				// លុប renderFonts() ចេញពីទីនេះ ដើម្បីកុំឱ្យដើរទាក់ និងគាំងទូរសព្ទ
 			}
 
-			function clearAllSelections() { selectedFonts = []; updateMultiSelectBar(); }
+			function clearAllSelections() { 
+				selectedFonts = []; 
+				updateMultiSelectBar(); 
+				renderFonts(); // ហៅឡើងវិញតែពេលចុចលុបចោលទាំងអស់ប៉ុណ្ណោះ
+			}
 
 			function sendMultiOrder() {
 				if (selectedFonts.length === 0) return;
@@ -1461,7 +1482,6 @@
 				setTimeout(() => { toast.classList.remove("show"); }, 2200);
 			}
 
-			// 🌟 កូដ toggleTheme ថ្មី ដែលប្ដូរទាំងពណ៌ និង Icon ព្រះអាទិត្យ/ព្រះច័ន្ទ យ៉ាងត្រឹមត្រូវ
 			function toggleTheme() {
 				const currentTheme = document.documentElement.getAttribute("data-theme");
 				const themeBtn = document.getElementById("themeIcon");
@@ -1473,7 +1493,7 @@
 				} else {
 					document.documentElement.setAttribute("data-theme", "dark");
 					localStorage.setItem("toathmor_theme", "dark");
-					themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12\"></line><line x1="21" y1="12" x2="23" y2="12\"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36\"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22\"></line></svg>`;
+					themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
 				}
 				renderFonts();
 			}
@@ -1484,7 +1504,7 @@
 				
 				if (savedTheme === "dark") {
 					document.documentElement.setAttribute("data-theme", "dark");
-					themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12\"></line><line x1="21" y1="12" x2="23" y2="12\"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36\"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22\"></line></svg>`;
+					themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
 				} else {
 					document.documentElement.removeAttribute("data-theme");
 					themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
