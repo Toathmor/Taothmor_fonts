@@ -284,11 +284,11 @@
 			.admin-grid-inputs {
 				display: grid;
 				grid-template-columns: 1fr;
-				gap: 14px;
+				gap: 16px;
 				margin-bottom: 16px;
 			}
 			@media (min-width: 768px) {
-				.admin-grid-inputs { grid-template-columns: 2fr 1fr 2fr 1fr; }
+				.admin-grid-inputs { grid-template-columns: repeat(2, 1fr); }
 			}
 			.admin-input, .admin-select {
 				width: 100%;
@@ -300,6 +300,15 @@
 				box-sizing: border-box;
 				-webkit-user-select: text;
 				user-select: text;
+				font-size: 15px;
+			}
+			.admin-form-actions {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+			}
+			@media (min-width: 768px) {
+				.admin-form-actions { flex-direction: row; }
 			}
 
 			.font-list {
@@ -492,20 +501,32 @@
 				</div>
 			</div>
 
-			<div class="admin-form-panel admin-only" id="adminFormPanel">
-				<h3 class="admin-form-title">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី</h3>
-				<div class="admin-grid-inputs">
-					<input type="text" id="newFontName" class="admin-input" placeholder="ឈ្មោះពុម្ព (ឧ៖ Toathmor New)" autocomplete="off">
-					<input type="text" id="newFontPrice" class="admin-input" placeholder="តម្លៃ (ឧ៖ $ 15)" autocomplete="off">
-					<input type="text" id="newFontImg" class="admin-input" placeholder="លីងរូបភាព Direct Link" autocomplete="off">
-					<select id="newFontType" class="admin-select">
-						<option value="moul">អក្សរមូល</option>
-						<option value="chreang">អក្សរជ្រៀង/ត្រង់</option>
-						<option value="writing">អក្សរដៃ</option>
-					</select>
+			<div class="admin-form-panel admin-only" id="adminFormPanel" style="background: var(--bg-card); border: 2px dashed var(--accent); border-radius: var(--radius-card); padding: 24px; margin-bottom: 25px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box;">
+    
+    <h3 class="admin-form-title" style="margin: 0; font-size: 18px; font-weight: 700;">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី</h3>
+    
+    <div style="display: flex; gap: 16px; width: 100%; box-sizing: border-box;">
+        <input type="text" id="newFontName" class="admin-input" placeholder="ឈ្មោះពុម្ព (ឧ៖ Toathmor New)" autocomplete="off" style="flex: 1; min-width: 0;">
+        <input type="text" id="newFontPrice" class="admin-input" placeholder="តម្លៃ (ឧ៖ $ 15)" autocomplete="off" style="flex: 1; min-width: 0;">
+    </div>
+    
+    <div style="display: flex; gap: 16px; width: 100%; box-sizing: border-box;">
+        <input type="text" id="newFontImg" class="admin-input" placeholder="លីងរូបភាព Direct Link" autocomplete="off" style="flex: 1; min-width: 0;">
+        <select id="newFontType" class="admin-select" style="flex: 1; min-width: 0;">
+            <option value="moul">អក្សរមូល</option>
+            <option value="chreang">អក្សរជ្រៀង/ត្រង់</option>
+            <option value="writing">អក្សរដៃ</option>
+        </select>
+    </div>
+    
+    <div style="display: flex; gap: 16px; width: 100%; margin-top: 8px; box-sizing: border-box;">
+        <button class="btn-add-font" style="background: var(--success); color: white; border: none; padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 2; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="adminAddNewFont()">
+            ➕ រក្សាទុកពុម្ពអក្សរថ្មី
+        </button>
+        <button class="btn-secondary" style="padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="exportFontsData()">
+            📥 Export កូដ   </button>
+
 				</div>
-				<button class="btn-add-font" style="background:var(--success); color:white; border:none; padding:14px; border-radius:16px; font-weight:700; width:100%; cursor:pointer;" onclick="adminAddNewFont()">➕ រក្សាទុកពុម្ពអក្សរថ្មី</button>
-				<button class="btn-secondary" style="margin-top:10px; padding:12px; border-radius:16px; width:100%; cursor:pointer;" onclick="exportFontsData()">📥 ទាញយកទិន្នន័យកូដ (Export)</button>
 			</div>
 
 			<div class="font-list" id="listContainer"></div>
