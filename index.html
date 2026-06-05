@@ -6,7 +6,11 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.4.1</title>
+		<title>Toathmor Fonts App V4.4.2</title>
+
+		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
+		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
+		<link rel="icon" type="image/png" sizes="512x512" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta
@@ -474,7 +478,6 @@
 			[data-theme="dark"] #toast { background: #ffffff; color: #0f172a; }
 			#toast.show { bottom: 120px; }
 
-			/* ✨ ស្នួលកូដថ្មី៖ ឌីហ្សាញផ្ទាំង Edit Modal នៅខាងក្រៅស្រួលមើល */
 			.edit-modal-overlay {
 				position: fixed; top: 0; left: 0; width: 100%; height: 100%;
 				background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
@@ -649,7 +652,7 @@
 
 		<script>
 			// ----------------- ប្រព័ន្ធរុញបង្ខំ APP VERSION CONTROL -----------------
-			const CURRENT_VERSION = "4.4.1"; 
+			const CURRENT_VERSION = "4.4.2"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -1456,7 +1459,6 @@
 				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីរួចរាល់!");
 			}
 
-			/* 🎯 បើកផ្ទាំង Edit Modal នៅខាងក្រៅស្រួលមើល */
 			function openEditModal(index, event) {
 				event.stopPropagation();
 				const font = fontsData[index];
@@ -1483,7 +1485,6 @@
 				document.getElementById("editModal").classList.remove("show");
 			}
 
-			/* 🎯 រក្សាទុកទិន្នន័យពីផ្ទាំង Edit Modal */
 			function saveAdminEditModal() {
 				const index = parseInt(document.getElementById("editFontIndex").value);
 				if (isNaN(index)) return;
@@ -1533,26 +1534,23 @@
 				showToast("➕ បានបន្ថែមម៉ូដស្រដៀងទៅក្នុង Family រួចរាល់!");
 			}
 
-			/* ✨ កូដកែថ្មី៖ លុបមួយ កុំឱ្យប៉ះពាល់ទាំងអស់ក្នុងគ្រួសារ */
 			function adminDeleteFont(index, event) {
 				event.stopPropagation();
 				const font = fontsData[index];
 				const currentVarIdx = activeVariants[index] || 0;
 
-				// ករណីទី១៖ បើកំពុងមើល "ម៉ូដកូន" (Variant) គឺលុបតែម៉ូដកូនមួយនោះចេញ
 				if (currentVarIdx > 0) {
 					const variantIdx = currentVarIdx - 1; 
 					const variantName = font.variants[variantIdx].name;
 					
 					if (confirm(`តើលោកគ្រូពិតជាចង់លុបតែម៉ូដកូន "${variantName}" នេះមែនទេ?`)) {
 						font.variants.splice(variantIdx, 1);
-						activeVariants[index] = 0; // ត្រឡប់មកម៉ូដដើមវិញ
+						activeVariants[index] = 0; 
 						saveData();
 						renderFonts();
 						showToast("🗑️ បានលុបម៉ូដកូនរួចរាល់!");
 					}
 				} 
-				// ករណីទី២៖ បើកំពុងមើល "ម៉ូដដើម"
 				else {
 					if (font.variants && font.variants.length > 0) {
 						const action = prompt(
