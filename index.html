@@ -19,6 +19,10 @@
 			href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png"
 		/>
 
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+
 		<link
 			href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap"
 			rel="stylesheet"
@@ -74,10 +78,9 @@
 				background-color: var(--bg-main);
 				color: var(--text-main);
 				margin: 0;
-				/* កែសម្រួលគម្លាតឱ្យត្រូវស្ដង់ដារ iOS App មិនឱ្យទាក់ ឬកប់ប៊ូតុង */
 				padding: calc(15px + env(safe-area-inset-top)) 0 calc(110px + env(safe-area-inset-bottom)) 0;
 				transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-				-webkit-overflow-scrolling: touch; /* ធ្វើឱ្យអូសនៅលើ iOS App បានរលូនខ្លាំង */
+				-webkit-overflow-scrolling: touch; 
 			}
 
 			.container {
@@ -595,6 +598,27 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
+			// ----------------- ប្រព័ន្ធរុញបង្ខំ APP VERSION CONTROL -----------------
+			// បើមានការកែប្រែទិន្នន័យពុម្ពអក្សរ ឬកូដនៅថ្ងៃក្រោយ សូមបងគ្រាន់តែប្ដូរលេខត្រង់ '4.0.1' នេះទៅជាលេខផ្សេង (ឧ៖ '4.0.2')
+			// វានឹងធ្វើឱ្យទូរស័ព្ទរបស់អ្នកដទៃទាញយកកូដថ្មីដោយស្វ័យប្រវត្តិ មិនជាប់ Cache ទៀតឡើយ។
+			const APP_VERSION = "4.0.1"; 
+
+			function checkAppVersion() {
+				const savedVersion = localStorage.getItem("toathmor_app_version");
+				if (savedVersion !== APP_VERSION) {
+					localStorage.setItem("toathmor_app_version", APP_VERSION);
+					// សម្អាតទិន្នន័យចាស់ដែលមិនចាំបាច់ រួចបង្ខំចិត្ត reload ពី server ផ្ទាល់
+					if ('caches' in window) {
+						caches.keys().then(names => {
+							for (let name of names) caches.delete(name);
+						});
+					}
+					window.location.reload(true);
+				}
+			}
+			checkAppVersion();
+			// ---------------------------------------------------------------------
+
 			document.addEventListener('contextmenu', e => e.preventDefault());
 			
 			const searchInput = document.getElementById("searchId");
