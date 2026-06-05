@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.3.1</title>
+		<title>Toathmor Fonts App V4.4.0</title>
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta
@@ -474,6 +474,22 @@
 			[data-theme="dark"] #toast { background: #ffffff; color: #0f172a; }
 			#toast.show { bottom: 120px; }
 
+			/* ✨ ស្នួលកូដថ្មី៖ ឌីហ្សាញផ្ទាំង Edit Modal នៅខាងក្រៅស្រួលមើល */
+			.edit-modal-overlay {
+				position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+				background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
+				z-index: 99999; display: none; align-items: center; justify-content: center;
+				padding: 20px; box-sizing: border-box;
+			}
+			.edit-modal-overlay.show { display: flex; }
+			.edit-modal-content {
+				background: var(--bg-card); border-radius: 24px; width: 100%; max-width: 460px;
+				padding: 24px; box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+				display: flex; flex-direction: column; gap: 16px; animation: modalFade 0.3s ease;
+			}
+			@keyframes modalFade { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+			.modal-label { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; display: block; }
+
 			footer {
 				margin-top: 60px;
 				padding: 30px 16px calc(40px + env(safe-area-inset-bottom)) 16px;
@@ -574,12 +590,43 @@
 						</button>
 					</div>
 					<button class="btn-action" style="background: #007bff; color: white; padding: 14px; border: none; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;" onclick="copyEntireCodeForGitHubPages()">
-						📋 ចម្លងកូដ WEB ទាំងអស់សម្រាប់ដាក់ក្នុង GITHUB  ទាំងមូល
+						📋 ចម្លងកូដ WEB ទាំងអស់សម្រាប់ដាក់ក្នុង GITHUB ទាំងមូល
 					</button>
 				</div>
 			</div>
 
 			<div class="font-list" id="listContainer"></div>
+		</div>
+
+		<div class="edit-modal-overlay" id="editModal">
+			<div class="edit-modal-content" onclick="event.stopPropagation();">
+				<h3 style="margin: 0; font-size: 18px; font-weight: 700; color: var(--text-main);">📝 កែសម្រួលព័ត៌មានពុម្ពអក្សរ</h3>
+				<input type="hidden" id="editFontIndex">
+				
+				<div>
+					<label class="modal-label">ឈ្មោះពុម្ពអក្សរ</label>
+					<input type="text" id="editFontName" class="admin-input" autocomplete="off" style="-webkit-user-select:text; user-select:text;">
+				</div>
+
+				<div>
+					<label class="modal-label">តម្លៃពុម្ពអក្សរ</label>
+					<input type="text" id="editFontPrice" class="admin-input" autocomplete="off" style="-webkit-user-select:text; user-select:text;">
+				</div>
+
+				<div id="modalTypeGroup">
+					<label class="modal-label">ប្រភេទពុម្ពអក្សរ (បង្ហាញទៅតាម Tab)</label>
+					<select id="editFontType" class="admin-select">
+						<option value="moul">អក្សរមូល</option>
+						<option value="chreang">អក្សរជ្រៀង/ត្រង់</option>
+						<option value="writing">អក្សរដៃ</option>
+					</select>
+				</div>
+
+				<div style="display: flex; gap: 12px; margin-top: 10px;">
+					<button class="btn-action btn-secondary" onclick="closeEditModal()">✕ បោះបង់</button>
+					<button class="btn-action btn-primary" onclick="saveAdminEditModal()" style="background: var(--success); color: white;">💾 រក្សាទុក</button>
+				</div>
+			</div>
 		</div>
 
 		<footer>
@@ -602,7 +649,7 @@
 
 		<script>
 			// ----------------- ប្រព័ន្ធរុញបង្ខំ APP VERSION CONTROL -----------------
-			const CURRENT_VERSION = "4.3.1"; 
+			const CURRENT_VERSION = "4.4.0"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -887,63 +934,64 @@
 				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីរួចរាល់!");
 			}
 
-			/* 🎯 ជួសជុលកូដកែប្រែប្រភេទឱ្យដើរបានត្រឹមត្រូវ ១០០% */
-			function adminEditCurrentVariant(index, event) {
+			/* 🎯 មុខងារថ្មី៖ បើកផ្ទាំង Edit Modal នៅខាងក្រៅស្រួលមើល */
+			function openEditModal(index, event) {
 				event.stopPropagation();
 				const font = fontsData[index];
 				const currentVarIdx = activeVariants[index] || 0;
 
+				document.getElementById("editFontIndex").value = index;
+
 				if (currentVarIdx === 0) {
-					// កែប្រែព័ត៌មានមេ (ម៉ូដដើម)
-					const newName = prompt("📝 កែប្រែឈ្មោះពុម្ពអក្សរ៖", font.name);
-					if (newName === null) return; 
-					if (newName.trim() === "") { alert("ឈ្មោះមិនអាចទទេបានទេ!"); return; }
-
-					const newPrice = prompt("💵 កែប្រែតម្លៃ៖", font.price || "$ 10");
-					if (newPrice === null) return;
-
-					// បង្ហាញជម្រើសប្តូរប្រភេទច្បាស់ៗ (វាយលេខ 1, 2 ឬ 3)
-					const typePrompt = prompt(
-						`🔤 កែប្រែប្រភេទអក្សរ (វាយលេខសម្គាល់ខាងក្រោម)៖\n` +
-						`1 : សម្រាប់ អក្សរមូល\n` +
-						`2 : សម្រាប់ អក្សរជ្រៀង/ត្រង់\n` +
-						`3 : សម្រាប់ អក្សរដៃ\n\n` +
-						`ប្រភេទបច្ចុប្បន្នគឺ៖ ` + (font.type === "moul" ? "អក្សរមូល" : font.type === "chreang" ? "អក្សរជ្រៀង/ត្រង់" : "អក្សរដៃ"),
-						font.type === "moul" ? "1" : font.type === "chreang" ? "2" : "3"
-					);
-					
-					if (typePrompt === null) return;
-
-					// កែប្រែទិន្នន័យ
-					font.name = newName.trim();
-					font.price = newPrice.trim() || "$ 10";
-
-					if (typePrompt.trim() === "1") font.type = "moul";
-					else if (typePrompt.trim() === "2") font.type = "chreang";
-					else if (typePrompt.trim() === "3") font.type = "writing";
-
-					// បង្ខំឱ្យវាលោតមកម៉ូដដើមវិញ ដើម្បីកុំឱ្យគាំងបង្ហាញទិន្នន័យខុសប្រភេទ
-					activeVariants[index] = 0;
-
+					// ម៉ូដដើម (កែបានទាំងប្រភេទ)
+					document.getElementById("editFontName").value = font.name;
+					document.getElementById("editFontPrice").value = font.price || "$ 10";
+					document.getElementById("editFontType").value = font.type || "moul";
+					document.getElementById("modalTypeGroup").style.display = "block"; // បង្ហាញប្រអប់រើសប្រភេទ
 				} else {
-					// កែប្រែទិន្នន័យ Variant (ម៉ូដកូន)
-					const vIdx = currentVarIdx - 1;
-					const variant = font.variants[vIdx];
-					
-					const newName = prompt(`📝 កែប្រែឈ្មោះម៉ូដទី ${currentVarIdx}៖`, variant.name);
-					if (newName === null) return;
-					if (newName.trim() === "") { alert("ឈ្មោះមិនអាចទទេបានទេ!"); return; }
+					// ម៉ូដកូន (កែបានតែឈ្មោះ និងតម្លៃ)
+					const variant = font.variants[currentVarIdx - 1];
+					document.getElementById("editFontName").value = variant.name;
+					document.getElementById("editFontPrice").value = variant.price || "$ 10";
+					document.getElementById("modalTypeGroup").style.display = "none"; // លាក់ប្រអប់ប្រភេទ
+				}
 
-					const newPrice = prompt("💵 កែប្រែតម្លៃ៖", variant.price || "$ 10");
-					if (newPrice === null) return;
+				document.getElementById("editModal").classList.add("show");
+			}
 
-					variant.name = newName.trim();
-					variant.price = newPrice.trim() || "$ 10";
+			function closeEditModal() {
+				document.getElementById("editModal").classList.remove("show");
+			}
+
+			/* 🎯 មុខងារថ្មី៖ រក្សាទុកទិន្នន័យពីផ្ទាំង Edit Modal */
+			function saveAdminEditModal() {
+				const index = parseInt(document.getElementById("editFontIndex").value);
+				if (isNaN(index)) return;
+
+				const font = fontsData[index];
+				const currentVarIdx = activeVariants[index] || 0;
+				const newName = document.getElementById("editFontName").value.trim();
+				const newPrice = document.getElementById("editFontPrice").value.trim();
+
+				if (!newName) { alert("ឈ្មោះមិនអាចទទេបានទេ!"); return; }
+
+				if (currentVarIdx === 0) {
+					// រក្សាទុកម៉ូដដើម
+					const newType = document.getElementById("editFontType").value;
+					font.name = newName;
+					font.price = newPrice || "$ 10";
+					font.type = newType;
+				} else {
+					// រក្សាទុកម៉ូដកូន
+					const variant = font.variants[currentVarIdx - 1];
+					variant.name = newName;
+					variant.price = newPrice || "$ 10";
 				}
 
 				saveData();
-				renderFonts(); // ហៅមក Render សារជាថ្មីដើម្បីឱ្យ Update ទិន្នន័យលើអេក្រង់ភ្លាមៗ
-				showToast("✨ បានកែសម្រួលព័ត៌មានរួចរាល់!");
+				closeEditModal();
+				renderFonts();
+				showToast("✨ បានរក្សាទុកការកែប្រែរួចរាល់!");
 			}
 
 			function adminAddInlineVariant(index, event) {
@@ -1204,7 +1252,7 @@
 						${familySwitcherHtml}
 
 						<div class="admin-only admin-actions-zone">
-							<button class="admin-card-btn" onclick="adminEditCurrentVariant(${actualIndex}, event)">📝 កែឈ្មោះ/តម្លៃ/ប្រភេទ</button>
+							<button class="admin-card-btn" onclick="openEditModal(${actualIndex}, event)">📝 កែឈ្មោះ/តម្លៃ/ប្រភេទ</button>
 							<button class="admin-card-btn" onclick="adminEditFontImage(${actualIndex}, event)">🖼️ ដាក់រូប</button>
 							<button class="admin-card-btn" onclick="adminClearFontImage(${actualIndex}, event)">❌ លុបរូប</button>
 							<button class="admin-card-btn" style="color:var(--danger);" onclick="adminDeleteFont(${actualIndex}, event)">🗑️ លុបពុម្ព</button>
