@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.4.0</title>
+		<title>Toathmor Fonts App V4.4.1</title>
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta
@@ -649,7 +649,7 @@
 
 		<script>
 			// ----------------- ប្រព័ន្ធរុញបង្ខំ APP VERSION CONTROL -----------------
-			const CURRENT_VERSION = "4.4.0"; 
+			const CURRENT_VERSION = "4.4.1"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -934,7 +934,7 @@
 				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីរួចរាល់!");
 			}
 
-			/* 🎯 មុខងារថ្មី៖ បើកផ្ទាំង Edit Modal នៅខាងក្រៅស្រួលមើល */
+			/* 🎯 បើកផ្ទាំង Edit Modal នៅខាងក្រៅស្រួលមើល */
 			function openEditModal(index, event) {
 				event.stopPropagation();
 				const font = fontsData[index];
@@ -943,17 +943,15 @@
 				document.getElementById("editFontIndex").value = index;
 
 				if (currentVarIdx === 0) {
-					// ម៉ូដដើម (កែបានទាំងប្រភេទ)
 					document.getElementById("editFontName").value = font.name;
 					document.getElementById("editFontPrice").value = font.price || "$ 10";
 					document.getElementById("editFontType").value = font.type || "moul";
-					document.getElementById("modalTypeGroup").style.display = "block"; // បង្ហាញប្រអប់រើសប្រភេទ
+					document.getElementById("modalTypeGroup").style.display = "block"; 
 				} else {
-					// ម៉ូដកូន (កែបានតែឈ្មោះ និងតម្លៃ)
 					const variant = font.variants[currentVarIdx - 1];
 					document.getElementById("editFontName").value = variant.name;
 					document.getElementById("editFontPrice").value = variant.price || "$ 10";
-					document.getElementById("modalTypeGroup").style.display = "none"; // លាក់ប្រអប់ប្រភេទ
+					document.getElementById("modalTypeGroup").style.display = "none"; 
 				}
 
 				document.getElementById("editModal").classList.add("show");
@@ -963,7 +961,7 @@
 				document.getElementById("editModal").classList.remove("show");
 			}
 
-			/* 🎯 មុខងារថ្មី៖ រក្សាទុកទិន្នន័យពីផ្ទាំង Edit Modal */
+			/* 🎯 រក្សាទុកទិន្នន័យពីផ្ទាំង Edit Modal */
 			function saveAdminEditModal() {
 				const index = parseInt(document.getElementById("editFontIndex").value);
 				if (isNaN(index)) return;
@@ -976,13 +974,11 @@
 				if (!newName) { alert("ឈ្មោះមិនអាចទទេបានទេ!"); return; }
 
 				if (currentVarIdx === 0) {
-					// រក្សាទុកម៉ូដដើម
 					const newType = document.getElementById("editFontType").value;
 					font.name = newName;
 					font.price = newPrice || "$ 10";
 					font.type = newType;
 				} else {
-					// រក្សាទុកម៉ូដកូន
 					const variant = font.variants[currentVarIdx - 1];
 					variant.name = newName;
 					variant.price = newPrice || "$ 10";
@@ -1015,12 +1011,60 @@
 				showToast("➕ បានបន្ថែមម៉ូដស្រដៀងទៅក្នុង Family រួចរាល់!");
 			}
 
+			/* ✨ កូដកែថ្មី៖ លុបមួយ កុំឱ្យប៉ះពាល់ទាំងអស់ក្នុងគ្រួសារ */
 			function adminDeleteFont(index, event) {
 				event.stopPropagation();
-				if (confirm("តើអ្នកពិតជាចង់លុបពុម្ពអក្សរនេះមែនទេ?")) {
-					fontsData.splice(index, 1);
-					saveData();
-					renderFonts();
+				const font = fontsData[index];
+				const currentVarIdx = activeVariants[index] || 0;
+
+				// ករណីទី១៖ បើកំពុងមើល "ម៉ូដកូន" (Variant) គឺលុបតែម៉ូដកូនមួយនោះចេញ
+				if (currentVarIdx > 0) {
+					const variantIdx = currentVarIdx - 1; 
+					const variantName = font.variants[variantIdx].name;
+					
+					if (confirm(`តើលោកគ្រូពិតជាចង់លុបតែម៉ូដកូន "${variantName}" នេះមែនទេ?`)) {
+						font.variants.splice(variantIdx, 1);
+						activeVariants[index] = 0; // ត្រឡប់មកម៉ូដដើមវិញ
+						saveData();
+						renderFonts();
+						showToast("🗑️ បានលុបម៉ូដកូនរួចរាល់!");
+					}
+				} 
+				// ករណីទី២៖ បើកំពុងមើល "ម៉ូដដើម"
+				else {
+					if (font.variants && font.variants.length > 0) {
+						const action = prompt(
+							`ពុម្ពនេះមានម៉ូដកូននៅក្នុងគ្រួសារវាចំនួន ${font.variants.length} ទៀត។\n\n` +
+							`សូមវាយលេខដើម្បីជ្រើសរើស៖\n` +
+							`លេខ ១ : ចង់លុបទាំង "ម៉ូដដើម" និង "ម៉ូដកូនទាំងអស់" ចេញពីកម្មវិធី\n` +
+							`លេខ ២ : ចង់លុបតែ "ម៉ូដដើម" ហើយដំឡើងម៉ូដកូនទី១ ឲ្យមកធ្វើជាម៉ូដដើមជំនួសវិញ`, 
+							"១"
+						);
+
+						if (action === "១") {
+							fontsData.splice(index, 1);
+							saveData();
+							renderFonts();
+							showToast("🗑️ បានលុបទាំងគ្រួសារពុម្ពអក្សរនេះរួចរាល់!");
+						} else if (action === "២") {
+							const firstVariant = font.variants[0];
+							font.name = firstVariant.name;
+							font.price = firstVariant.price;
+							font.img = firstVariant.img;
+							
+							font.variants.splice(0, 1);
+							saveData();
+							renderFonts();
+							showToast("✨ បានលុបម៉ូដដើម និងដំឡើងម៉ូដកូនមកជំនួសរួចរាល់!");
+						}
+					} else {
+						if (confirm(`តើលោកគ្រូពិតជាចង់លុបពុម្ពអក្សរ "${font.name}" នេះមែនទេ?`)) {
+							fontsData.splice(index, 1);
+							saveData();
+							renderFonts();
+							showToast("🗑️ បានលុបពុម្ពអក្សររួចរាល់!");
+						}
+					}
 				}
 			}
 
