@@ -6,22 +6,18 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4 (Font Family Pro)</title>
+		<title>Toathmor Fonts App V4.3.1</title>
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta
 			name="apple-mobile-web-app-status-bar-style"
-			content="default"
+			content="black-translucent"
 		/>
 		<meta name="apple-mobile-web-app-title" content="Toathmor" />
 		<link
 			rel="apple-touch-icon"
 			href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png"
 		/>
-
-		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-		<meta http-equiv="Pragma" content="no-cache" />
-		<meta http-equiv="Expires" content="0" />
 
 		<link
 			href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap"
@@ -351,7 +347,7 @@
 				height: 160px; 
 				background-color: var(--img-placeholder);
 				border-radius: 18px;
-				margin-bottom: 12px;
+				margin-bottom: 14px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -362,7 +358,8 @@
 			.font-image-sample { width: 100%; height: 100%; object-fit: cover; }
 
 			.family-switcher-area {
-				margin-bottom: 12px;
+				margin-top: 4px;
+				margin-bottom: 14px;
 			}
 			.family-switcher {
 				display: flex;
@@ -372,11 +369,12 @@
 				align-items: center;
 			}
 			.family-switcher::-webkit-scrollbar { display: none; }
+			
 			.variant-badge {
 				background: var(--bg-main);
 				border: 1px solid var(--border);
 				color: var(--text-muted);
-				padding: 5px 12px;
+				padding: 6px 14px;
 				border-radius: 10px;
 				font-size: 12px;
 				font-weight: 600;
@@ -393,7 +391,7 @@
 				background: rgba(16, 185, 129, 0.1);
 				border: 1px dashed var(--success);
 				color: var(--success);
-				padding: 4px 10px;
+				padding: 5px 12px;
 				border-radius: 10px;
 				font-size: 11px;
 				font-weight: 700;
@@ -406,10 +404,10 @@
 				color: var(--accent);
 				background: var(--accent-light);
 				border: 1px solid rgba(212, 175, 55, 0.2);
-				padding: 4px 10px;
+				padding: 5px 12px;
 				border-radius: 8px;
 				font-weight: 600;
-				margin-top: 6px;
+				margin-top: 8px;
 				overflow-wrap: anywhere;
 			}
 
@@ -420,7 +418,7 @@
 			.admin-card-btn { background: rgba(15, 23, 42, 0.08); color: var(--text-main); border: none; padding: 6px 10px; font-size: 11px; border-radius: 8px; font-weight: 600; cursor: pointer; }
 			[data-theme="dark"] .admin-card-btn { background: rgba(255, 255, 255, 0.08); }
 
-			.card-acts-row { display: flex; align-items: center; gap: 10px; width: 100%; }
+			.card-acts-row { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: auto; }
 			.font-price-tag {
 				background: var(--bg-main);
 				color: var(--text-main);
@@ -566,12 +564,17 @@
 					<label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Variants (លក្ខណៈជា JSON Array សម្រាប់ Font Family - ទុកទទេបើគ្មាន):</label>
 					<textarea id="newFontVariants" class="admin-textarea" rows="2" placeholder='[{"name": "Toathmor Variant 2", "price": "$ 20", "img": "លីងរូបភាព"}]' style="width:100%; box-sizing:border-box;"></textarea>
 				</div>
-				<div style="display: flex; gap: 16px; width: 100%; margin-top: 8px; box-sizing: border-box;">
-					<button class="btn-add-font" style="background: var(--success); color: white; border: none; padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 2; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="adminAddNewFont()">
-						➕ រក្សាទុកពុម្ពអក្សរថ្មី
-					</button>
-					<button class="btn-secondary" style="padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="exportFontsData()">
-						📥 Export កូដ
+				<div style="display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: 8px; box-sizing: border-box;">
+					<div style="display: flex; gap: 16px; width: 100%; box-sizing: border-box;">
+						<button class="btn-add-font" style="background: var(--success); color: white; border: none; padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 2; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="adminAddNewFont()">
+							➕ រក្សាទុកពុម្ពអក្សរថ្មី
+						</button>
+						<button class="btn-secondary" style="padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="exportFontsData()">
+							📥 Export ទិន្នន័យ
+						</button>
+					</div>
+					<button class="btn-action" style="background: #007bff; color: white; padding: 14px; border: none; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;" onclick="copyEntireCodeForGitHubPages()">
+						📋 ចម្លងកូដ WEB ទាំងអស់សម្រាប់ដាក់ក្នុង GITHUB  ទាំងមូល
 					</button>
 				</div>
 			</div>
@@ -599,15 +602,13 @@
 
 		<script>
 			// ----------------- ប្រព័ន្ធរុញបង្ខំ APP VERSION CONTROL -----------------
-			// បើមានការកែប្រែទិន្នន័យពុម្ពអក្សរ ឬកូដនៅថ្ងៃក្រោយ សូមបងគ្រាន់តែប្ដូរលេខត្រង់ '4.0.1' នេះទៅជាលេខផ្សេង (ឧ៖ '4.0.2')
-			// វានឹងធ្វើឱ្យទូរស័ព្ទរបស់អ្នកដទៃទាញយកកូដថ្មីដោយស្វ័យប្រវត្តិ មិនជាប់ Cache ទៀតឡើយ។
-			const APP_VERSION = "4.0.1"; 
+			const CURRENT_VERSION = "4.3.1"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
-				if (savedVersion !== APP_VERSION) {
-					localStorage.setItem("toathmor_app_version", APP_VERSION);
-					// សម្អាតទិន្នន័យចាស់ដែលមិនចាំបាច់ រួចបង្ខំចិត្ត reload ពី server ផ្ទាល់
+				if (savedVersion !== CURRENT_VERSION) {
+					localStorage.setItem("toathmor_app_version", CURRENT_VERSION);
+					localStorage.removeItem("toathmor_custom_list");
 					if ('caches' in window) {
 						caches.keys().then(names => {
 							for (let name of names) caches.delete(name);
@@ -622,8 +623,10 @@
 			document.addEventListener('contextmenu', e => e.preventDefault());
 			
 			const searchInput = document.getElementById("searchId");
-			searchInput.addEventListener("focus", () => { document.body.classList.add("keyboard-open"); });
-			searchInput.addEventListener("blur", () => { document.body.classList.remove("keyboard-open"); });
+			if (searchInput) {
+				searchInput.addEventListener("focus", () => { document.body.classList.add("keyboard-open"); });
+				searchInput.addEventListener("blur", () => { document.body.classList.remove("keyboard-open"); });
+			}
 
 			const telegramUser = "YongYeang";
 			let currentCategory = "all";
@@ -718,7 +721,7 @@
 					"variants": [ { "name": "Toathmor Kbach Seda", "price": "$ 10", "img": "" } ]
 				},
 				{ "name": "Toathmor Phka Ktomp", "price": "$ 10", "type": "chreang", "img": "" },
-				{ "name": "Toathmor Phkay Proek", "price": "$ 10", "type": "chreang", "img": "" },
+				{ "name": "Phkay Proek", "price": "$ 10", "type": "chreang", "img": "" },
 				{ "name": "Toathmor R.Jrung", "price": "$ 10", "type": "chreang", "img": "" },
 				{ "name": "Toathmor Rodtha", "price": "$ 10", "type": "chreang", "img": "" },
 				{ "name": "Toathmor Rooster", "price": "$ 10", "type": "chreang", "img": "" },
@@ -884,35 +887,69 @@
 				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីរួចរាល់!");
 			}
 
+			/* 🎯 ជួសជុលកូដកែប្រែប្រភេទឱ្យដើរបានត្រឹមត្រូវ ១០០% */
 			function adminEditCurrentVariant(index, event) {
 				event.stopPropagation();
 				const font = fontsData[index];
 				const currentVarIdx = activeVariants[index] || 0;
 
 				if (currentVarIdx === 0) {
-					const newName = prompt("កែប្រែឈ្មោះពុម្ពអក្សរ (ម៉ូដដើម)៖", font.name);
-					if (!newName || newName.trim() === "") return;
-					const newPrice = prompt("កែប្រែតម្លៃ៖", font.price || "$ 10");
+					// កែប្រែព័ត៌មានមេ (ម៉ូដដើម)
+					const newName = prompt("📝 កែប្រែឈ្មោះពុម្ពអក្សរ៖", font.name);
+					if (newName === null) return; 
+					if (newName.trim() === "") { alert("ឈ្មោះមិនអាចទទេបានទេ!"); return; }
+
+					const newPrice = prompt("💵 កែប្រែតម្លៃ៖", font.price || "$ 10");
+					if (newPrice === null) return;
+
+					// បង្ហាញជម្រើសប្តូរប្រភេទច្បាស់ៗ (វាយលេខ 1, 2 ឬ 3)
+					const typePrompt = prompt(
+						`🔤 កែប្រែប្រភេទអក្សរ (វាយលេខសម្គាល់ខាងក្រោម)៖\n` +
+						`1 : សម្រាប់ អក្សរមូល\n` +
+						`2 : សម្រាប់ អក្សរជ្រៀង/ត្រង់\n` +
+						`3 : សម្រាប់ អក្សរដៃ\n\n` +
+						`ប្រភេទបច្ចុប្បន្នគឺ៖ ` + (font.type === "moul" ? "អក្សរមូល" : font.type === "chreang" ? "អក្សរជ្រៀង/ត្រង់" : "អក្សរដៃ"),
+						font.type === "moul" ? "1" : font.type === "chreang" ? "2" : "3"
+					);
+					
+					if (typePrompt === null) return;
+
+					// កែប្រែទិន្នន័យ
 					font.name = newName.trim();
-					font.price = newPrice ? newPrice.trim() : "$ 10";
+					font.price = newPrice.trim() || "$ 10";
+
+					if (typePrompt.trim() === "1") font.type = "moul";
+					else if (typePrompt.trim() === "2") font.type = "chreang";
+					else if (typePrompt.trim() === "3") font.type = "writing";
+
+					// បង្ខំឱ្យវាលោតមកម៉ូដដើមវិញ ដើម្បីកុំឱ្យគាំងបង្ហាញទិន្នន័យខុសប្រភេទ
+					activeVariants[index] = 0;
+
 				} else {
+					// កែប្រែទិន្នន័យ Variant (ម៉ូដកូន)
 					const vIdx = currentVarIdx - 1;
 					const variant = font.variants[vIdx];
-					const newName = prompt(`កែប្រែឈ្មោះម៉ូដទី ${currentVarIdx}៖`, variant.name);
-					if (!newName || newName.trim() === "") return;
-					const newPrice = prompt("កែប្រែតម្លៃ៖", variant.price || "$ 10");
+					
+					const newName = prompt(`📝 កែប្រែឈ្មោះម៉ូដទី ${currentVarIdx}៖`, variant.name);
+					if (newName === null) return;
+					if (newName.trim() === "") { alert("ឈ្មោះមិនអាចទទេបានទេ!"); return; }
+
+					const newPrice = prompt("💵 កែប្រែតម្លៃ៖", variant.price || "$ 10");
+					if (newPrice === null) return;
+
 					variant.name = newName.trim();
-					variant.price = newPrice ? newPrice.trim() : "$ 10";
+					variant.price = newPrice.trim() || "$ 10";
 				}
+
 				saveData();
-				renderFonts();
-				showToast("📝 បានកែសម្រួលដោយជោគជ័យ");
+				renderFonts(); // ហៅមក Render សារជាថ្មីដើម្បីឱ្យ Update ទិន្នន័យលើអេក្រង់ភ្លាមៗ
+				showToast("✨ បានកែសម្រួលព័ត៌មានរួចរាល់!");
 			}
 
 			function adminAddInlineVariant(index, event) {
 				event.stopPropagation();
 				const font = fontsData[index];
-				const vName = prompt(`បញ្ចូលឈ្មោះសម្រាប់ម៉ូដបន្ថែម (ស្រដៀងនឹង ${font.name})៖`, font.name + " ");
+				const vName = prompt(`បញ្ចូលឈ្មោះសម្រាប់ម៉ូដបន្ថែម៖`, font.name + " ");
 				if (!vName || vName.trim() === "") return;
 				const vPrice = prompt("បញ្ចូលតម្លៃសម្រាប់ម៉ូដបន្ថែមនេះ៖", font.price || "$ 10");
 				const vImg = prompt("បញ្ចូលលីងរូបភាពគំរូ (បើគ្មាន ទុកទទេ)៖", "");
@@ -972,7 +1009,40 @@
 
 			function exportFontsData() {
 				navigator.clipboard.writeText(JSON.stringify(fontsData, null, "\t")).then(() => {
-					alert("📋 ចម្លងកូដទិន្នន័យ (Export Data) ជោគជ័យ! អាចយកទៅ Paste ក្នុង defaultFonts បានភ្លាម។");
+					alert("📋 ចម្លងកូដទិន្នន័យ (Export Data) ជោគជ័យ!");
+				});
+			}
+
+			function copyEntireCodeForGitHubPages() {
+				let fontsFormatted = JSON.stringify(fontsData, null, "\t\t\t\t");
+				fontsFormatted = fontsFormatted.replace(/"([^"]+)":/g, '$1:');
+
+				let entireHtml = document.documentElement.outerHTML;
+				
+				let startIdx = entireHtml.indexOf("let defaultFonts = [");
+				let endIdx = entireHtml.indexOf("];", startIdx);
+				
+				if(startIdx !== -1 && endIdx !== -1) {
+					let oldChunk = entireHtml.substring(startIdx, endIdx + 2);
+					let newChunk = "let defaultFonts = " + fontsFormatted + ";";
+					entireHtml = entireHtml.replace(oldChunk, newChunk);
+				}
+
+				let versionMatch = entireHtml.match(/const CURRENT_VERSION = "(\d+)\.(\d+)\.(\d+)";/);
+				if(versionMatch) {
+					let major = parseInt(versionMatch[1]);
+					let minor = parseInt(versionMatch[2]);
+					let patch = parseInt(versionMatch[3]) + 1; 
+					let newVersionStr = `const CURRENT_VERSION = "${major}.${minor}.${patch}";`;
+					entireHtml = entireHtml.replace(versionMatch[0], newVersionStr);
+				}
+
+				let finalSourceCode = "<!DOCTYPE html>\n" + entireHtml;
+
+				navigator.clipboard.writeText(finalSourceCode).then(function() {
+					alert("📋 រួចរាល់ហើយបង! កូដត្រូវបានចម្លង (Copy)។ សូមចូលទៅ GitHub លុបកូដចាស់ចោលទាំងអស់ (Ctrl+A រួច Delete) ហើយ Paste (Ctrl+V) កូដថ្មីនេះចូលជំនួសវិញបាទ!");
+				}).catch(function(err) {
+					alert("ការចម្លងមានបញ្ហា៖ ", err);
 				});
 			}
 
@@ -1028,10 +1098,27 @@
 				}
 			}
 
-			document.addEventListener("DOMContentLoaded", function() { renderFonts(); });
+			document.addEventListener("DOMContentLoaded", function() { 
+				const savedTheme = localStorage.getItem("toathmor_theme");
+				const themeBtn = document.getElementById("themeIcon");
+				
+				if (savedTheme === "dark") {
+					document.documentElement.setAttribute("data-theme", "dark");
+					if(themeBtn) {
+						themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+					}
+				} else {
+					document.documentElement.removeAttribute("data-theme");
+					if(themeBtn) {
+						themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+					}
+				}
+				renderFonts(); 
+			});
 
 			function renderFonts() {
 				const container = document.getElementById("listContainer");
+				if(!container) return;
 				container.innerHTML = "";
 				let searchTxt = document.getElementById("searchId").value.toLowerCase().trim();
 				
@@ -1111,13 +1198,13 @@
 							</div>
 							<button class="btn-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${font.name}')">${favIconSvg}</button>
 						</div>
-						
-						${familySwitcherHtml}
 
 						<div class="image-container">${imgHtml}</div>
 						
+						${familySwitcherHtml}
+
 						<div class="admin-only admin-actions-zone">
-							<button class="admin-card-btn" onclick="adminEditCurrentVariant(${actualIndex}, event)">📝 កែឈ្មោះ/តម្លៃ</button>
+							<button class="admin-card-btn" onclick="adminEditCurrentVariant(${actualIndex}, event)">📝 កែឈ្មោះ/តម្លៃ/ប្រភេទ</button>
 							<button class="admin-card-btn" onclick="adminEditFontImage(${actualIndex}, event)">🖼️ ដាក់រូប</button>
 							<button class="admin-card-btn" onclick="adminClearFontImage(${actualIndex}, event)">❌ លុបរូប</button>
 							<button class="admin-card-btn" style="color:var(--danger);" onclick="adminDeleteFont(${actualIndex}, event)">🗑️ លុបពុម្ព</button>
@@ -1139,6 +1226,7 @@
 
 			function handleCardClick(actualIndex, cardElement) {
 				const chk = cardElement.querySelector('.font-checkbox');
+				if(!chk) return;
 				chk.checked = !chk.checked;
 				if (chk.checked) cardElement.classList.add('selected');
 				else cardElement.classList.remove('selected');
@@ -1147,6 +1235,7 @@
 
 			function toggleSelectFontFromCheck(actualIndex, chk) {
 				const card = document.getElementById(`card-${actualIndex}`);
+				if(!card) return;
 				if(chk.checked) card.classList.add('selected');
 				else card.classList.remove('selected');
 				executeToggleSelect(actualIndex, chk.checked);
@@ -1185,6 +1274,7 @@
 			function updateMultiSelectBar() {
 				const bar = document.getElementById("multiSelectBar");
 				const countTxt = document.getElementById("multiSelectCount");
+				if(!bar || !countTxt) return;
 				if (selectedFonts.length > 0) {
 					countTxt.innerText = `បានជ្រើសរើស: ${selectedFonts.length} ពុម្ពអក្សរ`;
 					bar.classList.add("show");
@@ -1214,6 +1304,7 @@
 
 			function showToast(msg) {
 				const toast = document.getElementById("toast");
+				if(!toast) return;
 				toast.innerText = msg; toast.classList.add("show");
 				setTimeout(() => { toast.classList.remove("show"); }, 2200);
 			}
@@ -1221,6 +1312,7 @@
 			function toggleTheme() {
 				const currentTheme = document.documentElement.getAttribute("data-theme");
 				const themeBtn = document.getElementById("themeIcon");
+				if(!themeBtn) return;
 				
 				if (currentTheme === "dark") {
 					document.documentElement.removeAttribute("data-theme");
@@ -1233,20 +1325,6 @@
 				}
 				renderFonts();
 			}
-
-			window.onload = () => {
-				const savedTheme = localStorage.getItem("toathmor_theme");
-				const themeBtn = document.getElementById("themeIcon");
-				
-				if (savedTheme === "dark") {
-					document.documentElement.setAttribute("data-theme", "dark");
-					themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
-				} else {
-					document.documentElement.removeAttribute("data-theme");
-					themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
-				}
-				renderFonts();
-			};
 		</script>
 	</body>
 </html>
