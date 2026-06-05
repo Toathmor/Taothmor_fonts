@@ -11,7 +11,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta
 			name="apple-mobile-web-app-status-bar-style"
-			content="black-translucent"
+			content="default"
 		/>
 		<meta name="apple-mobile-web-app-title" content="Toathmor" />
 		<link
@@ -74,8 +74,10 @@
 				background-color: var(--bg-main);
 				color: var(--text-main);
 				margin: 0;
-				padding: calc(20px + env(safe-area-inset-top)) 0 calc(100px + env(safe-area-inset-bottom)) 0;
+				/* កែសម្រួលគម្លាតឱ្យត្រូវស្ដង់ដារ iOS App មិនឱ្យទាក់ ឬកប់ប៊ូតុង */
+				padding: calc(15px + env(safe-area-inset-top)) 0 calc(110px + env(safe-area-inset-bottom)) 0;
 				transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+				-webkit-overflow-scrolling: touch; /* ធ្វើឱ្យអូសនៅលើ iOS App បានរលូនខ្លាំង */
 			}
 
 			.container {
@@ -401,10 +403,11 @@
 				color: var(--accent);
 				background: var(--accent-light);
 				border: 1px solid rgba(212, 175, 55, 0.2);
-				padding: 2px 8px;
-				border-radius: 6px;
+				padding: 4px 10px;
+				border-radius: 8px;
 				font-weight: 600;
-				margin-top: 2px;
+				margin-top: 6px;
+				overflow-wrap: anywhere;
 			}
 
 			.admin-only { display: none !important; }
@@ -741,7 +744,7 @@
 					"variants": [ { "name": "Toathmor T. Chhim Handwriting 2", "price": "$ 15", "img": "" } ]
 				},
 				{ "name": "Toathmor Writehand", "price": "$ 10", "type": "writing", "img": "" },
-				{ "name": "Toathmor Kalyan", "price": "$ 15", "type": "chreang", "img": "" },
+				{ "name": "Yong Kalyan", "price": "$ 15", "type": "chreang", "img": "" },
 				{ "name": "Toathmor Dai Chass Text", "price": "$ 25", "type": "chreang", "img": "" },
 				{ "name": "Toathmor MY Special Text", "price": "$ 20", "type": "chreang", "img": "" },
 				{ "name": "Toathmor Banteay Dek", "price": "$ 15", "type": "chreang", "img": "" },
@@ -783,7 +786,7 @@
 					"variants": [ { "name": "Toathmor Primary Medium", "price": "$ 20", "img": "https://i.postimg.cc/PxLGx78t/phonto.png" } ]
 				},
 				{
-					"name": "Toathmor Aphiruh", "price": "$ 20", "type": "chreang", "img": "https://g22bQsH0.png",
+					"name": "Toathmor Aphiruh", "price": "$ 20", "type": "chreang", "img": "https://i.postimg.cc/LsPLptHK/phonto.png",
 					"variants": [ { "name": "Toathmor Aphiruh 2", "price": "$ 20", "img": "https://i.postimg.cc/LsPLptHK/phonto.png" } ]
 				}
 			];
@@ -857,21 +860,18 @@
 				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីរួចរាល់!");
 			}
 
-			// ១. ប្រព័ន្ធកែឈ្មោះ និងតម្លៃថ្មី ផ្អែកលើ Variant ដែលកំពុងបើកមើល
 			function adminEditCurrentVariant(index, event) {
 				event.stopPropagation();
 				const font = fontsData[index];
 				const currentVarIdx = activeVariants[index] || 0;
 
 				if (currentVarIdx === 0) {
-					// កែម៉ូដដើម
 					const newName = prompt("កែប្រែឈ្មោះពុម្ពអក្សរ (ម៉ូដដើម)៖", font.name);
 					if (!newName || newName.trim() === "") return;
 					const newPrice = prompt("កែប្រែតម្លៃ៖", font.price || "$ 10");
 					font.name = newName.trim();
 					font.price = newPrice ? newPrice.trim() : "$ 10";
 				} else {
-					// កែម៉ូដកូន (Variant)
 					const vIdx = currentVarIdx - 1;
 					const variant = font.variants[vIdx];
 					const newName = prompt(`កែប្រែឈ្មោះម៉ូដទី ${currentVarIdx}៖`, variant.name);
@@ -885,7 +885,6 @@
 				showToast("📝 បានកែសម្រួលដោយជោគជ័យ");
 			}
 
-			// ២. មុខងារបន្ថែមពុម្ពអក្សរស្រដៀងគ្នាផ្ទាល់នៅលើកាត (Inline Add Variant)
 			function adminAddInlineVariant(index, event) {
 				event.stopPropagation();
 				const font = fontsData[index];
@@ -902,7 +901,6 @@
 				});
 
 				saveData();
-				// ប្តូរទៅមើលម៉ូដដែលទើបនឹងថែមថ្មីនោះតែម្តង
 				activeVariants[index] = font.variants.length;
 				renderFonts();
 				showToast("➕ បានបន្ថែមម៉ូដស្រដៀងទៅក្នុង Family រួចរាល់!");
@@ -954,7 +952,6 @@
 				});
 			}
 
-			// ៣. ប្រព័ន្ធគណនាតម្លៃសរុបក្នុង Family Font
 			function calculateFamilyTotal(font) {
 				let total = 0;
 				const parsePrice = (str) => {
@@ -1054,7 +1051,6 @@
 						? `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`
 						: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
 
-					// ការបង្ហាញប៊ូតុង Variant និងតម្លៃសរុប (Family Total Price)
 					let familySwitcherHtml = '';
 					let hasVariants = font.variants && font.variants.length > 0;
 					
@@ -1070,13 +1066,11 @@
 							});
 						}
 
-						// ២. ប៊ូតុង "+" សម្រាប់ឱ្យ Admin បន្ថែមម៉ូដស្រដៀងបានលឿន
 						if(isAdminLoggedIn) {
 							familySwitcherHtml += `<span class="btn-add-inline-variant" onclick="adminAddInlineVariant(${actualIndex}, event)">+ ថែមម៉ូដស្រដៀង</span>`;
 						}
 						familySwitcherHtml += `</div>`;
 
-						// ៣. បន្ថែមការបង្ហាញតម្លៃសរុបរបស់ Family Font ទាំងអស់បញ្ចូលគ្នា
 						if(hasVariants) {
 							let totalFamilyCost = calculateFamilyTotal(font);
 							familySwitcherHtml += `<div class="family-total-badge">💵 តម្លៃសរុបក្នុងគ្រួសារនេះ: $ ${totalFamilyCost}</div>`;
