@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.4.5</title>
+		<title>Toathmor Fonts App V4.5.0</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -69,6 +69,7 @@
 				font-family: "Kantumruy Pro", sans-serif;
 				-webkit-user-select: none;
 				user-select: none;
+				-webkit-tap-highlight-color: transparent;
 			}
 
 			body {
@@ -239,6 +240,7 @@
 				width: 100%;
 				box-sizing: border-box;
 				-webkit-overflow-scrolling: touch;
+				scroll-behavior: smooth;
 			}
 			.tabs::-webkit-scrollbar { display: none; height: 0; width: 0; }
 			
@@ -250,11 +252,7 @@
 				border-radius: 30px;
 				font-size: 14px;
 				font-weight: 500;
-				cursor: pointer;
-				white-space: nowrap;
-				box-shadow: var(--shadow-sm);
-				flex-shrink: 0;
-				transition: background 0.4s ease, color 0.4s ease;
+				cursor: pointer; white-space: nowrap; box-shadow: var(--shadow-sm); flex-shrink: 0; transition: background 0.4s ease, color 0.4s ease;
 			}
 			.tab-btn.active { background: var(--text-main); color: var(--bg-card); border-color: var(--text-main); font-weight: 600; }
 
@@ -282,185 +280,101 @@
 				border-radius: var(--radius-card);
 				padding: 24px;
 				margin-bottom: 25px;
-			}
-			.admin-grid-inputs {
-				display: grid;
-				grid-template-columns: 1fr;
+				display: flex;
+				flex-direction: column;
 				gap: 16px;
-				margin-bottom: 16px;
+				box-sizing: border-box;
 			}
-			@media (min-width: 768px) {
-				.admin-grid-inputs { grid-template-columns: repeat(2, 1fr); }
-			}
+			.admin-form-title { margin: 0; font-size: 18px; font-weight: 700; }
+			.admin-grid-inputs { display: grid; grid-template-columns: 1fr; gap: 16px; width: 100%; box-sizing: border-box; }
+			@media (min-width: 600px) { .admin-grid-inputs { grid-template-columns: repeat(2, 1fr); } }
 			.admin-input, .admin-select, .admin-textarea {
-				width: 100%;
-				padding: 14px 16px;
-				border: 1px solid var(--border);
-				border-radius: var(--radius-btn);
-				background: var(--bg-main);
-				color: var(--text-main);
-				box-sizing: border-box;
-				-webkit-user-select: text;
-				user-select: text;
-				font-size: 15px;
+				width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius-btn); background: var(--bg-main); color: var(--text-main); box-sizing: border-box; -webkit-user-select: text; user-select: text; font-size: 15px; outline: none; transition: border-color 0.2s ease;
 			}
+			.admin-input:focus, .admin-select:focus, .admin-textarea:focus { border-color: var(--accent); }
+			.admin-btn-group-row { display: flex; gap: 16px; width: 100%; box-sizing: border-box; }
+			.btn-add-font {
+				background: var(--success); color: white; border: none; padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 2; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.2s;
+			}
+			.btn-add-font:active { opacity: 0.85; }
+			.admin-panel-footer-buttons { display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; margin-top: 4px; }
 
-			.font-list {
-				display: grid;
-				grid-template-columns: 1fr; 
-				gap: 20px;
-				width: 100%;
-				box-sizing: border-box;
-			}
+			.font-list { display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; box-sizing: border-box; }
 			@media (min-width: 600px) { .font-list { grid-template-columns: repeat(2, 1fr); } } 
 			@media (min-width: 1024px) { .font-list { grid-template-columns: repeat(3, 1fr); } } 
 
 			.font-card {
-				background: var(--bg-card);
-				border-radius: var(--radius-card);
-				padding: 20px; 
-				border: 1px solid var(--border);
-				box-shadow: var(--shadow-md);
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				position: relative;
-				box-sizing: border-box;
-				overflow: hidden;
-				transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+				background: var(--bg-card); border-radius: var(--radius-card); padding: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-md); display: flex; flex-direction: column; justify-content: space-between; position: relative; box-sizing: border-box; overflow: hidden; transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
 			}
-			.font-card.selected { 
-				border-color: var(--accent); 
-				background: var(--accent-light); 
-			}
+			.font-card.selected { border-color: var(--accent); background: var(--accent-light); }
 
 			.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 			.font-title-wrapper { display: flex; align-items: center; gap: 10px; flex: 1; overflow: hidden; }
 			.font-checkbox { width: 20px; height: 20px; accent-color: var(--accent); flex-shrink: 0; }
 			.font-num { background: var(--text-main); color: var(--bg-card); font-size: 11px; padding: 3px 8px; border-radius: 8px; font-weight: 600; transition: background 0.4s ease, color 0.4s ease; }
-			.font-title { font-weight: 700; font-size: 15px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
 			
+			.font-title-block { display: flex; flex-direction: column; overflow: hidden; cursor: pointer; }
+			.font-title { font-weight: 700; font-size: 15px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+			.font-author { font-size: 11px; color: var(--text-muted); font-weight: 400; margin-top: 1px; }
+
 			.btn-fav { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; }
 			.btn-fav.active { color: #f59e0b; }
 
 			.image-container {
-				width: 100%;
-				height: 160px; 
-				background-color: var(--img-placeholder);
-				border-radius: 18px;
-				margin-bottom: 14px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				overflow: hidden;
-				border: 1px solid var(--border);
-				transition: background-color 0.4s ease;
+				width: 100%; height: 160px; background-color: var(--img-placeholder); border-radius: 18px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); transition: background-color 0.4s ease;
 			}
 			.font-image-sample { width: 100%; height: 100%; object-fit: cover; }
 
-			/* រៀបចំ Container ឱ្យ Note និង តម្លៃគ្រួសារ បង្ហាញដេញគ្នាពីឆ្វេងទៅស្តាំ */
-			.note-and-family-container {
-				display: flex;
-				flex-direction: row;
-				flex-wrap: wrap;
-				align-items: center;
-				gap: 8px;
-				margin-top: auto; 
-				margin-bottom: 12px;
-				width: 100%;
-			}
+			.note-and-family-container { display: flex; flex-direction: column; gap: 8px; margin-top: auto; margin-bottom: 12px; width: 100%; }
 
-			/* រចនាប័ទ្មប្រអប់បង្ហាញ Note បរិយាយបន្ថែម */
 			.font-card-note {
-				font-size: 12px;
-				color: #b3862b;
-				background: rgba(212, 175, 55, 0.08);
-				border-left: 3px solid var(--accent);
-				padding: 6px 10px;
-				border-radius: 6px;
-				line-height: 1.4;
-				overflow-wrap: break-word;
-				margin-bottom: 0; 
+				font-size: 12px; color: #b3862b; background: rgba(212, 175, 55, 0.08); border-left: 3px solid var(--accent); padding: 6px 10px; border-radius: 6px; line-height: 1.4; overflow-wrap: break-word; margin-bottom: 0; 
 			}
-			[data-theme="dark"] .font-card-note {
-				color: #f59e0b;
-				background: rgba(245, 158, 11, 0.08);
-				border-left-color: #f59e0b;
-			}
+			[data-theme="dark"] .font-card-note { color: #f59e0b; background: rgba(245, 158, 11, 0.08); border-left-color: #f59e0b; }
 
-			.family-switcher-area {
-				margin-top: 4px;
-				margin-bottom: 14px;
-			}
-			.family-switcher {
-				display: flex;
-				gap: 6px;
-				overflow-x: auto;
-				padding-bottom: 6px;
-				align-items: center;
-			}
+			.family-switcher-area { margin-top: 4px; margin-bottom: 14px; }
+			.family-switcher { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; align-items: center; scroll-behavior: smooth; }
 			.family-switcher::-webkit-scrollbar { display: none; }
 			
 			.variant-badge {
-				background: var(--bg-main);
-				border: 1px solid var(--border);
-				color: var(--text-muted);
-				padding: 6px 14px;
-				border-radius: 10px;
-				font-size: 12px;
-				font-weight: 600;
-				cursor: pointer;
-				white-space: nowrap;
-				transition: all 0.2s;
+				background: var(--bg-main); border: 1px solid var(--border); color: var(--text-muted); padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s;
 			}
-			.variant-badge.active {
-				background: var(--accent-gradient);
-				color: #0f172a;
-				border-color: transparent;
-			}
-			.btn-add-inline-variant {
-				background: rgba(16, 185, 129, 0.1);
-				border: 1px dashed var(--success);
-				color: var(--success);
-				padding: 5px 12px;
-				border-radius: 10px;
-				font-size: 11px;
-				font-weight: 700;
-				cursor: pointer;
-				white-space: nowrap;
-			}
+			.variant-badge.active { background: var(--accent-gradient); color: #0f172a; border-color: transparent; }
+			.btn-add-inline-variant { background: rgba(16, 185, 129, 0.1); border: 1px dashed var(--success); color: var(--success); padding: 5px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+			
 			.family-total-wrapper {
 				display: flex;
-				align-items: center;
-			}
-			.family-total-badge {
-				display: inline-block;
-				font-size: 11px;
-				color: var(--accent);
-				background: var(--accent-light);
+				flex-direction: column;
+				width: max-content;
+				max-width: 100%;
+				background: rgba(212, 175, 55, 0.05);
 				border: 1px solid rgba(212, 175, 55, 0.2);
-				padding: 6px 12px;
-				border-radius: 6px;
-				font-weight: 600;
-				overflow-wrap: anywhere;
-			}
-			.family-note-input {
-				background: var(--bg-main);
-				color: var(--text-main);
-				border: 1px solid var(--border);
-				border-radius: 8px;
+				border-radius: 12px;
 				padding: 10px 12px;
-				font-size: 14px;
-				width: 100%;
-				outline: none;
 				box-sizing: border-box;
-				-webkit-user-select: text;
-				user-select: text;
-				transition: border-color 0.2s ease;
+				gap: 4px;
 			}
-			.family-note-input:focus {
-				border-color: var(--accent);
+			[data-theme="dark"] .family-total-wrapper {
+				background: rgba(245, 158, 11, 0.04);
+				border-color: rgba(245, 158, 11, 0.25);
 			}
+			
+			.family-final-row {
+				font-size: 14.5px;
+				font-weight: 700;
+				color: #d9381e; 
+				display: flex;
+				align-items: center;
+				white-space: nowrap;
+			}
+			[data-theme="dark"] .family-final-row {
+				color: #ff5233;
+			}
+			
+			.family-note-input {
+				background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 14px; width: 100%; outline: none; box-sizing: border-box; -webkit-user-select: text; user-select: text; transition: border-color 0.2s ease;
+			}
+			.family-note-input:focus { border-color: var(--accent); }
 
 			.admin-only { display: none !important; }
 			body.admin-mode-on .admin-only { display: flex !important; }
@@ -470,46 +384,46 @@
 			[data-theme="dark"] .admin-card-btn { background: rgba(255, 255, 255, 0.08); }
 
 			.card-acts-row { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 0; }
-			.font-price-tag {
-				background: var(--bg-main);
+			
+			.price-container {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				line-height: 1.2;
+			}
+			.final-price {
+				font-weight: 800;
 				color: var(--text-main);
-				padding: 12px 14px;
-				border-radius: var(--radius-btn);
-				font-weight: 700;
 				font-size: 14px;
-				border: 1px solid var(--border);
-				text-align: center;
-				min-width: 65px;
-				transition: background 0.4s ease, color 0.4s ease;
+			}
+			.original-price-strike {
+				text-decoration: line-through;
+				color: var(--text-muted);
+				font-size: 11px;
+				font-weight: 400;
+				margin-bottom: 1px;
+			}
+			.final-price-discounted {
+				color: #ef4444 !important;
+			}
+			[data-theme="dark"] .final-price-discounted {
+				color: #f87171 !important;
+			}
+
+			.font-price-tag {
+				background: var(--bg-main); color: var(--text-main); padding: 8px 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 14px; border: 1px solid var(--border); text-align: center; min-width: 75px; transition: background 0.4s ease, color 0.4s ease;
+				display: flex; flex-direction: column; align-items: center; justify-content: center;
 			}
 
 			.btn-action {
-				display: flex; align-items: center; justify-content: center; gap: 6px;
-				padding: 12px 16px; border-radius: var(--radius-btn); font-weight: 700;
-				font-size: 13px; border: none; cursor: pointer; text-decoration: none; box-sizing: border-box;
+				display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 16px; border-radius: var(--radius-btn); font-weight: 700; font-size: 13px; border: none; cursor: pointer; text-decoration: none; box-sizing: border-box;
 			}
 			.btn-primary { background: var(--accent-gradient); color: #0f172a; flex: 1; transition: transform 0.2s ease; }
 			.btn-primary:active { transform: scale(0.97); }
 
 			.multi-select-bar {
-				position: fixed !important; 
-				bottom: 0 !important; 
-				left: 50% !important; 
-				transform: translateX(-50%) translateY(100%);
-				width: 100%; 
-				max-width: 600px; 
-				background: var(--bg-card); 
-				box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
-				padding: calc(16px + env(safe-area-inset-bottom)) 16px calc(16px + env(safe-area-inset-bottom)) 16px; 
-				box-sizing: border-box; 
-				border-radius: 28px 28px 0 0; 
-				z-index: 9999 !important; 
-				display: flex; 
-				flex-direction: column; 
-				gap: 12px; 
-				transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.4s ease;
-				border: 1px solid var(--border);
-				border-bottom: none;
+				position: fixed !important; bottom: 0 !important; left: 50% !important; transform: translateX(-50%) translateY(100%); width: 100%; max-width: 600px; background: var(--bg-card); box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15); padding: calc(16px + env(safe-area-inset-bottom)) 16px calc(16px + env(safe-area-inset-bottom)) 16px; box-sizing: border-box; border-radius: 28px 28px 0 0; z-index: 9999 !important; display: flex; flex-direction: column; gap: 12px; transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.4s ease; border: 1px solid var(--border); border-bottom: none;
 			}
 			.multi-select-bar.show { transform: translateX(-50%) translateY(0); }
 			body.keyboard-open .multi-select-bar { transform: translateX(-50%) translateY(100%) !important; }
@@ -518,38 +432,23 @@
 			.btn-secondary { background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border); flex: 1; cursor: pointer;}
 
 			#toast {
-				position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%);
-				background: #0f172a; color: white; padding: 14px 28px; border-radius: 30px; 
-				font-size: 13px; z-index: 999999; transition: bottom 0.3s ease;
+				position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%); background: #0f172a; color: white; padding: 14px 28px; border-radius: 30px; font-size: 13px; z-index: 999999; transition: bottom 0.3s ease;
 			}
 			[data-theme="dark"] #toast { background: #ffffff; color: #0f172a; }
 			#toast.show { bottom: 120px; }
 
 			.edit-modal-overlay {
-				position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-				background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
-				z-index: 99999; display: none; align-items: center; justify-content: center;
-				padding: 20px; box-sizing: border-box;
+				position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); z-index: 99999; display: none; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;
 			}
 			.edit-modal-overlay.show { display: flex; }
 			.edit-modal-content {
-				background: var(--bg-card); border-radius: 24px; width: 100%; max-width: 460px;
-				padding: 24px; box-shadow: var(--shadow-lg); border: 1px solid var(--border);
-				display: flex; flex-direction: column; gap: 16px; animation: modalFade 0.3s ease;
-				max-height: 90vh; overflow-y: auto;
+				background: var(--bg-card); border-radius: 24px; width: 100%; max-width: 460px; padding: 24px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 16px; animation: modalFade 0.3s ease; max-height: 90vh; overflow-y: auto;
 			}
 			@keyframes modalFade { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 			.modal-label { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; display: block; }
 
 			footer {
-				margin-top: 60px;
-				padding: 30px 16px calc(40px + env(safe-area-inset-bottom)) 16px;
-				text-align: center;
-				background: var(--bg-card);
-				border-top: 1px solid var(--border);
-				font-size: 13px;
-				color: var(--text-muted);
-				transition: background 0.4s ease;
+				margin-top: 60px; padding: 30px 16px calc(40px + env(safe-area-inset-bottom)) 16px; text-align: center; background: var(--bg-card); border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); transition: background 0.4s ease;
 			}
 			footer .footer-brand { font-weight: 700; color: var(--text-main); }
 			footer .footer-brand span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -613,36 +512,37 @@
 				</div>
 			</div>
 
-			<div class="admin-form-panel admin-only" id="adminFormPanel" style="background: var(--bg-card); border: 2px dashed var(--accent); border-radius: var(--radius-card); padding: 24px; margin-bottom: 25px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box;">
-				<h3 class="admin-form-title" style="margin: 0; font-size: 18px; font-weight: 700;">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី</h3>
-				<div style="display: flex; gap: 16px; width: 100%; box-sizing: border-box;">
-					<input type="text" id="newFontName" class="admin-input" placeholder="ឈ្មោះពុម្ព (ឧ៖ Toathmor New)" autocomplete="off" style="flex: 1; min-width: 0;">
-					<input type="text" id="newFontPrice" class="admin-input" placeholder="តម្លៃ (ឧ៖ $ 15)" autocomplete="off" style="flex: 1; min-width: 0;">
+			<div class="admin-form-panel admin-only" id="adminFormPanel">
+				<h3 class="admin-form-title">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី</h3>
+				
+				<div class="admin-grid-inputs">
+					<input type="text" id="newFontName" class="admin-input" placeholder="ឈ្មោះពុម្ព (ឧ៖ Toathmor New)" autocomplete="off">
+					<input type="text" id="newFontPrice" class="admin-input" placeholder="តម្លៃ (ឧ៖ $ 15)" autocomplete="off">
 				</div>
-				<div style="display: flex; gap: 16px; width: 100%; box-sizing: border-box;">
-					<input type="text" id="newFontImg" class="admin-input" placeholder="លីងរូបភាព Direct Link" autocomplete="off" style="flex: 1; min-width: 0;">
-					<select id="newFontType" class="admin-select" style="flex: 1; min-width: 0;">
+				
+				<div class="admin-grid-inputs">
+					<input type="text" id="newFontImg" class="admin-input" placeholder="លីងរូបភាព Direct Link" autocomplete="off">
+					<select id="newFontType" class="admin-select">
 						<option value="moul">អក្សរមូល</option>
 						<option value="chreang">អក្សរជ្រៀង/ត្រង់</option>
 						<option value="writing">អក្សរដៃ</option>
 					</select>
 				</div>
+				
 				<div>
-					<label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Variants (លក្ខណៈជា JSON Array សម្រាប់ Font Family - ទុកទទេបើគ្មាន):</label>
-					<textarea id="newFontVariants" class="admin-textarea" rows="2" placeholder='[{"name": "Toathmor Variant 2", "price": "$ 20", "img": "លីងរូបភាព"}]' style="width:100%; box-sizing:border-box;"></textarea>
+					<label style="font-size: 13px; font-weight: 500; color: var(--text-muted); display: block; margin-bottom: 6px;">Variants (លក្ខណៈជា JSON Array សម្រាប់ Font Family - ទុកទទេបើគ្មាន):</label>
+					<textarea id="newFontVariants" class="admin-textarea" rows="2" placeholder='[{"name": "Toathmor Variant 2", "price": "$ 20", "img": "លីងរូបភាព"}]'></textarea>
 				</div>
-				<div style="display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: 8px; box-sizing: border-box;">
-					<div style="display: flex; gap: 16px; width: 100%; box-sizing: border-box;">
-						<button class="btn-add-font" style="background: var(--success); color: white; border: none; padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 2; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="adminAddNewFont()">
+				
+				<div class="admin-panel-footer-buttons">
+					<div class="admin-btn-group-row">
+						<button class="btn-add-font" onclick="adminAddNewFont()">
 							➕ រក្សាទុកពុម្ពអក្សរថ្មី
 						</button>
-						<button class="btn-secondary" style="padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="exportFontsData()">
+						<button class="btn-secondary" style="padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 1;" onclick="exportFontsData()">
 							📥 Export ទិន្នន័យ
 						</button>
 					</div>
-					<button class="btn-action" style="background: #007bff; color: white; padding: 14px; border: none; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;" onclick="copyEntireCodeForGitHubPages()">
-						📋 ចម្លងកូដ WEB ទាំងអស់សម្រាប់ដាក់ក្នុង GITHUB ទាំងមូល
-					</button>
 				</div>
 			</div>
 
@@ -662,6 +562,17 @@
 				<div>
 					<label class="modal-label">តម្លៃពុម្ពអក្សរ</label>
 					<input type="text" id="editFontPrice" class="admin-input" autocomplete="off" style="-webkit-user-select:text; user-select:text;">
+				</div>
+
+				<div id="modalDiscountGroup" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%;">
+					<div>
+						<label class="modal-label">📉 បញ្ចុះតម្លៃ (%)</label>
+						<input type="number" id="editFontDiscount" class="admin-input" placeholder="0" min="0" max="100" autocomplete="off" style="-webkit-user-select:text; user-select:text;">
+					</div>
+					<div>
+						<label class="modal-label">💵 បញ្ចុះតម្លៃ ($)</label>
+						<input type="number" id="editFontDiscountCash" class="admin-input" placeholder="0" min="0" autocomplete="off" style="-webkit-user-select:text; user-select:text;">
+					</div>
 				</div>
 
 				<div id="modalTypeGroup">
@@ -705,8 +616,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			// ----------------- ប្រព័ន្ធរុញបង្ខំ APP VERSION CONTROL -----------------
-			const CURRENT_VERSION = "4.4.6"; 
+			let CURRENT_VERSION = "4.5.0"; // ដំឡើង Version ដើម្បីឱ្យវា Clear Cache ស្វ័យប្រវត្តិ
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -722,7 +632,6 @@
 				}
 			}
 			checkAppVersion();
-			// ---------------------------------------------------------------------
 
 			document.addEventListener('contextmenu', e => e.preventDefault());
 			
@@ -739,724 +648,717 @@
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 
 			let defaultFonts = [
-	{
-		"name": "Toathmor Komaradthan",
-		"price": "$ 15",
-		"type": "moul",
-		"img": "https://i.postimg.cc/RCj388tJ/phonto.png"
-	},
-	{
-		"name": "Toathmor Sangahak",
-		"price": "$ 30",
-		"type": "moul",
-		"img": "https://i.postimg.cc/N0FjcBYz/phonto.png"
-	},
-	{
-		"name": "Toathmor Kaccay Pali-Sanskrit",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/rmwWVryN/phonto.png"
-	},
-	{
-		"name": "Toathmor Kaccayanupatthambhaka",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/NfHXjYt6/phonto.png"
-	},
-	{
-		"name": "Toathmor Moul Daunta",
-		"price": "$ 30",
-		"type": "moul",
-		"img": "https://i.postimg.cc/ncGm6xty/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Moul Daunta A2",
-				"price": "$ 30",
-				"img": "https://i.postimg.cc/pd45DXDt/phonto.png"
-			},
-			{
-				"name": "Toathmor Moul Daunta A3",
-				"price": "$ 30",
-				"img": "https://i.postimg.cc/PJzLsW0p/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Moul",
-		"price": "$ 10",
-		"type": "moul",
-		"img": "https://i.postimg.cc/P5cP6vkw/phonto.png"
-	},
-	{
-		"name": "Toathmor Moul RK",
-		"price": "$ 15",
-		"type": "moul",
-		"img": "https://i.postimg.cc/zXPNy3mp/phonto.png"
-	},
-	{
-		"name": "Toathmor Moul Seda",
-		"price": "$ 10",
-		"type": "moul",
-		"img": "https://i.postimg.cc/y6MKrhDr/phonto.png"
-	},
-	{
-		"name": "Toathmor MoulHand",
-		"price": "$ 15",
-		"type": "writing",
-		"img": "https://i.postimg.cc/pTKCVtBJ/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor MoulHand V2",
-				"price": "$ 15",
-				"img": "https://i.postimg.cc/mD33fyb6/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Moul Nea Vea",
-		"price": "$ 10",
-		"type": "moul",
-		"img": "https://i.postimg.cc/PfRsvWby/phonto.png"
-	},
-	{
-		"name": "Toathmor Chreang text",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/8crvHd7P/IMG-4540.png",
-		"variants": [
-			{
-				"name": "Toathmor Chreang text2",
-				"price": "$ 15",
-				"img": "https://i.postimg.cc/BvQMCy4f/IMG-4535.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor KH H.M.V. Huot Tat",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/RV5dYq4R/IMG-4536.png"
-	},
-	{
-		"name": "Toathmor Buddhist Era 2500",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/hjDMpYnP/IMG-4541.png"
-	},
-	{
-		"name": "Toathmor Sampoan",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/dVg1zH4g/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Sampoan-Italic",
-				"price": "$ 20",
-				"img": "https://i.postimg.cc/HW3LpsSm/phonto.png"
-			},
-			{
-				"name": "Toathmor Sampoan X",
-				"price": "$ 20",
-				"img": "https://i.postimg.cc/mrQbKbcM/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Sek Sork",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/B6VwgFqg/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Sek Sork Plus",
-				"price": "$ 20",
-				"img": "https://i.postimg.cc/kgC980Yn/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Sievphov",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/pVK68pw7/phonto.png"
-	},
-	{
-		"name": "Toathmor SR. Jrung",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/fTT5xpK6/IMG-4542.png"
-	},
-	{
-		"name": "Toathmor Preah Suramarith",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/90GM0L4d/phonto.png"
-	},
-	{
-		"name": "Toathmor Prey Leak Mchas",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/Ss9kcm4P/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Prey Leak Mchas v2",
-				"price": "$ 20",
-				"img": "https://i.postimg.cc/xjK9Cjg4/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Nimitt",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/hvnT4LxF/phonto.png"
-	},
-	{
-		"name": "Toathmor Nireas",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/FzczFj1v/phonto.png"
-	},
-	{
-		"name": "Toathmor Klen",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/YCf5K8fM/phonto.png"
-	},
-	{
-		"name": "Toathmor Vassa",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/FsKxTzfq/phonto.png"
-	},
-	{
-		"name": "Toathmor NaKry",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/rmt0P712/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor NaKry Plus",
-				"price": "$ 15",
-				"img": "https://i.postimg.cc/mgXP2Tj3/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor NiTean",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/8c5R5XMb/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor NiTean V2",
-				"price": "$ 15",
-				"img": "https://i.postimg.cc/1zrwK1KF/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor PeaNor",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/0Q71bZGm/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor PeaNorent",
-				"price": "$ 10",
-				"img": "https://i.postimg.cc/GtQ0j25p/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Penh",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/3wRw0MW9/phonto.png"
-	},
-	{
-		"name": "Toathmor PheaSaKhmer",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/mrQz3Vhz/phonto.png"
-	},
-	{
-		"name": "Toathmor North",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/3NSZFQYk/phonto.png"
-	},
-	{
-		"name": "Toathmor Lekha",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/3J1GZwRS/IMG-4539.png",
-		"variants": [
-			{
-				"name": "Toathmor Lekha V2",
-				"price": "$ 0",
-				"img": "https://i.postimg.cc/J0ckvrQV/IMG-4538.png"
-			},
-			{
-				"name": "Toathmor Lekha V3",
-				"price": "$ 0",
-				"img": "https://i.postimg.cc/D0VrRYk8/IMG-4534.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Friday",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/2jK9PMs8/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Friday Solo UI",
-				"price": "$ 10",
-				"img": "https://i.postimg.cc/vZRqm9HG/phonto.png"
-			},
-			{
-				"name": "Toathmor Friday Moon",
-				"price": "$ 10",
-				"img": "https://i.postimg.cc/V6N4hW4W/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor TaPenh",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/yYzH9qWL/phonto.png"
-	},
-	{
-		"name": "Toathmor Silbak UI",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/HLJSLx05/phonto.png"
-	},
-	{
-		"name": "Toathmor ChittBous",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/9Mv833sW/phonto.png"
-	},
-	{
-		"name": "Toathmor Maha Therak",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/v8gt6BKg/phonto.png"
-	},
-	{
-		"name": "Toathmor Kampaeng Thmor",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/W3CJSNQR/phonto.png"
-	},
-	{
-		"name": "Toathmor Kbach",
-		"price": "$ 10",
-		"type": "moul",
-		"img": "https://i.postimg.cc/K8NHsjx8/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Kbach Seda",
-				"price": "$ 10",
-				"img": "https://i.postimg.cc/W41HRV18/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Phka Ktomp",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/gcM6gDbh/phonto.png"
-	},
-	{
-		"name": "Toathmor Phkay Proek",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/90XZrg5r/phonto.png"
-	},
-	{
-		"name": "Toathmor R.Jrung",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/Jnq2BFgL/phonto.png"
-	},
-	{
-		"name": "Toathmor Rodtha",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/CLKWbFSt/phonto.png"
-	},
-	{
-		"name": "Toathmor Rooster",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/rs9MsgGK/phonto.png"
-	},
-	{
-		"name": "Toathmor Samnadaichas",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/HxctThgb/phonto.png"
-	},
-	{
-		"name": "Toathmor Theara MS",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/QxqRTH2T/phonto.png"
-	},
-	{
-		"name": "Toathmor Thmorkream",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/MTPnH6Wz/phonto.png"
-	},
-	{
-		"name": "Toathmor Komutt A",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/ZYHvnhb5/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Komutt B",
-				"price": "$ 10",
-				"img": "https://i.postimg.cc/L6sYZ05r/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Kouteok",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/Y0z9mQBB/phonto.png"
-	},
-	{
-		"name": "Toathmor Kraaochhouk",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/3xRRdyLj/phonto.png"
-	},
-	{
-		"name": "Toathmor LetfHand",
-		"price": "$ 10",
-		"type": "writing",
-		"img": "https://i.postimg.cc/jj1Js6tP/phonto.png"
-	},
-	{
-		"name": "Toathmor Link",
-		"price": "$ 10",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/prps7L0Z/phonto.png"
-	},
-	{
-		"name": "Toathmor T. Chhim HW 022",
-		"price": "$ 30",
-		"type": "writing",
-		"img": "https://i.postimg.cc/RCpSnpwM/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor T. Chhim HW 022 Sd",
-				"price": "$ 30",
-				"img": "https://i.postimg.cc/8PqTZFy0/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Khveak Dai",
-		"price": "$ 30",
-		"type": "writing",
-		"img": "https://i.postimg.cc/wT954Vvs/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Khveak Dai Sdoeung",
-				"price": "$ 30",
-				"img": "https://i.postimg.cc/P5RmxnMm/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Ta Chaet 006 A1",
-		"price": "$ 30",
-		"type": "writing",
-		"img": "https://i.postimg.cc/2S783kwX/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Ta Chaet 006 A2",
-				"price": "$ 30",
-				"img": "https://i.postimg.cc/Y9hpX1wy/phonto.png"
-			},
-			{
-				"name": "Toathmor Ta Chaet 006 A3",
-				"price": "$ 30",
-				"img": "https://i.postimg.cc/zDHzKS7C/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Writehand Khveak",
-		"price": "$ 15",
-		"type": "writing",
-		"img": "https://i.postimg.cc/zBWmQpVT/phonto.png"
-	},
-	{
-		"name": "Toathmor Sinn Sisamouth HW",
-		"price": "$ 15",
-		"type": "writing",
-		"img": "https://i.postimg.cc/Kz6CbTdz/phonto.png"
-	},
-	{
-		"name": "Toathmor Samnerdai A1",
-		"price": "$ 15",
-		"type": "writing",
-		"img": "https://i.postimg.cc/nLM41PCf/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Samnerdai A2",
-				"price": "$ 15",
-				"img": "https://i.postimg.cc/NMHR3263/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor MuraFastHand",
-		"price": "$ 15",
-		"type": "writing",
-		"img": "https://i.postimg.cc/HxPJSY8Q/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor MuraHand V2",
-				"price": "$ 15",
-				"img": "https://i.postimg.cc/SR2n3BW0/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Left Handwriting",
-		"price": "$ 15",
-		"type": "writing",
-		"img": "https://i.postimg.cc/HLNWYqLd/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Left Handwriting V2",
-				"price": "$ 15",
-				"img": "https://i.postimg.cc/pLGRCwKb/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Kalyan",
-		"price": "$ 10",
-		"type": "writing",
-		"img": "https://i.postimg.cc/QM029Zs4/phonto.png",
-		"family_note": ""
-	},
-	{
-		"name": "Toathmor FreeHand",
-		"price": "$ 10",
-		"type": "writing",
-		"img": "https://i.postimg.cc/9FN2gLpp/phonto.png",
-		"family_note": ""
-	},
-	{
-		"name": "Toathmor T. Chhim Handwriting",
-		"price": "$ 15",
-		"type": "writing",
-		"img": "https://i.postimg.cc/PxzLjW71/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor T. Chhim Handwriting 2",
-				"price": "$ 15",
-				"img": "https://i.postimg.cc/ZYH9sL3g/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Writehand",
-		"price": "$ 10",
-		"type": "writing",
-		"img": "https://i.postimg.cc/tJ3jsDbQ/phonto.png"
-	},
-	{
-		"name": "Toathmor Dai Chass Text",
-		"price": "$ 25",
-		"type": "writing",
-		"img": "https://i.postimg.cc/d3WmVWYR/phonto.png"
-	},
-	{
-		"name": "Toathmor MY Special Text",
-		"price": "$ 20",
-		"type": "writing",
-		"img": "https://i.postimg.cc/Fzf10GSh/phonto.png"
-	},
-	{
-		"name": "Toathmor Banteay Dek",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/4djXRGK6/phonto.png"
-	},
-	{
-		"name": "Toathmor Moul Phumara",
-		"price": "$ 30",
-		"type": "moul",
-		"img": "https://i.postimg.cc/pXV82cxW/phonto.png"
-	},
-	{
-		"name": "Toathmor Lomchong",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/hPV8pYgy/phonto.png"
-	},
-	{
-		"name": "Toathmor S. SiSamouth C.S.",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/tCpvJgfc/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor S. SiSamouth C.S. 2",
-				"price": "$ 20",
-				"img": "https://i.postimg.cc/vTLPXR16/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Smile25",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/W4D04fJ9/phonto.png"
-	},
-	{
-		"name": "Toathmor itthea",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/g2Z51dYy/phonto.png"
-	},
-	{
-		"name": "Toathmor Header 72",
-		"price": "$ 25",
-		"type": "moul",
-		"img": "https://i.postimg.cc/wM3Fpt3H/phonto.png"
-	},
-	{
-		"name": "Toathmor CHENDA",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/bwvGhXzX/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor CHENDA 2",
-				"price": "$ 25",
-				"img": "https://i.postimg.cc/c4R7HNyc/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Ortaki",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/2jWCrd9R/phonto.png"
-	},
-	{
-		"name": "Toathmor Pruetthi",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/hv3CJ1Hz/phonto.png"
-	},
-	{
-		"name": "Toathmor B.C. 2500",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/6qZC9CVn/phonto.png"
-	},
-	{
-		"name": "Toathmor Satya",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/tgcyVwQS/phonto.png"
-	},
-	{
-		"name": "Toathmor Angeara Text",
-		"price": "$ 15",
-		"type": "chreang",
-		"img": "",
-		"family_note": "កំពុងរៀបចំ..."
-	},
-	{
-		"name": "Toathmor Anungk 2",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/7PmkG7Pw/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Anungk 3",
-				"price": "$ 25",
-				"img": "https://i.postimg.cc/J4G9s2dq/phonto.png"
-			},
-			{
-				"name": "Toathmor Anungk 3 Chrieng",
-				"price": "$ 25",
-				"img": "https://i.postimg.cc/fbhFgTW5/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor 001 Re",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/NfsF6h2T/phonto.png"
-	},
-	{
-		"name": "Toathmor 001 Mo",
-		"price": "$ 25",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/0y3N1bWz/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor 001 Smo",
-				"price": "$ 25",
-				"img": "https://i.postimg.cc/bJ0YnLzn/phonto.png"
-			},
-			{
-				"name": "Toathmor 001 Smooth",
-				"price": "$ 25",
-				"img": "https://i.postimg.cc/Fz9rVcz9/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Primary",
-		"price": "$ 20",
-		"type": "chreang",
-		"img": "https://i.postimg.cc/rwcLJg7f/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Primary Medium",
-				"price": "$ 20",
-				"img": "https://i.postimg.cc/PxLGx78t/phonto.png"
-			}
-		]
-	},
-	{
-		"name": "Toathmor Aphiruh",
-		"price": "$ 20",
-		"type": "moul",
-		"img": "https://i.postimg.cc/zvKt6Gkj/phonto.png",
-		"variants": [
-			{
-				"name": "Toathmor Aphiruh 2",
-				"price": "$ 20",
-				"img": "https://i.postimg.cc/LsPLptHK/phonto.png"
-			}
-		]
-	},
-	{
-					"name": "Toathmor ...", 
-          "price": "$ 0", 
-          "type": "writing ", 
-          "img": "", 
-          "family_note": "កំពុងរៀងចំ...",
+				{
+					"name": "Toathmor Komaradthan",
+					"price": "$ 15",
+					"type": "moul",
+					"img": "https://i.postimg.cc/RCj388tJ/phonto.png"
+				},
+				{
+					"name": "Toathmor Sangahak",
+					"price": "$ 30",
+					"type": "moul",
+					"img": "https://i.postimg.cc/N0FjcBYz/phonto.png"
+				},
+				{
+					"name": "Toathmor Kaccay Pali-Sanskrit",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/rmwWVryN/phonto.png"
+				},
+				{
+					"name": "Toathmor Kaccayanupatthambhaka",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/NfHXjYt6/phonto.png"
+				},
+				{
+					"name": "Toathmor Moul Daunta",
+					"price": "$ 30",
+					"type": "moul",
+					"img": "https://i.postimg.cc/ncGm6xty/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Moul Daunta A2",
+							"price": "$ 30",
+							"img": "https://i.postimg.cc/pd45DXDt/phonto.png"
+						},
+						{
+							"name": "Toathmor Moul Daunta A3",
+							"price": "$ 30",
+							"img": "https://i.postimg.cc/PJzLsW0p/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Moul",
+					"price": "$ 10",
+					"type": "moul",
+					"img": "https://i.postimg.cc/P5cP6vkw/phonto.png"
+				},
+				{
+					"name": "Toathmor Moul RK",
+					"price": "$ 15",
+					"type": "moul",
+					"img": "https://i.postimg.cc/zXPNy3mp/phonto.png"
+				},
+				{
+					"name": "Toathmor Moul Seda",
+					"price": "$ 10",
+					"type": "moul",
+					"img": "https://i.postimg.cc/y6MKrhDr/phonto.png"
+				},
+				{
+					"name": "Toathmor MoulHand",
+					"price": "$ 15",
+					"type": "writing",
+					"img": "https://i.postimg.cc/pTKCVtBJ/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor MoulHand V2",
+							"price": "$ 15",
+							"img": "https://i.postimg.cc/mD33fyb6/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Moul Nea Vea",
+					"price": "$ 10",
+					"type": "moul",
+					"img": "https://i.postimg.cc/PfRsvWby/phonto.png"
+				},
+				{
+					"name": "Toathmor Chreang text",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/8crvHd7P/IMG-4540.png",
+					"variants": [
+						{
+							"name": "Toathmor Chreang text2",
+							"price": "$ 15",
+							"img": "https://i.postimg.cc/BvQMCy4f/IMG-4535.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor KH H.M.V. Huot Tat",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/RV5dYq4R/IMG-4536.png"
+				},
+				{
+					"name": "Toathmor Buddhist Era 2500",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/hjDMpYnP/IMG-4541.png"
+				},
+				{
+					"name": "Toathmor Sampoan",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/dVg1zH4g/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Sampoan-Italic",
+							"price": "$ 20",
+							"img": "https://i.postimg.cc/HW3LpsSm/phonto.png"
+						},
+						{
+							"name": "Toathmor Sampoan X",
+							"price": "$ 20",
+							"img": "https://i.postimg.cc/mrQbKbcM/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Sek Sork",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/B6VwgFqg/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Sek Sork Plus",
+							"price": "$ 20",
+							"img": "https://i.postimg.cc/kgC980Yn/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Sievphov",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/pVK68pw7/phonto.png"
+				},
+				{
+					"name": "Toathmor SR. Jrung",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/fTT5xpK6/IMG-4542.png"
+				},
+				{
+					"name": "Toathmor Preah Suramarith",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/90GM0L4d/phonto.png"
+				},
+				{
+					"name": "Toathmor Prey Leak Mchas",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/Ss9kcm4P/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Prey Leak Mchas v2",
+							"price": "$ 20",
+							"img": "https://i.postimg.cc/xjK9Cjg4/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Nimitt",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/hvnT4LxF/phonto.png"
+				},
+				{
+					"name": "Toathmor Nireas",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/FzczFj1v/phonto.png"
+				},
+				{
+					"name": "Toathmor Klen",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/YCf5K8fM/phonto.png"
+				},
+				{
+					"name": "Toathmor Vassa",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/FsKxTzfq/phonto.png"
+				},
+				{
+					"name": "Toathmor NaKry",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/rmt0P712/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor NaKry Plus",
+							"price": "$ 15",
+							"img": "https://i.postimg.cc/mgXP2Tj3/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor NiTean",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/8c5R5XMb/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor NiTean V2",
+							"price": "$ 15",
+							"img": "https://i.postimg.cc/1zrwK1KF/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor PeaNor",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/0Q71bZGm/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor PeaNorent",
+							"price": "$ 10",
+							"img": "https://i.postimg.cc/GtQ0j25p/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Penh",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/3wRw0MW9/phonto.png"
+				},
+				{
+					"name": "Toathmor PheaSaKhmer",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/mrQz3Vhz/phonto.png"
+				},
+				{
+					"name": "Toathmor North",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/3NSZFQYk/phonto.png"
+				},
+				{
+					"name": "Toathmor Lekha",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/3J1GZwRS/IMG-4539.png",
+					"variants": [
+						{
+							"name": "Toathmor Lekha V2",
+							"price": "$ 0",
+							"img": "https://i.postimg.cc/J0ckvrQV/IMG-4538.png"
+						},
+						{
+							"name": "Toathmor Lekha V3",
+							"price": "$ 0",
+							"img": "https://i.postimg.cc/D0VrRYk8/IMG-4534.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Friday",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/2jK9PMs8/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Friday Solo UI",
+							"price": "$ 10",
+							"img": "https://i.postimg.cc/vZRqm9HG/phonto.png"
+						},
+						{
+							"name": "Toathmor Friday Moon",
+							"price": "$ 10",
+							"img": "https://i.postimg.cc/V6N4hW4W/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor TaPenh",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/yYzH9qWL/phonto.png"
+				},
+				{
+					"name": "Toathmor Silbak UI",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/HLJSLx05/phonto.png"
+				},
+				{
+					"name": "Toathmor ChittBous",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/9Mv833sW/phonto.png"
+				},
+				{
+					"name": "Toathmor Maha Therak",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/v8gt6BKg/phonto.png"
+				},
+				{
+					"name": "Toathmor Kampaeng Thmor",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/W3CJSNQR/phonto.png"
+				},
+				{
+					"name": "Toathmor Kbach",
+					"price": "$ 10",
+					"type": "moul",
+					"img": "https://i.postimg.cc/K8NHsjx8/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Kbach Seda",
+							"price": "$ 10",
+							"img": "https://i.postimg.cc/W41HRV18/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Phka Ktomp",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/gcM6gDbh/phonto.png"
+				},
+				{
+					"name": "Toathmor Phkay Proek",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/90XZrg5r/phonto.png"
+				},
+				{
+					"name": "Toathmor R.Jrung",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/Jnq2BFgL/phonto.png"
+				},
+				{
+					"name": "Toathmor Rodtha",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/CLKWbFSt/phonto.png"
+				},
+				{
+					"name": "Toathmor Rooster",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/rs9MsgGK/phonto.png"
+				},
+				{
+					"name": "Toathmor Samnadaichas",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/HxctThgb/phonto.png"
+				},
+				{
+					"name": "Toathmor Theara MS",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/QxqRTH2T/phonto.png"
+				},
+				{
+					"name": "Toathmor Thmorkream",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/MTPnH6Wz/phonto.png"
+				},
+				{
+					"name": "Toathmor Komutt A",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/ZYHvnhb5/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Komutt B",
+							"price": "$ 10",
+							"img": "https://i.postimg.cc/L6sYZ05r/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Kouteok",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/Y0z9mQBB/phonto.png"
+				},
+				{
+					"name": "Toathmor Kraaochhouk",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/3xRRdyLj/phonto.png"
+				},
+				{
+					"name": "Toathmor LetfHand",
+					"price": "$ 10",
+					"type": "writing",
+					"img": "https://i.postimg.cc/jj1Js6tP/phonto.png"
+				},
+				{
+					"name": "Toathmor Link",
+					"price": "$ 10",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/prps7L0Z/phonto.png"
+				},
+				{
+					"name": "Toathmor T. Chhim HW 022",
+					"price": "$ 30",
+					"type": "writing",
+					"img": "https://i.postimg.cc/RCpSnpwM/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor T. Chhim HW 022 Sd",
+							"price": "$ 30",
+							"img": "https://i.postimg.cc/8PqTZFy0/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Khveak Dai",
+					"price": "$ 30",
+					"type": "writing",
+					"img": "https://i.postimg.cc/wT954Vvs/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Khveak Dai Sdoeung",
+							"price": "$ 30",
+							"img": "https://i.postimg.cc/P5RmxnMm/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Ta Chaet 006 A1",
+					"price": "$ 30",
+					"type": "writing",
+					"img": "https://i.postimg.cc/2S783kwX/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Ta Chaet 006 A2",
+							"price": "$ 30",
+							"img": "https://i.postimg.cc/Y9hpX1wy/phonto.png"
+						},
+						{
+							"name": "Toathmor Ta Chaet 006 A3",
+							"price": "$ 30",
+							"img": "https://i.postimg.cc/zDHzKS7C/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Writehand Khveak",
+					"price": "$ 15",
+					"type": "writing",
+					"img": "https://i.postimg.cc/zBWmQpVT/phonto.png"
+				},
+				{
+					"name": "Toathmor Sinn Sisamouth HW",
+					"price": "$ 15",
+					"type": "writing",
+					"img": "https://i.postimg.cc/Kz6CbTdz/phonto.png"
+				},
+				{
+					"name": "Toathmor Samnerdai A1",
+					"price": "$ 15",
+					"type": "writing",
+					"img": "https://i.postimg.cc/nLM41PCf/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Samnerdai A2",
+							"price": "$ 15",
+							"img": "https://i.postimg.cc/NMHR3263/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor MuraFastHand",
+					"price": "$ 15",
+					"type": "writing",
+					"img": "https://i.postimg.cc/HxPJSY8Q/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor MuraHand V2",
+							"price": "$ 15",
+							"img": "https://i.postimg.cc/SR2n3BW0/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Left Handwriting",
+					"price": "$ 15",
+					"type": "writing",
+					"img": "https://i.postimg.cc/HLNWYqLd/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Left Handwriting V2",
+							"price": "$ 15",
+							"img": "https://i.postimg.cc/pLGRCwKb/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Kalyan",
+					"price": "$ 10",
+					"type": "writing",
+					"img": "https://i.postimg.cc/QM029Zs4/phonto.png",
+					"family_note": ""
+				},
+				{
+					"name": "Toathmor FreeHand",
+					"price": "$ 10",
+					"type": "writing",
+					"img": "https://i.postimg.cc/9FN2gLpp/phonto.png",
+					"family_note": ""
+				},
+				{
+					"name": "Toathmor T. Chhim Handwriting",
+					"price": "$ 15",
+					"type": "writing",
+					"img": "https://i.postimg.cc/PxzLjW71/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor T. Chhim Handwriting 2",
+							"price": "$ 15",
+							"img": "https://i.postimg.cc/ZYH9sL3g/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Writehand",
+					"price": "$ 10",
+					"type": "writing",
+					"img": "https://i.postimg.cc/tJ3jsDbQ/phonto.png"
+				},
+				{
+					"name": "Toathmor Dai Chass Text",
+					"price": "$ 25",
+					"type": "writing",
+					"img": "https://i.postimg.cc/d3WmVWYR/phonto.png"
+				},
+				{
+					"name": "Toathmor MY Special Text",
+					"price": "$ 20",
+					"type": "writing",
+					"img": "https://i.postimg.cc/Fzf10GSh/phonto.png"
+				},
+				{
+					"name": "Toathmor Banteay Dek",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/4djXRGK6/phonto.png"
+				},
+				{
+					"name": "Toathmor Moul Phumara",
+					"price": "$ 30",
+					"type": "moul",
+					"img": "https://i.postimg.cc/pXV82cxW/phonto.png"
+				},
+				{
+					"name": "Toathmor Lomchong",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/hPV8pYgy/phonto.png"
+				},
+				{
+					"name": "Toathmor S. SiSamouth C.S.",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/tCpvJgfc/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor S. SiSamouth C.S. 2",
+							"price": "$ 20",
+							"img": "https://i.postimg.cc/vTLPXR16/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Smile25",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/W4D04fJ9/phonto.png"
+				},
+				{
+					"name": "Toathmor itthea",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/g2Z51dYy/phonto.png"
+				},
+				{
+					"name": "Toathmor Header 72",
+					"price": "$ 25",
+					"type": "moul",
+					"img": "https://i.postimg.cc/wM3Fpt3H/phonto.png"
+				},
+				{
+					"name": "Toathmor CHENDA",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/bwvGhXzX/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor CHENDA 2",
+							"price": "$ 25",
+							"img": "https://i.postimg.cc/c4R7HNyc/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Ortaki",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/2jWCrd9R/phonto.png"
+				},
+				{
+					"name": "Toathmor Pruetthi",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/hv3CJ1Hz/phonto.png"
+				},
+				{
+					"name": "Toathmor B.C. 2500",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/6qZC9CVn/phonto.png"
+				},
+				{
+					"name": "Toathmor Satya",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/tgcyVwQS/phonto.png"
+				},
+				{
+					"name": "Toathmor Angeara Text",
+					"price": "$ 15",
+					"type": "chreang",
+					"img": "",
+					"family_note": "កំពុងរៀបចំ..."
+				},
+				{
+					"name": "Toathmor Anungk 2",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/7PmkG7Pw/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Anungk 3",
+							"price": "$ 25",
+							"img": "https://i.postimg.cc/J4G9s2dq/phonto.png"
+						},
+						{
+							"name": "Toathmor Anungk 3 Chrieng",
+							"price": "$ 25",
+							"img": "https://i.postimg.cc/fbhFgTW5/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor 001 Re",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/NfsF6h2T/phonto.png"
+				},
+				{
+					"name": "Toathmor 001 Mo",
+					"price": "$ 25",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/0y3N1bWz/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor 001 Smo",
+							"price": "$ 25",
+							"img": "https://i.postimg.cc/bJ0YnLzn/phonto.png"
+						},
+						{
+							"name": "Toathmor 001 Smooth",
+							"price": "$ 25",
+							"img": "https://i.postimg.cc/Fz9rVcz9/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Primary",
+					"price": "$ 20",
+					"type": "chreang",
+					"img": "https://i.postimg.cc/rwcLJg7f/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Primary Medium",
+							"price": "$ 20",
+							"img": "https://i.postimg.cc/PxLGx78t/phonto.png"
+						}
+					]
+				},
+				{
+					"name": "Toathmor Aphiruh",
+					"price": "$ 20",
+					"type": "moul",
+					"img": "https://i.postimg.cc/zvKt6Gkj/phonto.png",
+					"variants": [
+						{
+							"name": "Toathmor Aphiruh 2",
+							"price": "$ 20",
+							"img": "https://i.postimg.cc/LsPLptHK/phonto.png"
+						}
+					]
 				}
 			];
 
@@ -1508,9 +1410,9 @@
 				const variantsStr = variantsInput.value.trim();
 
 				if (!name) { alert("សូមបញ្ចូលឈ្មោះពុម្ពអក្សរ!"); return; }
-				if (!price) { price = "$ 10"; }
+				if (!price) { price = "$ 10.00"; }
 
-				let newFont = { name: name, price: price, type: type, img: img };
+				let newFont = { name: name, price: price, type: type, img: img, discount: 0, discount_cash: 0 };
 
 				if (variantsStr) {
 					try {
@@ -1538,7 +1440,9 @@
 
 				if (currentVarIdx === 0) {
 					document.getElementById("editFontName").value = font.name;
-					document.getElementById("editFontPrice").value = font.price || "$ 10";
+					document.getElementById("editFontPrice").value = font.price || "$ 10.00";
+					document.getElementById("editFontDiscount").value = font.discount !== undefined ? font.discount : 0;
+					document.getElementById("editFontDiscountCash").value = font.discount_cash !== undefined ? font.discount_cash : 0;
 					document.getElementById("editFontType").value = font.type || "moul";
 					document.getElementById("modalTypeGroup").style.display = "block"; 
 					
@@ -1548,7 +1452,9 @@
 				} else {
 					const variant = font.variants[currentVarIdx - 1];
 					document.getElementById("editFontName").value = variant.name;
-					document.getElementById("editFontPrice").value = variant.price || "$ 10";
+					document.getElementById("editFontPrice").value = variant.price || "$ 10.00";
+					document.getElementById("editFontDiscount").value = variant.discount !== undefined ? variant.discount : 0;
+					document.getElementById("editFontDiscountCash").value = variant.discount_cash !== undefined ? variant.discount_cash : 0;
 					document.getElementById("modalTypeGroup").style.display = "none"; 
 					document.getElementById("modalNoteGroup").style.display = "none";
 				}
@@ -1568,6 +1474,8 @@
 				const currentVarIdx = activeVariants[index] || 0;
 				const newName = document.getElementById("editFontName").value.trim();
 				const newPrice = document.getElementById("editFontPrice").value.trim();
+				const newDiscount = parseFloat(document.getElementById("editFontDiscount").value) || 0;
+				const newDiscountCash = parseFloat(document.getElementById("editFontDiscountCash").value) || 0;
 
 				if (!newName) { alert("ឈ្មោះមិនអាចទទេបានទេ!"); return; }
 
@@ -1576,15 +1484,19 @@
 					const newNote = document.getElementById("editFontNote").value.trim();
 					
 					font.name = newName;
-					font.price = newPrice || "$ 10";
+					font.price = newPrice || "$ 10.00";
 					font.type = newType;
 					font.family_note = newNote;
+					font.discount = newDiscount;
+					font.discount_cash = newDiscountCash;
 					
 					localStorage.setItem("toathmor_note_" + font.name, newNote);
 				} else {
 					const variant = font.variants[currentVarIdx - 1];
 					variant.name = newName;
-					variant.price = newPrice || "$ 10";
+					variant.price = newPrice || "$ 10.00";
+					variant.discount = newDiscount;
+					variant.discount_cash = newDiscountCash;
 				}
 
 				saveData();
@@ -1601,15 +1513,19 @@
 				const currentVarIdx = activeVariants[index] || 0;
 				const inputName = document.getElementById("editFontName").value.trim();
 				const inputPrice = document.getElementById("editFontPrice").value.trim();
+				const newDiscount = parseFloat(document.getElementById("editFontDiscount").value) || 0;
+				const newDiscountCash = parseFloat(document.getElementById("editFontDiscountCash").value) || 0;
 
 				if (!inputName) { alert("សូមបញ្ចូលឈ្មោះសម្រាប់ពុម្ពថតចម្លង!"); return; }
 
 				if (currentVarIdx === 0) {
 					let duplicatedFont = JSON.parse(JSON.stringify(font));
 					duplicatedFont.name = inputName;
-					duplicatedFont.price = inputPrice || "$ 10";
+					duplicatedFont.price = inputPrice || "$ 10.00";
 					duplicatedFont.type = document.getElementById("editFontType").value;
 					duplicatedFont.family_note = document.getElementById("editFontNote").value.trim();
+					duplicatedFont.discount = newDiscount;
+					duplicatedFont.discount_cash = newDiscountCash;
 					
 					if (duplicatedFont.family_note) {
 						localStorage.setItem("toathmor_note_" + duplicatedFont.name, duplicatedFont.family_note);
@@ -1623,7 +1539,9 @@
 					
 					let duplicatedVariant = JSON.parse(JSON.stringify(oldVariant));
 					duplicatedVariant.name = inputName;
-					duplicatedVariant.price = inputPrice || "$ 10";
+					duplicatedVariant.price = inputPrice || "$ 10.00";
+					duplicatedVariant.discount = newDiscount;
+					duplicatedVariant.discount_cash = newDiscountCash;
 
 					font.variants.splice(variantIdx + 1, 0, duplicatedVariant);
 					activeVariants[index] = variantIdx + 2; 
@@ -1640,14 +1558,16 @@
 				const font = fontsData[index];
 				const vName = prompt(`បញ្ចូលឈ្មោះសម្រាប់ម៉ូដបន្ថែម៖`, font.name + " ");
 				if (!vName || vName.trim() === "") return;
-				const vPrice = prompt("បញ្ចូលតម្លៃសម្រាប់ម៉ូដបន្ថែមនេះ៖", font.price || "$ 10");
+				const vPrice = prompt("បញ្ចូលតម្លៃសម្រាប់ម៉ូដបន្ថែមនេះ៖", font.price || "$ 10.00");
 				const vImg = prompt("បញ្ចូលលីងរូបភាពគំរូ (បើគ្មាន ទុកទទេ)៖", "");
 
 				if(!font.variants) { font.variants = []; }
 				font.variants.push({
 					name: vName.trim(),
-					price: vPrice ? vPrice.trim() : "$ 10",
-					img: vImg ? vImg.trim() : ""
+					price: vPrice ? vPrice.trim() : "$ 10.00",
+					img: vImg ? vImg.trim() : "",
+					discount: 0,
+					discount_cash: 0
 				});
 
 				saveData();
@@ -1693,6 +1613,8 @@
 							font.name = firstVariant.name;
 							font.price = firstVariant.price;
 							font.img = firstVariant.img;
+							font.discount = firstVariant.discount;
+							font.discount_cash = firstVariant.discount_cash;
 							
 							font.variants.splice(0, 1);
 							saveData();
@@ -1747,51 +1669,37 @@
 				});
 			}
 
-			function copyEntireCodeForGitHubPages() {
-				let fontsFormatted = JSON.stringify(fontsData, null, "\t\t\t\t");
-				fontsFormatted = fontsFormatted.replace(/"([^"]+)":/g, '$1:');
-
-				let entireHtml = document.documentElement.outerHTML;
-				
-				let startIdx = entireHtml.indexOf("let defaultFonts = [");
-				let endIdx = entireHtml.indexOf("];", startIdx);
-				
-				if(startIdx !== -1 && endIdx !== -1) {
-					let oldChunk = entireHtml.substring(startIdx, endIdx + 2);
-					let newChunk = "let defaultFonts = " + fontsFormatted + ";";
-					entireHtml = entireHtml.replace(oldChunk, newChunk);
+			function getDiscountedPrice(basePrice, discountPercent, discountCash) {
+				let finalPrice = basePrice;
+				if (discountPercent > 0) {
+					finalPrice = basePrice - (basePrice * (discountPercent / 100));
+				} else if (discountCash > 0) {
+					finalPrice = basePrice - discountCash;
 				}
-
-				let versionMatch = entireHtml.match(/const CURRENT_VERSION = "(\d+)\.(\d+)\.(\d+)";/);
-				if(versionMatch) {
-					let major = parseInt(versionMatch[1]);
-					let minor = parseInt(versionMatch[2]);
-					let patch = parseInt(versionMatch[3]) + 1; 
-					let newVersionStr = `const CURRENT_VERSION = "${major}.${minor}.${patch}";`;
-					entireHtml = entireHtml.replace(versionMatch[0], newVersionStr);
-				}
-
-				let finalSourceCode = "<!DOCTYPE html>\n" + entireHtml;
-
-				navigator.clipboard.writeText(finalSourceCode).then(function() {
-					alert("📋 រួចរាល់ហើយបង! កូដត្រូវបានចម្លង (Copy)។ សូមចូលទៅ GitHub លុបកូដចាស់ចោលទាំងអស់ (Ctrl+A រួច Delete) ហើយ Paste (Ctrl+V) កូដថ្មីនេះចូលជំនួសវិញបាទ!");
-				}).catch(function(err) {
-					alert("ការចម្លងមានបញ្ហា៖ ", err);
-				});
+				return finalPrice < 0 ? 0 : finalPrice;
 			}
 
 			function calculateFamilyTotal(font) {
 				let total = 0;
-				const parsePrice = (str) => {
-					if(!str) return 0;
-					let num = str.replace(/[^0-9.]/g, '');
-					return parseFloat(num) || 0;
-				};
-				total += parsePrice(font.price);
+				
+				// គណនាតម្លៃដើមបន្ទាប់ពីបញ្ចុះរួច
+				let baseP = parsePriceToNumber(font.price);
+				total += getDiscountedPrice(baseP, font.discount || 0, font.discount_cash || 0);
+
+				// គណនាតម្លៃម៉ូដកូនបន្ទាប់ពីបញ្ចុះរួច
 				if(font.variants) {
-					font.variants.forEach(v => { total += parsePrice(v.price); });
+					font.variants.forEach(v => { 
+						let varP = parsePriceToNumber(v.price);
+						total += getDiscountedPrice(varP, v.discount || 0, v.discount_cash || 0);
+					});
 				}
 				return total;
+			}
+
+			function parsePriceToNumber(str) {
+				if(!str) return 0;
+				let num = str.replace(/[^0-9.]/g, '');
+				return parseFloat(num) || 0;
 			}
 
 			function switchVariant(actualIndex, variantIdx, event) {
@@ -1810,10 +1718,23 @@
 					titleSpan.innerText = currentData.name;
 					
 					const priceTag = card.querySelector('.font-price-tag');
-					priceTag.innerText = currentData.price || '$ 10';
+					let basePrice = parsePriceToNumber(currentData.price);
+					let discountPercent = currentData.discount || 0;
+					let discountCash = currentData.discount_cash || 0;
+					let finalPrice = getDiscountedPrice(basePrice, discountPercent, discountCash);
+
+					if (discountPercent > 0 || discountCash > 0) {
+						priceTag.innerHTML = `
+							<span class="original-price-strike">$ ${basePrice.toFixed(2)}</span>
+							<span class="final-price final-price-discounted">$ ${finalPrice.toFixed(2)}</span>
+						`;
+					} else {
+						priceTag.innerHTML = `<span class="final-price">$ ${basePrice.toFixed(2)}</span>`;
+					}
 					
+					let orderPriceStr = (discountPercent > 0 || discountCash > 0) ? `$ ${finalPrice.toFixed(2)} (បញ្ចុះតម្លៃពិសេស)` : `$ ${basePrice.toFixed(2)}`;
 					const buyBtn = card.querySelector('.btn-primary');
-					buyBtn.href = `https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + currentData.name)}`;
+					buyBtn.href = `https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + currentData.name + ' (' + orderPriceStr + ')')}`;
 					
 					card.querySelectorAll('.variant-badge').forEach((b, bIdx) => {
 						if(bIdx === variantIdx) b.classList.add('active');
@@ -1821,7 +1742,7 @@
 					});
 
 					const chk = card.querySelector('.font-checkbox');
-					const fontWithPrice = `${currentData.name} (${currentData.price || '$ 10'})`;
+					const fontWithPrice = `${currentData.name} ($ ${finalPrice.toFixed(2)})`;
 					if(selectedFonts.includes(fontWithPrice)) {
 						chk.checked = true;
 						card.classList.add('selected');
@@ -1881,8 +1802,13 @@
 					const currentVariantIdx = activeVariants[actualIndex];
 					let currentData = (currentVariantIdx === 0) ? font : font.variants[currentVariantIdx - 1];
 
+					let basePrice = parsePriceToNumber(currentData.price);
+					let discountPercent = currentData.discount || 0;
+					let discountCash = currentData.discount_cash || 0;
+					let finalPrice = getDiscountedPrice(basePrice, discountPercent, discountCash);
+
 					const isFav = favoriteFonts.includes(font.name);
-					const fontWithPrice = `${currentData.name} (${currentData.price || '$ 10'})`;
+					const fontWithPrice = `${currentData.name} ($ ${finalPrice.toFixed(2)})`;
 					const isChecked = selectedFonts.includes(fontWithPrice);
 					
 					const imgHtml = currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`;
@@ -1896,7 +1822,6 @@
 						? `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`
 						: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
 
-					// ចាប់យកតម្លៃ Note (ពិពណ៌នា) ពី localStorage ឬ Object របស់ Font ដើម
 					let fontNoteText = localStorage.getItem("toathmor_note_" + font.name) || font.family_note || "";
 					let noteAndFamilyHtml = "";
 					
@@ -1905,10 +1830,14 @@
 					
 					if(hasVariants) {
 						let totalFamilyCost = calculateFamilyTotal(font);
-						familyTotalHtml = `<div class="family-total-wrapper"><div class="family-total-badge">💵 តម្លៃសរុបក្នុងគ្រួសារនេះ: $ ${totalFamilyCost}</div></div>`;
+						familyTotalHtml = `
+							<div class="family-total-wrapper">
+								<div class="family-final-row">
+									🔥 តម្លៃសរុបគ្រួសារ: $ ${totalFamilyCost.toFixed(2)}
+								</div>
+							</div>`;
 					}
 
-					// បង្កើតប្លុក wrapper៖ រុញប្រអប់តម្លៃសរុបគ្រួសារឱ្យនៅមុខ (ខាងឆ្វេង) និងប្រអប់ Note ឱ្យនៅខាងក្រោយ (ខាងស្តាំ)
 					if (fontNoteText || familyTotalHtml) {
 						noteAndFamilyHtml = `<div class="note-and-family-container">`;
 						if (familyTotalHtml) {
@@ -1940,12 +1869,27 @@
 						familySwitcherHtml += `</div>`;
 					}
 
+					let priceDisplayHtml = "";
+					if (discountPercent > 0 || discountCash > 0) {
+						priceDisplayHtml = `
+							<span class="original-price-strike">$ ${basePrice.toFixed(2)}</span>
+							<span class="final-price final-price-discounted">$ ${finalPrice.toFixed(2)}</span>
+						`;
+					} else {
+						priceDisplayHtml = `<span class="final-price">$ ${basePrice.toFixed(2)}</span>`;
+					}
+
+					let orderPriceStr = (discountPercent > 0 || discountCash > 0) ? `$ ${finalPrice.toFixed(2)} (បញ្ចុះតម្លៃពិសេស)` : `$ ${basePrice.toFixed(2)}`;
+
 					card.innerHTML = `
 						<div class="card-top">
 							<div class="font-title-wrapper">
 								<input type="checkbox" class="font-checkbox" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); toggleSelectFontFromCheck(${actualIndex}, this)">
 								<span class="font-num">${idx + 1}</span>
-								<span class="font-title" onclick="event.stopPropagation(); copyFontName(fontsData[${actualIndex}])">${currentData.name}</span>
+								<div class="font-title-block" onclick="event.stopPropagation(); copyFontName(fontsData[${actualIndex}])">
+									<span class="font-title">${currentData.name}</span>
+									<span class="font-author">by Yong Yeang</span>
+								</div>
 							</div>
 							<button class="btn-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${font.name}')">${favIconSvg}</button>
 						</div>
@@ -1964,8 +1908,8 @@
 						${noteAndFamilyHtml}
 
 						<div class="card-acts-row" onclick="event.stopPropagation();">
-							<div class="font-price-tag">${currentData.price || '$ 10'}</div>
-							<a href="https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + currentData.name)}" target="_blank" class="btn-action btn-primary">
+							<div class="font-price-tag">${priceDisplayHtml}</div>
+							<a href="https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + currentData.name + ' (' + orderPriceStr + ')')}" target="_blank" class="btn-action btn-primary">
 								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 									<line x1="22" y1="2" x2="11" y2="13"></line>
 									<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -2000,7 +1944,12 @@
 				const currentVariantIdx = activeVariants[actualIndex] || 0;
 				let currentData = (currentVariantIdx === 0) ? font : font.variants[currentVariantIdx - 1];
 				
-				const fontWithPrice = `${currentData.name} (${currentData.price || '$ 10'})`;
+				let basePrice = parsePriceToNumber(currentData.price);
+				let discountPercent = currentData.discount || 0;
+				let discountCash = currentData.discount_cash || 0;
+				let finalPrice = getDiscountedPrice(basePrice, discountPercent, discountCash);
+
+				const fontWithPrice = `${currentData.name} ($ ${finalPrice.toFixed(2)})`;
 				if (isChecked) { 
 					if (!selectedFonts.includes(fontWithPrice)) selectedFonts.push(fontWithPrice); 
 				} else { 
