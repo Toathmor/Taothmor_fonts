@@ -20,6 +20,8 @@
 		<meta name="apple-mobile-web-app-title" content="Toathmor" />
 		<link rel="apple-touch-icon" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 		<link
 			href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap"
 			rel="stylesheet"
@@ -196,6 +198,7 @@
 				border: 1px solid rgba(255, 255, 255, 0.05);
 				transition: all 0.3s ease;
 			}
+			.contact-link i { font-size: 16px; }
 			.contact-link.tg-btn:hover { background: rgba(34, 158, 217, 0.15); border-color: var(--telegram); }
 			.contact-link.fb-btn:hover { background: rgba(24, 119, 242, 0.15); border-color: var(--facebook); }
 
@@ -213,6 +216,9 @@
 			}
 			
 			.input-box { position: relative; width: 100%; box-sizing: border-box; }
+			.input-box i {
+				position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #64748b; z-index: 5; font-size: 16px;
+			}
 			.input-box input {
 				width: 100%;
 				padding: 16px 16px 16px 48px;
@@ -446,6 +452,7 @@
 				box-sizing: border-box;
 				transition: transform 0.2s ease, box-shadow 0.2s ease; 
 			}
+			.btn-primary i { font-size: 14px; }
 			.btn-primary:active { transform: scale(0.98); }
 			
 			.btn-primary .strike-price-inside {
@@ -509,19 +516,21 @@
 					<div class="header-right-controls">
 						<div class="top-counter-badge" id="topCounter">សរុប: 0</div>
 						<button class="theme-btn" onclick="toggleTheme()" id="themeIcon">
-							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+							<i class="fa-solid fa-moon"></i>
 						</button>
-						<button class="admin-toggle-btn" onclick="handleAdminToggle()" id="adminBtnIcon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></button>
+						<button class="admin-toggle-btn" onclick="handleAdminToggle()" id="adminBtnIcon">
+							<i class="fa-solid fa-user-gear"></i>
+						</button>
 					</div>
 				</div>
 
 				<div class="contacts-bar">
 					<a href="https://t.me/YongYeang" target="_blank" class="contact-link tg-btn">
-						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="color: #229ED9;"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.562 8.161c-.18 1.897-.961 6.505-1.359 8.641-.168.9-.5 1.201-.82 1.231-.71.06-1.25-.471-1.94-.921-1.079-.71-1.69-1.149-2.74-1.839-1.21-.8-1.261-1.24-.06-2.481.31-.32 5.751-5.271 5.851-5.711.01-.06.02-.271-.1-.381-.13-.11-.31-.07-.45-.04-.2.04-3.32 2.1-9.37 6.161-.88.61-1.69.91-2.42.891-.81-.02-2.361-.46-3.511-.841-1.41-.46-1.53-.711-.14-1.281 7.42-3.23 12.37-5.36 14.84-6.4 7.04-2.93.42-2.341.42.81 0 .28-.01.591-.04.921z"/></svg>
+						<i class="fa-brands fa-telegram" style="color: #229ED9;"></i>
 						Telegram
 					</a>
 					<a href="https://m.me/ToathmorKH" target="_blank" class="contact-link fb-btn">
-						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="color: #1877F2;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+						<i class="fa-brands fa-facebook-messenger" style="color: #1877F2;"></i>
 						Facebook
 					</a>
 				</div>
@@ -529,7 +538,7 @@
 
 			<div class="sticky-controls">
 				<div class="input-box">
-					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #64748b; z-index: 5;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+					<i class="fa-solid fa-magnifying-glass"></i>
 					<input type="text" id="searchId" placeholder="ស្វែងរកឈ្មោះពុម្ពអក្សរ..." oninput="filterData()" autocomplete="off">
 				</div>
 
@@ -657,7 +666,7 @@
 			<div class="multi-actions-row">
 				<button class="btn-action btn-secondary" onclick="clearAllSelections()">✕ លុបចោល</button>
 				<button class="btn-action btn-primary" onclick="sendMultiOrder()">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="margin-right:2px;"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.562 8.161c-.18 1.897-.961 6.505-1.359 8.641-.168.9-.5 1.201-.82 1.231-.71.06-1.25-.471-1.94-.921-1.079-.71-1.69-1.149-2.74-1.839-1.21-.8-1.261-1.24-.06-2.481.31-.32 5.751-5.271 5.851-5.711.01-.06.02-.271-.1-.381-.13-.11-.31-.07-.45-.04-.2.04-3.32 2.1-9.37 6.161-.88.61-1.69.91-2.42.891-.81-.02-2.361-.46-3.511-.841-1.41-.46-1.53-.711-.14-1.281 7.42-3.23 12.37-5.36 14.84-6.4 7.04-2.93.42-2.341.42.81 0 .28-.01.591-.04.921z"/></svg>
+					<i class="fa-brands fa-telegram" style="margin-right:2px;"></i>
 					កុម្ម៉ង់ពុម្ពដែលបានជ្រើសរើស
 				</button>
 			</div>
@@ -1176,12 +1185,12 @@
 					if (discountPercent > 0 || discountCash > 0) {
 						orderPriceText += ` (តម្លៃពិសេសបញ្ចុះពី $ ${basePrice.toFixed(2)})`;
 						buyBtn.innerHTML = `
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+							<i class="fa-solid fa-paper-plane"></i>
 							ទិញពុម្ពនេះ <span class="divider-inside">•</span> <span class="strike-price-inside">$ ${basePrice.toFixed(2)}</span> $ ${finalPrice.toFixed(2)}
 						`;
 					} else {
 						buyBtn.innerHTML = `
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+							<i class="fa-solid fa-paper-plane"></i>
 							ទិញពុម្ពនេះ <span class="divider-inside">•</span> $ ${finalPrice.toFixed(2)}
 						`;
 					}
@@ -1211,12 +1220,12 @@
 				if (savedTheme === "dark") {
 					document.documentElement.setAttribute("data-theme", "dark");
 					if(themeBtn) {
-						themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+						themeBtn.innerHTML = `<i class="fa-solid fa-sun"></i>`;
 					}
 				} else {
 					document.documentElement.removeAttribute("data-theme");
 					if(themeBtn) {
-						themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+						themeBtn.innerHTML = `<i class="fa-solid fa-moon"></i>`;
 					}
 				}
 				renderFonts(); 
@@ -1228,11 +1237,11 @@
 				if (currentTheme === "dark") {
 					document.documentElement.removeAttribute("data-theme");
 					localStorage.setItem("toathmor_theme", "light");
-					if(themeBtn) themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+					if(themeBtn) themeBtn.innerHTML = `<i class="fa-solid fa-moon"></i>`;
 				} else {
 					document.documentElement.setAttribute("data-theme", "dark");
 					localStorage.setItem("toathmor_theme", "dark");
-					if(themeBtn) themeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+					if(themeBtn) themeBtn.innerHTML = `<i class="fa-solid fa-sun"></i>`;
 				}
 			}
 
@@ -1283,9 +1292,9 @@
 					card.id = `card-${actualIndex}`;
 					card.onclick = () => handleCardClick(actualIndex, card);
 					
-					const favIconSvg = isFav 
-						? `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`
-						: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+					const favIcon = isFav 
+						? `<i class="fa-solid fa-star"></i>`
+						: `<i class="fa-regular fa-star"></i>`;
 
 					let fontNoteText = localStorage.getItem("toathmor_note_" + font.name) || font.family_note || "";
 					let noteAndFamilyHtml = "";
@@ -1376,12 +1385,12 @@
 					let innerButtonContent = "";
 					if (discountPercent > 0 || discountCash > 0) {
 						innerButtonContent = `
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+							<i class="fa-solid fa-paper-plane"></i>
 							ទិញពុម្ពនេះ <span class="divider-inside">•</span> <span class="strike-price-inside">$ ${basePrice.toFixed(2)}</span> $ ${finalPrice.toFixed(2)}
 						`;
 					} else {
 						innerButtonContent = `
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+							<i class="fa-solid fa-paper-plane"></i>
 							ទិញពុម្ពនេះ <span class="divider-inside">•</span> $ ${finalPrice.toFixed(2)}
 						`;
 					}
@@ -1396,7 +1405,7 @@
 									<span class="font-author">by Yong Yeang</span>
 								</div>
 							</div>
-							<button class="btn-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${font.name}')">${favIconSvg}</button>
+							<button class="btn-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${font.name}')">${favIcon}</button>
 						</div>
 
 						<div class="image-container">${imgHtml}</div>
