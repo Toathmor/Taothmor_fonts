@@ -656,6 +656,7 @@
 			</div>
 		</div>
 
+		<!-- Footer -->
 		<footer>
 			<p class="footer-brand">© 2026 <span>TOATHMOR FONTS</span>. All Rights Reserved.</p>
 			<p>បង្កើតឡើងដោយក្ដីស្រឡាញ់ចំពោះអក្សរសាស្ត្រ និងទម្រង់ពុម្ពអក្សរខ្មែរឌីជីថល</p>
@@ -1649,7 +1650,7 @@
 		"family_discount": 0,
 		"family_discount_cash": 0
 	}
-];
+			];
 
 			let customFonts = JSON.parse(localStorage.getItem("toathmor_custom_list"));
 			let fontsData = customFonts ? customFonts : defaultFonts;
@@ -1706,7 +1707,17 @@
 				if (variantsStr) {
 					try {
 						const parsed = JSON.parse(variantsStr);
-						if (Array.isArray(parsed)) { newFont.variants = parsed; }
+						if (Array.isArray(parsed)) { 
+							newFont.variants = parsed.map(v => {
+								return {
+									name: v.name || "",
+									price: v.price || price,
+									img: v.img || "",
+									discount: v.discount !== undefined ? v.discount : 0,
+									discount_cash: v.discount_cash !== undefined ? v.discount_cash : 0
+								};
+							}); 
+						}
 					} catch (e) {
 						alert("កូដ Variants JSON មិនត្រឹមត្រូវទេ!");
 						return;
@@ -1744,6 +1755,10 @@
 					document.getElementById("editFontNote").value = savedNote;
 					document.getElementById("modalNoteGroup").style.display = "block";
 				} else {
+					if (!font.variants || !font.variants[currentVarIdx - 1]) {
+						closeEditModal();
+						return;
+					}
 					const variant = font.variants[currentVarIdx - 1];
 					document.getElementById("editFontName").value = variant.name;
 					document.getElementById("editFontPrice").value = variant.price || "$ 10.00";
@@ -1793,11 +1808,13 @@
 					
 					localStorage.setItem("toathmor_note_" + font.name, newNote);
 				} else {
-					const variant = font.variants[currentVarIdx - 1];
-					variant.name = newName;
-					variant.price = newPrice || "$ 10.00";
-					variant.discount = newDiscount;
-					variant.discount_cash = newDiscountCash;
+					if (font.variants && font.variants[currentVarIdx - 1]) {
+						const variant = font.variants[currentVarIdx - 1];
+						variant.name = newName;
+						variant.price = newPrice || "$ 10.00";
+						variant.discount = newDiscount;
+						variant.discount_cash = newDiscountCash;
+					}
 				}
 
 				saveData();
@@ -1838,6 +1855,7 @@
 					activeVariants[index + 1] = 0; 
 				} else {
 					const variantIdx = currentVarIdx - 1;
+					if (!font.variants || !font.variants[variantIdx]) return;
 					const oldVariant = font.variants[variantIdx];
 					
 					let duplicatedVariant = JSON.parse(JSON.stringify(oldVariant));
@@ -1886,6 +1904,7 @@
 
 				if (currentVarIdx > 0) {
 					const variantIdx = currentVarIdx - 1; 
+					if (!font.variants || !font.variants[variantIdx]) return;
 					const variantName = font.variants[variantIdx].name;
 					
 					if (confirm(`តើលោកគ្រូពិតជាចង់លុបតែម៉ូដកូន "${variantName}" នេះមែនទេ?`)) {
@@ -1916,8 +1935,8 @@
 							font.name = firstVariant.name;
 							font.price = firstVariant.price;
 							font.img = firstVariant.img;
-							font.discount = firstVariant.discount;
-							font.discount_cash = firstVariant.discount_cash;
+							font.discount = firstVariant.discount !== undefined ? firstVariant.discount : 0;
+							font.discount_cash = firstVariant.discount_cash !== undefined ? firstVariant.discount_cash : 0;
 							
 							font.variants.splice(0, 1);
 							saveData();
@@ -1940,6 +1959,7 @@
 				const font = fontsData[index];
 				const currentVarIdx = activeVariants[index] || 0;
 				let targetObj = (currentVarIdx === 0) ? font : font.variants[currentVarIdx - 1];
+				if (!targetObj) return;
 
 				const newImg = prompt(`សូមដាក់លីងរូបភាពសម្រាប់ ${targetObj.name}៖`, targetObj.img || "");
 				if (newImg !== null) {
@@ -1954,6 +1974,7 @@
 				const font = fontsData[index];
 				const currentVarIdx = activeVariants[index] || 0;
 				let targetObj = (currentVarIdx === 0) ? font : font.variants[currentVarIdx - 1];
+				if (!targetObj) return;
 
 				if (confirm(`លុបរូបភាពគំរូរបស់ ${targetObj.name} ចេញ?`)) {
 					targetObj.img = "";
@@ -2014,7 +2035,7 @@
 
 			function parsePriceToNumber(str) {
 				if(!str) return 0;
-				let num = str.replace(/[^0-9.]/g, '');
+				let num = str.toString().replace(/[^0-9.]/g, '');
 				return parseFloat(num) || 0;
 			}
 
@@ -2026,6 +2047,7 @@
 				if(card) {
 					const font = fontsData[actualIndex];
 					let currentData = (variantIdx === 0) ? font : font.variants[variantIdx - 1];
+					if (!currentData) return;
 					
 					const imgContainer = card.querySelector('.image-container');
 					imgContainer.innerHTML = currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`;
@@ -2133,6 +2155,7 @@
 					
 					const currentVariantIdx = activeVariants[actualIndex];
 					let currentData = (currentVariantIdx === 0) ? font : font.variants[currentVariantIdx - 1];
+					if(!currentData) currentData = font;
 
 					let basePrice = parsePriceToNumber(currentData.price);
 					let discountPercent = currentData.discount || 0;
@@ -2310,6 +2333,7 @@
 				const font = fontsData[actualIndex];
 				const currentVariantIdx = activeVariants[actualIndex] || 0;
 				let currentData = (currentVariantIdx === 0) ? font : font.variants[currentVariantIdx - 1];
+				if(!currentData) currentData = font;
 				
 				let basePrice = parsePriceToNumber(currentData.price);
 				let discountPercent = currentData.discount || 0;
@@ -2362,6 +2386,7 @@
 			function copyFontName(fontObj) {
 				const currentVariantIdx = activeVariants[fontsData.indexOf(fontObj)] || 0;
 				let currentData = (currentVariantIdx === 0) ? fontObj : fontObj.variants[currentVariantIdx - 1];
+				if(!currentData) currentData = fontObj;
 				navigator.clipboard.writeText(currentData.name).then(() => {
 					showToast(`📋 បានចម្លងឈ្មោះ៖ ${currentData.name}`);
 				});
