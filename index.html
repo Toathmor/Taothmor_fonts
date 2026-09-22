@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.5.0</title>
+		<title>Toathmor Fonts App V4.5.2</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -314,9 +314,30 @@
 			}
 			.font-card.selected { border-color: var(--accent); background: var(--accent-light); }
 
+			.font-card.new-font {
+				border: 1px solid var(--accent);
+			}
+			.new-badge {
+				background: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%);
+				color: #ffffff;
+				font-size: 10px;
+				font-weight: 800;
+				padding: 3px 8px;
+				border-radius: 20px;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+				animation: pulseNew 2s infinite;
+			}
+			@keyframes pulseNew {
+				0% { transform: scale(1); }
+				50% { transform: scale(1.05); }
+				100% { transform: scale(1); }
+			}
+
 			.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 			.font-title-wrapper { display: flex; align-items: center; gap: 10px; flex: 1; overflow: hidden; }
-			.font-checkbox { width: 20px; height: 20px; accent-color: var(--accent); flex-shrink: 0; }
+			.font-checkbox { width: 20px; height: 20px; accent-color: var(--accent); flex-shrink: 0; cursor: pointer; }
 			.font-num { background: var(--text-main); color: var(--bg-card); font-size: 11px; padding: 3px 8px; border-radius: 8px; font-weight: 600; transition: background 0.4s ease, color 0.4s ease; }
 			
 			.font-title-block { display: flex; flex-direction: column; overflow: hidden; cursor: pointer; }
@@ -472,6 +493,26 @@
 			}
 			.multi-select-bar.show { transform: translateX(-50%) translateY(0); }
 			body.keyboard-open .multi-select-bar { transform: translateX(-50%) translateY(100%) !important; }
+
+			.multi-info-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-weight: 700;
+				font-size: 15px;
+				color: var(--text-main);
+			}
+			.multi-total-price {
+				color: #ef4444;
+				font-size: 16px;
+				background: rgba(239, 68, 68, 0.1);
+				padding: 4px 12px;
+				border-radius: 12px;
+			}
+			[data-theme="dark"] .multi-total-price {
+				color: #f87171;
+				background: rgba(248, 113, 113, 0.1);
+			}
 
 			.multi-actions-row { display: flex; gap: 10px; }
 			.btn-secondary { background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border); flex: 1; cursor: pointer;}
@@ -650,20 +691,22 @@
 
 				<div style="display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap;">
 					<button class="btn-action btn-secondary" onclick="closeEditModal()" style="flex: 1; min-width: 80px;">✕ បោះបង់</button>
-					<button class="btn-action" onclick="duplicateCurrentFont()" style="background: #f59e0b; color: white; flex: 12; min-width: 140px; font-weight: 700;">👯 ថតចម្លង (Duplicate)</button>
+					<button class="btn-action" onclick="duplicateCurrentFont()" style="background: #f59e0b; color: white; flex: 1; min-width: 140px; font-weight: 700;">👯 ថតចម្លង</button>
 					<button class="btn-action btn-primary" onclick="saveAdminEditModal()" style="background: var(--success); color: white; flex: 1; min-width: 80px;">💾 រក្សាទុក</button>
 				</div>
 			</div>
 		</div>
 
-		<!-- Footer -->
 		<footer>
 			<p class="footer-brand">© 2026 <span>TOATHMOR FONTS</span>. All Rights Reserved.</p>
 			<p>បង្កើតឡើងដោយក្ដីស្រឡាញ់ចំពោះអក្សរសាស្ត្រ និងទម្រង់ពុម្ពអក្សរខ្មែរឌីជីថល</p>
 		</footer>
 
 		<div class="multi-select-bar" id="multiSelectBar">
-			<span id="multiSelectCount" style="font-weight:700; font-size:15px; color: var(--text-main);">បានជ្រើសរើស: 0 ពុម្ព</span>
+			<div class="multi-info-header">
+				<span id="multiSelectCount">បានជ្រើសរើស: 0 ពុម្ព</span>
+				<span id="multiSelectTotalPrice" class="multi-total-price">សរុប: $ 0.00</span>
+			</div>
 			<div class="multi-actions-row">
 				<button class="btn-action btn-secondary" onclick="clearAllSelections()">✕ លុបចោល</button>
 				<button class="btn-action btn-primary" onclick="sendMultiOrder()">
@@ -676,7 +719,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "4.5.0"; 
+			let CURRENT_VERSION = "4.5.2"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -703,12 +746,12 @@
 
 			const telegramUser = "YongYeang";
 			let currentCategory = "all";
-			let selectedFonts = [];
+			let selectedFonts = []; 
 			let isAdminLoggedIn = false;
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 
 			let defaultFonts = [
-	{
+				{
 		"name": "Toathmor... (Kh Watt Prey Chas)",
 		"price": "$",
 		"type": "chreang",
@@ -1684,19 +1727,20 @@
 		"family_note": ""
 	},
 	{
-		"name": "Toathmor ...",
-		"price": "$00",
-		"type": "moul",
-		"img": "https://i.postimg.cc/L6PVdnj0/IMG-5187.png",
-		"discount": 0,
-		"discount_cash": 0,
-		"family_discount": 0,
-		"family_discount_cash": 0,
-		"family_note": "កំពុងរៀបចំ..."
-	}
-  ];
+					"name": "Toathmor Upcoming",
+					"price": "$ 0",
+					"type": "moul",
+					"img": "https://i.postimg.cc/L6PVdnj0/IMG-5187.png",
+					"discount": 0,
+					"discount_cash": 0,
+					"family_discount": 0,
+					"family_discount_cash": 0,
+					"family_note": "កំពុងរៀបចំ..."
+				}
+			];
+
 			let customFonts = JSON.parse(localStorage.getItem("toathmor_custom_list"));
-			let fontsData = customFonts ? customFonts : defaultFonts;
+			let fontsData = (customFonts && customFonts.length > 0) ? customFonts : defaultFonts;
 			let activeVariants = {};
 
 			async function hashPassword(string) {
@@ -1745,7 +1789,17 @@
 				if (!name) { alert("សូមបញ្ចូលឈ្មោះពុម្ពអក្សរ!"); return; }
 				if (!price) { price = "$ 10.00"; }
 
-				let newFont = { name: name, price: price, type: type, img: img, discount: 0, discount_cash: 0, family_discount: 0, family_discount_cash: 0 };
+				let newFont = { 
+					name: name, 
+					price: price, 
+					type: type, 
+					img: img, 
+					discount: 0, 
+					discount_cash: 0, 
+					family_discount: 0, 
+					family_discount_cash: 0,
+					createdAt: new Date().toISOString()
+				};
 
 				if (variantsStr) {
 					try {
@@ -1772,6 +1826,15 @@
 				nameInput.value = ""; priceInput.value = ""; imgInput.value = ""; variantsInput.value = "";
 				renderFonts();
 				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីរួចរាល់!");
+			}
+
+			function isNewFont(font) {
+				if (!font.createdAt) return false;
+				const createdDate = new Date(font.createdAt);
+				const now = new Date();
+				const diffTime = Math.abs(now - createdDate);
+				const diffDays = diffTime / (1000 * 60 * 60 * 24);
+				return diffDays <= 7;
 			}
 
 			function openEditModal(index, event) {
@@ -1889,6 +1952,7 @@
 					duplicatedFont.discount_cash = newDiscountCash;
 					duplicatedFont.family_discount = parseFloat(document.getElementById("editFamilyDiscount").value) || 0;
 					duplicatedFont.family_discount_cash = parseFloat(document.getElementById("editFamilyDiscountCash").value) || 0;
+					duplicatedFont.createdAt = new Date().toISOString();
 					
 					if (duplicatedFont.family_note) {
 						localStorage.setItem("toathmor_note_" + duplicatedFont.name, duplicatedFont.family_note);
@@ -2125,8 +2189,8 @@
 					});
 
 					const chk = card.querySelector('.font-checkbox');
-					const fontWithPrice = `${currentData.name} ($ ${finalPrice.toFixed(2)})`;
-					if(selectedFonts.includes(fontWithPrice)) {
+					const existsIndex = selectedFonts.findIndex(item => item.name === currentData.name);
+					if(existsIndex !== -1) {
 						chk.checked = true;
 						card.classList.add('selected');
 					} else {
@@ -2206,13 +2270,14 @@
 					let finalPrice = getDiscountedPrice(basePrice, discountPercent, discountCash);
 
 					const isFav = favoriteFonts.includes(font.name);
-					const fontWithPrice = `${currentData.name} ($ ${finalPrice.toFixed(2)})`;
-					const isChecked = selectedFonts.includes(fontWithPrice);
+					const isChecked = selectedFonts.some(item => item.name === currentData.name);
 					
+					const isNew = isNewFont(font);
+
 					const imgHtml = currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`;
 
 					const card = document.createElement("div");
-					card.className = `font-card ${isChecked ? 'selected' : ''}`;
+					card.className = `font-card ${isChecked ? 'selected' : ''} ${isNew ? 'new-font' : ''}`;
 					card.id = `card-${actualIndex}`;
 					card.onclick = () => handleCardClick(actualIndex, card);
 					
@@ -2324,6 +2389,7 @@
 							<div class="font-title-wrapper">
 								<input type="checkbox" class="font-checkbox" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); toggleSelectFontFromCheck(${actualIndex}, this)">
 								<span class="font-num">${idx + 1}</span>
+								${isNew ? '<span class="new-badge">NEW</span>' : ''}
 								<div class="font-title-block" onclick="event.stopPropagation(); copyFontName(fontsData[${actualIndex}])">
 									<span class="font-title">${currentData.name}</span>
 									<span class="font-author">by Yong Yeang</span>
@@ -2383,11 +2449,14 @@
 				let discountCash = currentData.discount_cash || 0;
 				let finalPrice = getDiscountedPrice(basePrice, discountPercent, discountCash);
 
-				const fontWithPrice = `${currentData.name} ($ ${finalPrice.toFixed(2)})`;
+				const fontObj = { name: currentData.name, price: finalPrice };
+				
 				if (isChecked) { 
-					if (!selectedFonts.includes(fontWithPrice)) selectedFonts.push(fontWithPrice); 
+					if (!selectedFonts.some(item => item.name === currentData.name)) {
+						selectedFonts.push(fontObj); 
+					}
 				} else { 
-					selectedFonts = selectedFonts.filter(f => f !== fontWithPrice); 
+					selectedFonts = selectedFonts.filter(item => item.name !== currentData.name); 
 				}
 				updateMultiSelectBar();
 			}
@@ -2411,9 +2480,13 @@
 			function updateMultiSelectBar() {
 				const bar = document.getElementById("multiSelectBar");
 				const countTxt = document.getElementById("multiSelectCount");
-				if(!bar || !countTxt) return;
+				const totalPriceTxt = document.getElementById("multiSelectTotalPrice");
+				if(!bar || !countTxt || !totalPriceTxt) return;
+				
 				if (selectedFonts.length > 0) {
+					let total = selectedFonts.reduce((sum, item) => sum + item.price, 0);
 					countTxt.innerText = `បានជ្រើសរើស: ${selectedFonts.length} ពុម្ពអក្សរ`;
+					totalPriceTxt.innerText = `សរុប: $ ${total.toFixed(2)}`;
 					bar.classList.add("show");
 				} else {
 					bar.classList.remove("show");
@@ -2445,8 +2518,14 @@
 
 			function sendMultiOrder() {
 				if(selectedFonts.length === 0) return;
+				let total = selectedFonts.reduce((sum, item) => sum + item.price, 0);
+				
 				let text = "ខ្ញុំចង់កុម្ម៉ង់ទិញពុម្ពអក្សរដូចខាងក្រោម៖\n";
-				selectedFonts.forEach((f, i) => { text += `${i+1}. ${f}\n`; });
+				selectedFonts.forEach((item, i) => { 
+					text += `${i+1}. ${item.name} ($ ${item.price.toFixed(2)})\n`; 
+				});
+				text += `\n------------------------\n💰 តម្លៃសរុបចុងក្រោយ៖ $ ${total.toFixed(2)}`;
+				
 				window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent(text)}`, '_blank');
 			}
 		</script>
