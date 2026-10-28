@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.7.1</title>
+		<title>Toathmor Fonts App V4.8.7</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -40,15 +40,15 @@
 				--facebook: #1877F2;
 				--border: #e2e8f0; 
 				--shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-				--shadow-md: 0 12px 30px rgba(15, 23, 42, 0.06); 
+				--shadow-md: 0 10px 25px rgba(15, 23, 42, 0.05); 
 				--shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.12);
 				--danger: #ef4444; 
 				--success: #10b981;
 				--info: #3b82f6;
 				--warning: #f59e0b;
 				--img-placeholder: #f1f5f9;
-				--radius-card: 24px;
-				--radius-btn: 16px;
+				--radius-card: 22px;
+				--radius-btn: 14px;
 			}
 
 			[data-theme="dark"] {
@@ -61,7 +61,7 @@
 				--accent-light: rgba(251, 191, 36, 0.08);
 				--border: #1e293b;
 				--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-				--shadow-md: 0 12px 30px rgba(0, 0, 0, 0.3);
+				--shadow-md: 0 10px 25px rgba(0, 0, 0, 0.25);
 				--shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.4);
 				--danger: #f87171;
 				--img-placeholder: #1e293b;
@@ -85,35 +85,34 @@
 
 			.container {
 				width: 100%;
-				max-width: 1280px;
+				max-width: 1320px;
 				margin: 0 auto;
-				padding: 0 20px; 
+				padding: 0 14px; 
 				box-sizing: border-box;
 				min-height: calc(100vh - 180px);
 			}
 
 			@media (min-width: 1400px) {
 				.container {
-					max-width: 1440px;
-					padding: 0 32px;
+					max-width: 1480px;
+					padding: 0 24px;
 				}
 			}
 
 			header {
 				background: linear-gradient(145deg, #0f172a, #1e293b);
-				border-radius: 32px;
-				padding: 24px; 
+				border-radius: 28px;
+				padding: 20px; 
 				box-shadow: var(--shadow-lg);
-				margin-bottom: 28px;
+				margin-bottom: 16px;
 				border: 1px solid rgba(212, 175, 55, 0.15);
 				position: relative;
 				overflow: hidden;
 				display: flex;
 				flex-direction: column;
-				gap: 16px;
+				gap: 14px;
 			}
 
-			/* ផ្នែកទី១៖ Brand Zone និងប៊ូតុងអំពីកម្មវិធីនៅជ្រុងខាងស្តាំលើ (ទំហំតូចល្មម និងរីករួមតាមទម្រង់អេក្រង់) */
 			.header-top-section {
 				display: flex;
 				justify-content: space-between;
@@ -125,14 +124,14 @@
 			.brand-zone {
 				display: flex;
 				align-items: center;
-				gap: 16px;
+				gap: 14px;
 			}
 
 			.brand-logo {
-				width: clamp(55px, 5vw, 68px);
-				height: clamp(55px, 5vw, 68px);
+				width: clamp(50px, 4.5vw, 62px);
+				height: clamp(50px, 4.5vw, 62px);
 				object-fit: contain;
-				border-radius: 16px;
+				border-radius: 14px;
 				background: rgba(255, 255, 255, 0.05);
 				padding: 4px;
 				border: 1px solid rgba(212, 175, 55, 0.2);
@@ -141,9 +140,9 @@
 
 			.brand-text h1 {
 				margin: 0;
-				font-size: clamp(20px, 3.5vw, 30px); 
+				font-size: clamp(18px, 3.2vw, 26px); 
 				font-weight: 800;
-				letter-spacing: 1.5px;
+				letter-spacing: 1.2px;
 				color: #ffffff;
 			}
 			.brand-text h1 span { 
@@ -151,57 +150,226 @@
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
 			}
-			.brand-text p { margin: 3px 0 0 0; font-size: clamp(11px, 1.4vw, 13.5px); color: #94a3b8; }
+			.brand-text p { margin: 2px 0 0 0; font-size: clamp(11px, 1.3vw, 13px); color: #94a3b8; }
 
 			.about-btn {
 				background: rgba(255, 255, 255, 0.06);
 				border: 1px solid rgba(255, 255, 255, 0.1);
 				color: #ffffff;
-				width: clamp(34px, 3.5vw, 40px);
-				height: clamp(34px, 3.5vw, 40px);
+				width: clamp(32px, 3.2vw, 38px);
+				height: clamp(32px, 3.2vw, 38px);
 				border-radius: 50%;
 				cursor: pointer;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size: clamp(13px, 1.5vw, 15px);
+				font-size: clamp(12px, 1.4vw, 14px);
 				transition: all 0.3s;
 				text-decoration: none;
 				flex-shrink: 0;
 			}
 			.about-btn:hover { background: rgba(245, 158, 11, 0.2); border-color: var(--warning); }
 
-			/* ផ្នែកទី២ (Line ខាងក្រោម)៖ ប្រមូលផ្តុំ Icons បណ្តាញសង្គម និង Icon Dark Mode នៅខាងស្តាំ */
 			.header-bottom-section {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
 				border-top: 1px solid rgba(255, 255, 255, 0.08);
-				padding-top: 14px;
+				padding-top: 12px;
 				flex-wrap: wrap;
-				gap: 12px;
+				gap: 10px;
 			}
 
 			.social-group-bar {
 				display: flex;
 				align-items: center;
-				gap: 10px;
+				gap: 8px;
 				flex-wrap: wrap;
 			}
 
 			.header-bottom-right {
 				display: flex;
 				align-items: center;
-				gap: 10px;
+				gap: 8px;
+			}
+
+			.sticky-controls {
+				position: sticky !important;
+				top: 0 !important;
+				background: var(--bg-main) !important; 
+				z-index: 200 !important;
+				padding: calc(12px + env(safe-area-inset-top)) 0 14px 0 !important;
+				display: flex !important;
+				flex-direction: column !important;
+				gap: 12px !important;
+				box-sizing: border-box;
+				transform: translateZ(0);
+			}
+
+			.hero-slide-wrapper {
+				width: 100%;
+				max-width: 360px;
+				margin: 0 auto;
+				box-sizing: border-box;
+				display: block;
+				transition: transform 0.25s ease-out, opacity 0.2s ease-out, height 0.25s ease-out, margin 0.25s ease-out;
+				will-change: transform, opacity;
+			}
+
+			/* លាក់ slide เฉพาะบน Mobile เท่านั้น (หน้าจอ < 768px) */
+			@media (max-width: 767px) {
+				.hero-slide-wrapper.hide-slide-mobile {
+					transform: translateY(-180px);
+					opacity: 0;
+					height: 0;
+					margin: 0 auto !important;
+					overflow: hidden;
+					pointer-events: none;
+				}
+			}
+
+			.hero-slide-container {
+				width: 100%;
+				height: 170px;
+				background: var(--bg-card);
+				border-radius: var(--radius-card);
+				border: 1px solid var(--border);
+				box-shadow: var(--shadow-md);
+				position: relative;
+				overflow: hidden;
+				box-sizing: border-box;
+			}
+
+			.slide-track {
+				display: flex;
+				width: 100%;
+				height: 100%;
+				transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+			}
+
+			.slide-item {
+				min-width: 100%;
+				height: 100%;
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: var(--img-placeholder);
+				cursor: pointer;
+			}
+
+			.slide-item img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.slide-badge-new {
+				position: absolute;
+				top: 8px;
+				left: 10px;
+				background: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%);
+				color: #ffffff;
+				font-size: 9px;
+				font-weight: 800;
+				padding: 2px 8px;
+				border-radius: 20px;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+				z-index: 10;
+			}
+
+			.slide-caption {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				padding: 10px 12px;
+				background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
+				color: #ffffff;
+				box-sizing: border-box;
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+			}
+
+			.slide-title {
+				font-size: 13px;
+				font-weight: 700;
+				color: #f8fafc;
+				margin: 0 0 2px 0;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				max-width: 210px;
+			}
+			.slide-subtitle {
+				font-size: 10.5px;
+				color: #cbd5e1;
+				margin: 0;
+			}
+			.slide-price-tag {
+				background: var(--accent-gradient);
+				color: #0f172a;
+				padding: 3px 8px;
+				border-radius: 8px;
+				font-weight: 700;
+				font-size: 11px;
+				white-space: nowrap;
+			}
+
+			.slide-arrow {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				background: rgba(15, 23, 42, 0.6);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				color: #ffffff;
+				width: 26px;
+				height: 26px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				z-index: 10;
+				font-size: 10px;
+				transition: background 0.3s;
+			}
+			.slide-arrow:hover { background: rgba(15, 23, 42, 0.9); border-color: var(--accent); }
+			.slide-prev { left: 6px; }
+			.slide-next { right: 6px; }
+
+			.slide-dots {
+				position: absolute;
+				bottom: 6px;
+				right: 12px;
+				display: flex;
+				gap: 4px;
+				z-index: 10;
+			}
+			.slide-dot {
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.4);
+				cursor: pointer;
+				transition: all 0.3s;
+			}
+			.slide-dot.active {
+				width: 14px;
+				border-radius: 3px;
+				background: var(--accent);
 			}
 
 			.top-counter-badge {
 				background: rgba(212, 175, 55, 0.12);
 				border: 1px solid rgba(212, 175, 55, 0.3);
 				color: #f59e0b;
-				padding: 10px 16px;
-				border-radius: 14px;
-				font-size: 14px;
+				padding: 8px 14px;
+				border-radius: 12px;
+				font-size: 13px;
 				font-weight: 600;
 				white-space: nowrap;
 			}
@@ -210,14 +378,14 @@
 				background: rgba(255, 255, 255, 0.06);
 				border: 1px solid rgba(255, 255, 255, 0.1);
 				color: #ffffff;
-				width: clamp(36px, 3.8vw, 40px);
-				height: clamp(36px, 3.8vw, 40px);
+				width: clamp(34px, 3.5vw, 38px);
+				height: clamp(34px, 3.5vw, 38px);
 				border-radius: 50%;
 				cursor: pointer;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size: clamp(13px, 1.5vw, 15px);
+				font-size: clamp(12px, 1.4vw, 14px);
 				transition: all 0.3s;
 				text-decoration: none;
 			}
@@ -230,13 +398,13 @@
 				background: rgba(255, 255, 255, 0.08);
 				border: 1px solid rgba(212, 175, 55, 0.2);
 				color: #f59e0b;
-				width: 40px;
-				height: 40px;
+				width: 38px;
+				height: 38px;
 				border-radius: 50%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size: 15px;
+				font-size: 14px;
 				cursor: pointer;
 				transition: all 0.3s;
 			}
@@ -250,30 +418,17 @@
 				box-shadow: 0 0 15px rgba(212,175,55,0.4);
 				border-color: transparent;
 			}
-
-			.sticky-controls {
-				position: sticky !important;
-				top: 0 !important;
-				background: var(--bg-main) !important; 
-				z-index: 200 !important;
-				padding: calc(14px + env(safe-area-inset-top)) 0 16px 0 !important;
-				display: flex !important;
-				flex-direction: column !important;
-				gap: 14px !important;
-				box-sizing: border-box;
-				transition: background 0.4s ease;
-			}
 			
 			.input-box { position: relative; width: 100%; box-sizing: border-box; }
 			.input-box i {
-				position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #64748b; z-index: 5; font-size: 16px;
+				position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #64748b; z-index: 5; font-size: 15px;
 			}
 			.input-box input {
 				width: 100%;
-				padding: 16px 18px 16px 50px;
+				padding: 14px 16px 14px 46px;
 				border: 1px solid var(--border);
-				border-radius: 20px;
-				font-size: 15px;
+				border-radius: 16px;
+				font-size: 14px;
 				box-sizing: border-box;
 				background: var(--bg-card);
 				color: var(--text-main);
@@ -289,9 +444,9 @@
 
 			.tabs { 
 				display: flex; 
-				gap: 10px; 
+				gap: 8px; 
 				overflow-x: auto; 
-				padding-bottom: 4px;
+				padding-bottom: 2px;
 				width: 100%;
 				box-sizing: border-box;
 				-webkit-overflow-scrolling: touch;
@@ -303,9 +458,9 @@
 				background: var(--bg-card);
 				color: var(--text-muted);
 				border: 1px solid var(--border);
-				padding: 11px 22px;
-				border-radius: 30px;
-				font-size: 14px;
+				padding: 9px 18px;
+				border-radius: 24px;
+				font-size: 13px;
 				font-weight: 500;
 				cursor: pointer; white-space: nowrap; box-shadow: var(--shadow-sm); flex-shrink: 0; transition: background 0.4s ease, color 0.4s ease;
 			}
@@ -315,21 +470,21 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				gap: 12px;
+				gap: 10px;
 				width: 100%;
 			}
 			.sort-right-group {
 				display: flex;
 				align-items: center;
-				gap: 10px;
+				gap: 8px;
 			}
 			.sort-select {
-				padding: 10px 16px;
-				border-radius: 12px;
+				padding: 8px 14px;
+				border-radius: 10px;
 				border: 1px solid var(--border);
 				background: var(--bg-card);
 				color: var(--text-main);
-				font-size: 14px;
+				font-size: 13px;
 				outline: none;
 				transition: background 0.4s ease, color 0.4s ease;
 			}
@@ -338,50 +493,62 @@
 				background: var(--bg-card);
 				border: 2px dashed var(--accent);
 				border-radius: var(--radius-card);
-				padding: 24px;
-				margin-bottom: 28px;
+				padding: 20px;
+				margin-bottom: 24px;
 				display: flex;
 				flex-direction: column;
-				gap: 16px;
+				gap: 14px;
 				box-sizing: border-box;
 			}
-			.admin-form-title { margin: 0; font-size: 18px; font-weight: 700; }
-			.admin-grid-inputs { display: grid; grid-template-columns: 1fr; gap: 16px; width: 100%; box-sizing: border-box; }
+			.admin-form-title { margin: 0; font-size: 17px; font-weight: 700; }
+			.admin-grid-inputs { display: grid; grid-template-columns: 1fr; gap: 14px; width: 100%; box-sizing: border-box; }
 			@media (min-width: 600px) { .admin-grid-inputs { grid-template-columns: repeat(2, 1fr); } }
 			.admin-input, .admin-select, .admin-textarea {
-				width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius-btn); background: var(--bg-main); color: var(--text-main); box-sizing: border-box; -webkit-user-select: text; user-select: text; font-size: 15px; outline: none; transition: border-color 0.2s ease;
+				width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius-btn); background: var(--bg-main); color: var(--text-main); box-sizing: border-box; -webkit-user-select: text; user-select: text; font-size: 14px; outline: none; transition: border-color 0.2s ease;
 			}
 			.admin-input:focus, .admin-select:focus, .admin-textarea:focus { border-color: var(--accent); }
-			.admin-btn-group-row { display: flex; gap: 16px; width: 100%; box-sizing: border-box; }
+			.admin-btn-group-row { display: flex; gap: 14px; width: 100%; box-sizing: border-box; }
 			.btn-add-font {
-				background: var(--success); color: white; border: none; padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 2; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.2s;
+				background: var(--success); color: white; border: none; padding: 12px; border-radius: var(--radius-btn); font-weight: 700; font-size: 14px; flex: 2; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: opacity 0.2s;
 			}
 			.btn-add-font:active { opacity: 0.85; }
-			.admin-panel-footer-buttons { display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; margin-top: 4px; }
+			.admin-panel-footer-buttons { display: flex; flex-direction: column; gap: 10px; width: 100%; box-sizing: border-box; margin-top: 2px; }
 
 			.font-list { 
 				display: grid; 
 				grid-template-columns: 1fr; 
-				gap: 24px; 
+				gap: 14px; 
 				width: 100%; 
 				box-sizing: border-box; 
 			}
-			@media (min-width: 650px) { 
-				.font-list { grid-template-columns: repeat(2, 1fr); } 
+			@media (min-width: 580px) { 
+				.font-list { grid-template-columns: repeat(2, 1fr); gap: 16px; } 
 			} 
 			@media (min-width: 1024px) { 
-				.font-list { grid-template-columns: repeat(3, 1fr); } 
+				.font-list { grid-template-columns: repeat(3, 1fr); gap: 18px; } 
 			} 
-			@media (min-width: 1350px) { 
-				.font-list { grid-template-columns: repeat(4, 1fr); } 
+			@media (min-width: 1440px) { 
+				.font-list { grid-template-columns: repeat(4, 1fr); gap: 18px; } 
 			}
 
 			.font-card {
-				background: var(--bg-card); border-radius: var(--radius-card); padding: 22px; border: 1px solid var(--border); box-shadow: var(--shadow-md); display: flex; flex-direction: column; justify-content: space-between; position: relative; box-sizing: border-box; overflow: hidden; transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, transform 0.2s ease;
+				background: var(--bg-card); 
+				border-radius: var(--radius-card); 
+				padding: 18px; 
+				border: 1px solid var(--border); 
+				box-shadow: var(--shadow-sm); 
+				display: flex; 
+				flex-direction: column; 
+				justify-content: space-between; 
+				position: relative; 
+				box-sizing: border-box; 
+				overflow: hidden; 
+				/* ធានាគ្មានចលនារុញ ឬលោតពេលចុចធីក */
+				transform: none !important;
+				transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 			}
 			.font-card:hover {
-				transform: translateY(-3px);
-				box-shadow: var(--shadow-lg);
+				box-shadow: var(--shadow-md);
 			}
 			.font-card.selected { border-color: var(--accent); background: var(--accent-light); }
 
@@ -391,13 +558,13 @@
 			.new-badge {
 				background: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%);
 				color: #ffffff;
-				font-size: 10px;
+				font-size: 9px;
 				font-weight: 800;
-				padding: 3px 8px;
+				padding: 2px 6px;
 				border-radius: 20px;
 				text-transform: uppercase;
 				letter-spacing: 0.5px;
-				box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+				box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
 				animation: pulseNew 2s infinite;
 			}
 			@keyframes pulseNew {
@@ -406,20 +573,20 @@
 				100% { transform: scale(1); }
 			}
 
-			.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+			.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 			.font-title-wrapper { display: flex; align-items: center; gap: 10px; flex: 1; overflow: hidden; }
 			.font-checkbox { width: 20px; height: 20px; accent-color: var(--accent); flex-shrink: 0; cursor: pointer; }
-			.font-num { background: var(--text-main); color: var(--bg-card); font-size: 11px; padding: 3px 8px; border-radius: 8px; font-weight: 600; transition: background 0.4s ease, color 0.4s ease; }
+			.font-num { background: var(--text-main); color: var(--bg-card); font-size: 11px; padding: 2px 7px; border-radius: 6px; font-weight: 600; transition: background 0.4s ease, color 0.4s ease; }
 			
 			.font-title-block { display: flex; flex-direction: column; overflow: hidden; cursor: pointer; }
-			.font-title { font-weight: 700; font-size: 15px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+			.font-title { font-weight: 700; font-size: 14.5px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 			.font-author { font-size: 11px; color: var(--text-muted); font-weight: 400; margin-top: 1px; }
 
-			.btn-fav { background: transparent; border: none; font-size: 16px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; }
+			.btn-fav { background: transparent; border: none; font-size: 15px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; }
 			.btn-fav.active { color: #f59e0b; }
 
 			.image-container {
-				width: 100%; height: 170px; background-color: var(--img-placeholder); border-radius: 18px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); position: relative; transition: background-color 0.4s ease;
+				width: 100%; height: 150px; background-color: var(--img-placeholder); border-radius: 16px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); position: relative; transition: background-color 0.4s ease;
 			}
 			.font-image-sample { width: 100%; height: 100%; object-fit: cover; }
 			
@@ -442,19 +609,19 @@
 			.note-and-family-container { display: flex; flex-direction: column; gap: 8px; margin-top: auto; margin-bottom: 12px; width: 100%; }
 
 			.font-card-note {
-				font-size: 12px; color: #b3862b; background: rgba(212, 175, 55, 0.08); border-left: 3px solid var(--accent); padding: 6px 10px; border-radius: 6px; line-height: 1.4; overflow-wrap: break-word; margin-bottom: 0; 
+				font-size: 11.5px; color: #b3862b; background: rgba(212, 175, 55, 0.08); border-left: 3px solid var(--accent); padding: 6px 10px; border-radius: 6px; line-height: 1.4; overflow-wrap: break-word; margin-bottom: 0; 
 			}
 			[data-theme="dark"] .font-card-note { color: #f59e0b; background: rgba(245, 158, 11, 0.08); border-left-color: #f59e0b; }
 
-			.family-switcher-area { margin-top: 4px; margin-bottom: 14px; }
-			.family-switcher { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; align-items: center; scroll-behavior: smooth; }
+			.family-switcher-area { margin-top: 2px; margin-bottom: 12px; }
+			.family-switcher { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; align-items: center; scroll-behavior: smooth; }
 			.family-switcher::-webkit-scrollbar { display: none; }
 			
 			.variant-badge {
-				background: var(--bg-main); border: 1px solid var(--border); color: var(--text-muted); padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s;
+				background: var(--bg-main); border: 1px solid var(--border); color: var(--text-muted); padding: 5px 12px; border-radius: 9px; font-size: 11.5px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s;
 			}
 			.variant-badge.active { background: var(--accent-gradient); color: #0f172a; border-color: transparent; }
-			.btn-add-inline-variant { background: rgba(16, 185, 129, 0.1); border: 1px dashed var(--success); color: var(--success); padding: 5px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+			.btn-add-inline-variant { background: rgba(16, 185, 129, 0.1); border: 1px dashed var(--success); color: var(--success); padding: 5px 12px; border-radius: 9px; font-size: 10.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
 			
 			.family-total-wrapper {
 				display: flex;
@@ -462,10 +629,10 @@
 				justify-content: space-between;
 				background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), rgba(245, 158, 11, 0.03));
 				border: 1px solid rgba(212, 175, 55, 0.2);
-				border-radius: 14px;
-				padding: 10px 14px;
+				border-radius: 12px;
+				padding: 10px 12px;
 				box-sizing: border-box;
-				margin-bottom: 4px;
+				margin-bottom: 2px;
 				transition: all 0.3s ease;
 			}
 			[data-theme="dark"] .family-total-wrapper {
@@ -474,21 +641,21 @@
 			}
 			.family-total-wrapper:hover {
 				transform: translateY(-1px);
-				box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
+				box-shadow: 0 3px 10px rgba(212, 175, 55, 0.08);
 			}
 			.family-final-row {
 				display: flex;
 				align-items: center;
-				gap: 8px;
+				gap: 6px;
 				flex: 1;
 			}
 			.family-box-label {
-				font-size: 12px;
+				font-size: 11.5px;
 				color: var(--text-muted);
 				font-weight: 500;
 			}
 			.family-box-prices {
-				font-size: 14px;
+				font-size: 13.5px;
 				font-weight: 700;
 				color: #ef4444;
 				display: flex;
@@ -503,7 +670,7 @@
 			}
 			.family-original-strike {
 				text-decoration: line-through;
-				font-size: 11px;
+				font-size: 10.5px;
 				color: var(--text-muted);
 				font-weight: 400;
 			}
@@ -515,8 +682,8 @@
 				border: 1px solid rgba(34, 158, 217, 0.15);
 				color: var(--telegram);
 				padding: 6px 12px;
-				border-radius: 9px;
-				font-size: 12px;
+				border-radius: 8px;
+				font-size: 11.5px;
 				font-weight: 700;
 				cursor: pointer;
 				text-decoration: none;
@@ -536,11 +703,11 @@
 			.admin-only { display: none !important; }
 			body.admin-mode-on .admin-only { display: flex !important; }
 
-			.admin-actions-zone { display: flex; gap: 4px; margin-bottom: 14px; justify-content: flex-end; flex-wrap: wrap; }
-			.admin-card-btn { background: rgba(15, 23, 42, 0.08); color: var(--text-main); border: none; padding: 6px 10px; font-size: 11px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+			.admin-actions-zone { display: flex; gap: 4px; margin-bottom: 10px; justify-content: flex-end; flex-wrap: wrap; }
+			.admin-card-btn { background: rgba(15, 23, 42, 0.08); color: var(--text-main); border: none; padding: 5px 9px; font-size: 10.5px; border-radius: 6px; font-weight: 600; cursor: pointer; }
 			[data-theme="dark"] .admin-card-btn { background: rgba(255, 255, 255, 0.08); }
 
-			.card-acts-row { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 0; }
+			.card-acts-row { display: flex; align-items: center; gap: 8px; width: 100%; margin-top: 0; }
 			
 			.btn-primary { 
 				background: var(--accent-gradient); 
@@ -550,23 +717,23 @@
 				align-items: center;
 				justify-content: center;
 				gap: 8px;
-				padding: 14px 16px;
+				padding: 12px 14px;
 				border-radius: var(--radius-btn);
 				font-weight: 700;
-				font-size: 14px;
+				font-size: 13.5px;
 				border: none;
 				cursor: pointer;
 				text-decoration: none;
 				box-sizing: border-box;
-				transition: transform 0.2s ease, box-shadow 0.2s ease; 
+				transition: opacity 0.2s ease; 
 			}
-			.btn-primary i { font-size: 14px; }
-			.btn-primary:active { transform: scale(0.98); }
+			.btn-primary i { font-size: 13px; }
+			.btn-primary:active { opacity: 0.85; }
 			
 			.btn-primary .strike-price-inside {
 				text-decoration: line-through;
 				opacity: 0.6;
-				font-size: 11.5px;
+				font-size: 11px;
 				font-weight: 400;
 				margin-right: 2px;
 			}
@@ -576,7 +743,7 @@
 			}
 
 			.multi-select-bar {
-				position: fixed !important; bottom: 0 !important; left: 50% !important; transform: translateX(-50%) translateY(100%); width: 100%; max-width: 600px; background: var(--bg-card); box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15); padding: calc(16px + env(safe-area-inset-bottom)) 16px calc(16px + env(safe-area-inset-bottom)) 16px; box-sizing: border-box; border-radius: 28px 28px 0 0; z-index: 9999 !important; display: flex; flex-direction: column; gap: 12px; transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.4s ease; border: 1px solid var(--border); border-bottom: none;
+				position: fixed !important; bottom: 0 !important; left: 50% !important; transform: translateX(-50%) translateY(100%); width: 100%; max-width: 580px; background: var(--bg-card); box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15); padding: calc(14px + env(safe-area-inset-bottom)) 16px calc(14px + env(safe-area-inset-bottom)) 16px; box-sizing: border-box; border-radius: 24px 24px 0 0; z-index: 9999 !important; display: flex; flex-direction: column; gap: 10px; transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.4s ease; border: 1px solid var(--border); border-bottom: none;
 			}
 			.multi-select-bar.show { transform: translateX(-50%) translateY(0); }
 			body.keyboard-open .multi-select-bar { transform: translateX(-50%) translateY(100%) !important; }
@@ -586,43 +753,43 @@
 				justify-content: space-between;
 				align-items: center;
 				font-weight: 700;
-				font-size: 15px;
+				font-size: 14px;
 				color: var(--text-main);
 			}
 			.multi-total-price {
 				color: #ef4444;
-				font-size: 16px;
+				font-size: 15px;
 				background: rgba(239, 68, 68, 0.1);
-				padding: 4px 12px;
-				border-radius: 12px;
+				padding: 3px 10px;
+				border-radius: 10px;
 			}
 			[data-theme="dark"] .multi-total-price {
 				color: #f87171;
 				background: rgba(248, 113, 113, 0.1);
 			}
 
-			.multi-actions-row { display: flex; gap: 10px; }
+			.multi-actions-row { display: flex; gap: 8px; }
 			.btn-secondary { background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border); flex: 1; cursor: pointer;}
-			.btn-action { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 16px; border-radius: var(--radius-btn); font-weight: 700; font-size: 13px; border: none; cursor: pointer; text-decoration: none; box-sizing: border-box; }
+			.btn-action { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 11px 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 13px; border: none; cursor: pointer; text-decoration: none; box-sizing: border-box; }
 
 			#toast {
-				position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%); background: #0f172a; color: white; padding: 14px 28px; border-radius: 30px; font-size: 13px; z-index: 999999; transition: bottom 0.3s ease;
+				position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%); background: #0f172a; color: white; padding: 12px 24px; border-radius: 30px; font-size: 13px; z-index: 999999; transition: bottom 0.3s ease;
 			}
 			[data-theme="dark"] #toast { background: #ffffff; color: #0f172a; }
-			#toast.show { bottom: 120px; }
+			#toast.show { bottom: 110px; }
 
 			.edit-modal-overlay {
-				position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); z-index: 99999; display: none; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;
+				position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); z-index: 99999; display: none; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box;
 			}
 			.edit-modal-overlay.show { display: flex; }
 			.edit-modal-content {
-				background: var(--bg-card); border-radius: 24px; width: 100%; max-width: 460px; padding: 24px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 16px; animation: modalFade 0.3s ease; max-height: 90vh; overflow-y: auto;
+				background: var(--bg-card); border-radius: 20px; width: 100%; max-width: 440px; padding: 20px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; animation: modalFade 0.3s ease; max-height: 90vh; overflow-y: auto;
 			}
 			@keyframes modalFade { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 			.modal-label { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; display: block; }
 
 			footer {
-				margin-top: 60px; padding: 30px 16px calc(40px + env(safe-area-inset-bottom)) 16px; text-align: center; background: var(--bg-card); border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); transition: background 0.4s ease;
+				margin-top: 50px; padding: 24px 16px calc(30px + env(safe-area-inset-bottom)) 16px; text-align: center; background: var(--bg-card); border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); transition: background 0.4s ease;
 			}
 			footer .footer-brand { font-weight: 700; color: var(--text-main); }
 			footer .footer-brand span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -631,7 +798,6 @@
 	<body>
 		<div class="container">
 			<header>
-				<!-- ផ្នែកទី១៖ Brand Zone និងប៊ូតុងអំពីកម្មវិធី (សញ្ញាឧទាន ℹ️) នៅជ្រុងខាងស្តាំលើ ចន្លោះរីករួមតាមអេក្រង់ -->
 				<div class="header-top-section">
 					<div class="brand-zone">
 						<img src="https://i.postimg.cc/fT4zYqJV/IMG-3128.png" alt="Toathmor Logo" class="brand-logo" />
@@ -647,7 +813,6 @@
 					</button>
 				</div>
 
-				<!-- ផ្នែកទី២ (Line ខាងក្រោម)៖ ប្រមូលផ្តុំ Icons បណ្តាញសង្គមនៅខាងឆ្វេង និង Icon Dark Mode នៅខាងស្តាំ -->
 				<div class="header-bottom-section">
 					<div class="social-group-bar">
 						<a href="https://t.me/YongYeang" target="_blank" class="header-icon-btn tg-btn" title="Telegram">
@@ -670,6 +835,17 @@
 			</header>
 
 			<div class="sticky-controls">
+				<!-- ----------------- HERO SLIDE BANNER (លាក់เฉพาะบน Mobile ពេល Scroll ចុះក្រោម) ----------------- -->
+				<div class="hero-slide-wrapper" id="heroSlideWrapper">
+					<div class="hero-slide-container" id="heroSlideContainer" onmouseenter="stopAutoSlide()" onmouseleave="startAutoSlide()">
+						<div class="slide-track" id="slideTrack"></div>
+						<button class="slide-arrow slide-prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+						<button class="slide-arrow slide-next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+						<div class="slide-dots" id="slideDots"></div>
+					</div>
+				</div>
+				<!-- ---------------------------------------------------------------------------------------------------------------- -->
+
 				<div class="input-box">
 					<i class="fa-solid fa-magnifying-glass"></i>
 					<input type="text" id="searchId" placeholder="ស្វែងរកឈ្មោះពុម្ពអក្សរ..." oninput="filterData()" autocomplete="off">
@@ -696,9 +872,9 @@
 				</div>
 			</div>
 
-			<!-- ផ្ទៃសម្រាប់បន្ថែមពុម្ពអក្សរថ្មី (បង្ហាញឡើងនៅពេលបើក Admin Mode) -->
+			<!-- ផ្ទៃសម្រាប់បន្ថែមពុម្ពអក្សរថ្មី (មានបង្ហាញជួរកំណត់វិនាទី Slide សម្រាប់ Admin) -->
 			<div class="admin-form-panel admin-only" id="adminFormPanel">
-				<h3 class="admin-form-title">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី</h3>
+				<h3 class="admin-form-title">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី និងកំណត់ Slide</h3>
 				
 				<div class="admin-grid-inputs">
 					<input type="text" id="newFontName" class="admin-input" placeholder="ឈ្មោះពុម្ព (ឧ៖ Toathmor New)" autocomplete="off">
@@ -713,9 +889,14 @@
 						<option value="writing">អក្សរដៃ</option>
 					</select>
 				</div>
+
+				<div style="background: var(--bg-main); padding: 12px; border-radius: 12px; border: 1px solid var(--border);">
+					<label style="font-size: 13px; font-weight: 600; color: var(--warning); display: block; margin-bottom: 5px;">⏱️ កំណត់ពេលប្ដូរ Slide (ជាវិនាទី - កំណត់ ១០វិនាទី)៖</label>
+					<input type="number" id="adminSlideIntervalInput" class="admin-input" value="10" min="3" max="60" onchange="updateSlideIntervalFromAdmin(this.value)">
+				</div>
 				
 				<div>
-					<label style="font-size: 13px; font-weight: 500; color: var(--text-muted); display: block; margin-bottom: 6px;">Variants (លក្ខណៈជា JSON Array សម្រាប់ Font Family - ទុកទទេបើគ្មាន):</label>
+					<label style="font-size: 13px; font-weight: 500; color: var(--text-muted); display: block; margin-bottom: 5px;">Variants (លក្ខណៈជា JSON Array សម្រាប់ Font Family - ទុកទទេបើគ្មាន):</label>
 					<textarea id="newFontVariants" class="admin-textarea" rows="2" placeholder='[{"name": "Toathmor Variant 2", "price": "$ 20", "img": "លីងរូបភាព"}]'></textarea>
 				</div>
 				
@@ -724,7 +905,7 @@
 						<button class="btn-add-font" onclick="adminAddNewFont()">
 							➕ រក្សាទុកពុម្ពអក្សរថ្មី
 						</button>
-						<button class="btn-secondary" style="padding: 14px; border-radius: var(--radius-btn); font-weight: 700; font-size: 15px; flex: 1;" onclick="exportFontsData()">
+						<button class="btn-secondary" style="padding: 12px; border-radius: var(--radius-btn); font-weight: 700; font-size: 14px; flex: 1;" onclick="exportFontsData()">
 							📥 Export ទិន្នន័យ
 						</button>
 					</div>
@@ -737,7 +918,7 @@
 		<!-- Edit Modal -->
 		<div class="edit-modal-overlay" id="editModal">
 			<div class="edit-modal-content" onclick="event.stopPropagation();">
-				<h3 style="margin: 0; font-size: 18px; font-weight: 700; color: var(--text-main);">📝 កែសម្រួលព័ត៌មានពុម្ពអក្សរ</h3>
+				<h3 style="margin: 0; font-size: 17px; font-weight: 700; color: var(--text-main);">📝 កែសម្រួលព័ត៌មានពុម្ពអក្សរ</h3>
 				<input type="hidden" id="editFontIndex">
 				
 				<div>
@@ -786,9 +967,9 @@
 					<input type="text" id="editFontNote" class="family-note-input" placeholder="វាយការពិពណ៌នាពិសេសនៅទីនេះ..." autocomplete="off">
 				</div>
 
-				<div style="display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap;">
+				<div style="display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap;">
 					<button class="btn-action btn-secondary" onclick="closeEditModal()" style="flex: 1; min-width: 80px;">✕ បោះបង់</button>
-					<button class="btn-action" onclick="duplicateCurrentFont()" style="background: #f59e0b; color: white; flex: 1; min-width: 140px; font-weight: 700;">👯 ថតចម្លង</button>
+					<button class="btn-action" onclick="duplicateCurrentFont()" style="background: #f59e0b; color: white; flex: 1; min-width: 130px; font-weight: 700;">👯 ថតចម្លង</button>
 					<button class="btn-action btn-primary" onclick="saveAdminEditModal()" style="background: var(--success); color: white; flex: 1; min-width: 80px;">💾 រក្សាទុក</button>
 				</div>
 			</div>
@@ -798,21 +979,21 @@
 		<div class="edit-modal-overlay" id="aboutModal">
 			<div class="edit-modal-content" onclick="event.stopPropagation();">
 				<div style="display: flex; justify-content: space-between; align-items: center;">
-					<h3 style="margin: 0; font-size: 18px; font-weight: 700; color: var(--text-main);">ℹ️ អំពីកម្មវិធី Toathmor Fonts</h3>
+					<h3 style="margin: 0; font-size: 17px; font-weight: 700; color: var(--text-main);">ℹ️ អំពីកម្មវិធី Toathmor Fonts</h3>
 					<button class="admin-toggle-btn" onclick="handleAdminToggle()" id="adminBtnIcon" title="Admin Mode">
 						<i class="fa-solid fa-user-gear"></i>
 					</button>
 				</div>
 				
-				<div id="aboutTextView" style="font-size: 14px; color: var(--text-main); line-height: 1.6; white-space: pre-wrap; background: var(--bg-main); padding: 14px; border-radius: 14px; border: 1px solid var(--border);"></div>
+				<div id="aboutTextView" style="font-size: 14px; color: var(--text-main); line-height: 1.6; white-space: pre-wrap; background: var(--bg-main); padding: 12px; border-radius: 12px; border: 1px solid var(--border);"></div>
 
 				<div class="admin-only" id="aboutEditSection" style="flex-direction: column; gap: 8px;">
 					<label class="modal-label">📝 កែប្រែអត្ថបទអំពីកម្មវិធី (Admin)</label>
 					<textarea id="editAboutText" class="admin-textarea" rows="5" style="-webkit-user-select:text; user-select:text;"></textarea>
-					<button class="btn-action btn-primary" onclick="saveAboutText()" style="background: var(--success); color: white; margin-top: 6px;">💾 រក្សាទុកអត្ថបទថ្មី</button>
+					<button class="btn-action btn-primary" onclick="saveAboutText()" style="background: var(--success); color: white; margin-top: 4px;">💾 រក្សាទុកអត្ថបទថ្មី</button>
 				</div>
 
-				<div style="display: flex; gap: 12px; margin-top: 6px;">
+				<div style="display: flex; gap: 10px; margin-top: 4px;">
 					<button class="btn-action btn-secondary" onclick="closeAboutModal()" style="flex: 1;">បិទ</button>
 				</div>
 			</div>
@@ -840,7 +1021,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "4.7.1"; 
+			let CURRENT_VERSION = "4.8.7"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -864,16 +1045,40 @@
 				searchInput.addEventListener("blur", () => { document.body.classList.remove("keyboard-open"); });
 			}
 
+			// --- JavaScript លាក់ Slide  เฉพาะលើ Mobile ពេល Scroll ចុះក្រោម ---
+			let lastScrollTop = 0;
+			let ticking = false;
+			window.addEventListener("scroll", function() {
+				let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+				if (!ticking) {
+					window.requestAnimationFrame(function() {
+						let slideWrapper = document.getElementById("heroSlideWrapper");
+						if(slideWrapper && window.innerWidth < 768) {
+							if (currentScroll > lastScrollTop && currentScroll > 25) {
+								slideWrapper.classList.add("hide-slide-mobile");
+							} else {
+								slideWrapper.classList.remove("hide-slide-mobile");
+							}
+						}
+						lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+						ticking = false;
+					});
+					ticking = true;
+				}
+			}, { passive: true });
+
 			const telegramUser = "YongYeang";
 			let currentCategory = "all";
 			let selectedFonts = []; 
 			let isAdminLoggedIn = false;
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 
+			let slideTimerSeconds = parseInt(localStorage.getItem("toathmor_slide_seconds")) || 10;
+
 			let defaultAboutText = "TOATHMOR FONTS គឺជាកម្មវិធីបង្ហាញ និងគ្រប់គ្រងតារាងពុម្ពអក្សរខ្មែរព្រីមៀម ដែលត្រូវបានបង្កើតឡើងដោយ យ៉ុង យាង (YONG YEANG / តោថ្ម)។ កម្មវិធីនេះជួយងាយស្រួលដល់បងប្អូនក្នុងការស្វែងរក មើលគំរូ និងកុម្ម៉ង់ទិញពុម្ពអក្សរខ្មែរឌីជីថលប្រកបដោយគុណភាពខ្ពស់។";
 
 			let defaultFonts = [
-				{
+	{
 		"name": "Toathmor... (Kh Watt Prey Chas)",
 		"price": "$",
 		"type": "chreang",
@@ -1865,6 +2070,115 @@
 			let fontsData = (customFonts && customFonts.length > 0) ? customFonts : defaultFonts;
 			let activeVariants = {};
 
+			let currentSlideIdx = 0;
+			let slideInterval = null;
+
+			function initHeroSlider() {
+				const track = document.getElementById("slideTrack");
+				const dotsContainer = document.getElementById("slideDots");
+				if(!track || !dotsContainer) return;
+
+				let slideItems = fontsData.filter(f => f.img && f.img.trim() !== "");
+				if(slideItems.length === 0) {
+					slideItems = fontsData; 
+				}
+
+				track.innerHTML = "";
+				dotsContainer.innerHTML = "";
+
+				slideItems.forEach((item, idx) => {
+					let slideDiv = document.createElement("div");
+					slideDiv.className = "slide-item";
+					slideDiv.onclick = () => {
+						window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + item.name + ' (តម្លៃ: ' + item.price + ')')}`, '_blank');
+					};
+					slideDiv.innerHTML = `
+						<span class="slide-badge-new">NEW FONT</span>
+						<img src="${item.img || 'https://i.postimg.cc/T2HdVp8k/IMG-3118.png'}" alt="${item.name}">
+						<div class="slide-caption">
+							<div>
+								<p class="slide-title">✨ ${item.name}</p>
+								<p class="slide-subtitle">រចនាដោយ យ៉ុង យាង</p>
+							</div>
+							<div class="slide-price-tag">${item.price || '$ 10.00'}</div>
+						</div>
+					`;
+					track.appendChild(slideDiv);
+
+					let dot = document.createElement("div");
+					dot.className = `slide-dot ${idx === 0 ? 'active' : ''}`;
+					dot.onclick = (e) => {
+						e.stopPropagation();
+						goToSlide(idx);
+					};
+					dotsContainer.appendChild(dot);
+				});
+
+				startAutoSlide();
+			}
+
+			function updateSlidePosition() {
+				const track = document.getElementById("slideTrack");
+				const dots = document.querySelectorAll(".slide-dot");
+				if(!track) return;
+				const totalSlides = track.children.length;
+				if(totalSlides === 0) return;
+
+				if(currentSlideIdx >= totalSlides) currentSlideIdx = 0;
+				if(currentSlideIdx < 0) currentSlideIdx = totalSlides - 1;
+
+				track.style.transform = `translateX(-${currentSlideIdx * 100}%)`;
+
+				dots.forEach((dot, idx) => {
+					if(idx === currentSlideIdx) dot.classList.add("active");
+					else dot.classList.remove("active");
+				});
+			}
+
+			function nextSlide() {
+				currentSlideIdx++;
+				updateSlidePosition();
+				resetAutoSlide();
+			}
+
+			function prevSlide() {
+				currentSlideIdx--;
+				updateSlidePosition();
+				resetAutoSlide();
+			}
+
+			function goToSlide(index) {
+				currentSlideIdx = index;
+				updateSlidePosition();
+				resetAutoSlide();
+			}
+
+			function startAutoSlide() {
+				if(slideInterval) clearInterval(slideInterval);
+				slideInterval = setInterval(() => {
+					currentSlideIdx++;
+					updateSlidePosition();
+				}, slideTimerSeconds * 1000); 
+			}
+
+			function stopAutoSlide() {
+				if(slideInterval) clearInterval(slideInterval);
+			}
+
+			function resetAutoSlide() {
+				stopAutoSlide();
+				startAutoSlide();
+			}
+
+			function updateSlideIntervalFromAdmin(val) {
+				let sec = parseInt(val);
+				if(isNaN(sec) || sec < 3) sec = 10;
+				slideTimerSeconds = sec;
+				localStorage.setItem("toathmor_slide_seconds", slideTimerSeconds);
+				resetAutoSlide();
+				showToast(`⏱️ បានកែសម្រួល Slide ទៅ ${slideTimerSeconds} វិនាទី!`);
+			}
+
 			function openAboutModal() {
 				let storedAbout = localStorage.getItem("toathmor_about_text") || defaultAboutText;
 				document.getElementById("aboutTextView").innerText = storedAbout;
@@ -1908,6 +2222,10 @@
 						document.body.classList.add("admin-mode-on");
 						const iconBtn = document.getElementById("adminBtnIcon");
 						if(iconBtn) iconBtn.classList.add("active");
+						
+						const intervalInput = document.getElementById("adminSlideIntervalInput");
+						if(intervalInput) intervalInput.value = slideTimerSeconds;
+
 						showToast("🔓 បានចូលទៅក្នុងមុខងារ Admin ជោគជ័យ!");
 					} else {
 						alert("🔒 លេខសម្ងាត់មិនត្រឹមត្រូវទេ!");
@@ -1969,6 +2287,7 @@
 				saveData();
 				nameInput.value = ""; priceInput.value = ""; imgInput.value = ""; variantsInput.value = "";
 				renderFonts();
+				initHeroSlider();
 				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីរួចរាល់!");
 			}
 
@@ -2070,6 +2389,7 @@
 				saveData();
 				closeEditModal();
 				renderFonts();
+				initHeroSlider();
 				showToast("✨ បានរក្សាទុកការកែប្រែរួចរាល់!");
 			}
 
@@ -2122,6 +2442,7 @@
 				saveData();
 				closeEditModal();
 				renderFonts();
+				initHeroSlider();
 				showToast("👯 បានថតចម្លង (Duplicate) ពុម្ពអក្សររួចរាល់!");
 			}
 
@@ -2145,6 +2466,7 @@
 				saveData();
 				activeVariants[index] = font.variants.length;
 				renderFonts();
+				initHeroSlider();
 				showToast("➕ បានបន្ថែមម៉ូដស្រដៀងទៅក្នុង Family រួចរាល់!");
 			}
 
@@ -2163,6 +2485,7 @@
 						activeVariants[index] = 0; 
 						saveData();
 						renderFonts();
+						initHeroSlider();
 						showToast("🗑️ បានលុបម៉ូដកូនរួចរាល់!");
 					}
 				} 
@@ -2180,6 +2503,7 @@
 							fontsData.splice(index, 1);
 							saveData();
 							renderFonts();
+							initHeroSlider();
 							showToast("🗑️ បានលុបទាំងគ្រួសារពុម្ពអក្សរនេះរួចរាល់!");
 						} else if (action === "២") {
 							const firstVariant = font.variants[0];
@@ -2192,6 +2516,7 @@
 							font.variants.splice(0, 1);
 							saveData();
 							renderFonts();
+							initHeroSlider();
 							showToast("✨ បានលុបម៉ូដដើម និងដំឡើងម៉ូដកូនមកជំនួសរួចរាល់!");
 						}
 					} else {
@@ -2199,6 +2524,7 @@
 							fontsData.splice(index, 1);
 							saveData();
 							renderFonts();
+							initHeroSlider();
 							showToast("🗑️ បានលុបពុម្ពអក្សររួចរាល់!");
 						}
 					}
@@ -2217,6 +2543,7 @@
 					targetObj.img = newImg.trim();
 					saveData();
 					renderFonts();
+					initHeroSlider();
 				}
 			}
 
@@ -2231,6 +2558,7 @@
 					targetObj.img = "";
 					saveData();
 					renderFonts();
+					initHeroSlider();
 				}
 			}
 
@@ -2303,7 +2631,7 @@
 					const imgContainer = card.querySelector('.image-container');
 					imgContainer.innerHTML = `
 						<span class="personal-use-badge">Personal use</span>
-						${currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`}
+						${currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:12.5px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`}
 					`;
 					
 					const titleSpan = card.querySelector('.font-title');
@@ -2363,6 +2691,7 @@
 					}
 				}
 				renderFonts(); 
+				initHeroSlider();
 			});
 
 			function toggleTheme() {
@@ -2423,7 +2752,7 @@
 
 					const imgHtml = `
 						<span class="personal-use-badge">Personal use</span>
-						${currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`}
+						${currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:12.5px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`}
 					`;
 
 					const card = document.createElement("div");
