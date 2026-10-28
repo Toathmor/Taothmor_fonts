@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.5.2</title>
+		<title>Toathmor Fonts App V4.6.7</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -95,7 +95,7 @@
 			header {
 				background: linear-gradient(145deg, #0f172a, #1e293b);
 				border-radius: 32px;
-				padding: 30px 20px; 
+				padding: 25px 20px; 
 				box-shadow: var(--shadow-lg);
 				margin-bottom: 25px;
 				border: 1px solid rgba(212, 175, 55, 0.15);
@@ -108,7 +108,7 @@
 				justify-content: space-between;
 				align-items: center;
 				flex-wrap: wrap;
-				gap: 20px;
+				gap: 16px;
 			}
 
 			.brand-zone {
@@ -142,65 +142,80 @@
 			}
 			.brand-text p { margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; }
 
-			.header-right-controls { display: flex; align-items: center; gap: 12px; }
+			.header-right-controls { 
+				display: flex; 
+				flex-direction: column; 
+				gap: 8px; 
+				align-items: flex-end;
+			}
+
+			.header-row-top {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+
+			.header-row-bottom {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
 
 			.top-counter-badge {
 				background: rgba(212, 175, 55, 0.12);
 				border: 1px solid rgba(212, 175, 55, 0.3);
 				color: #f59e0b;
-				padding: 8px 16px;
+				padding: 8px 14px;
 				border-radius: 14px;
 				font-size: 14px;
 				font-weight: 600;
+				white-space: nowrap;
 			}
 
-			.theme-btn, .admin-toggle-btn {
+			.theme-btn, .admin-toggle-btn, .header-icon-btn, .about-btn {
 				background: rgba(255, 255, 255, 0.06);
 				border: 1px solid rgba(255, 255, 255, 0.1);
 				color: #ffffff;
-				width: 44px;
-				height: 44px;
+				width: 36px;
+				height: 36px;
 				border-radius: 50%;
 				cursor: pointer;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size: 18px;
+				font-size: 14px;
 				transition: all 0.3s;
+				text-decoration: none;
+			}
+			.header-icon-btn.tg-btn:hover { background: rgba(34, 158, 217, 0.2); border-color: var(--telegram); }
+			.header-icon-btn.fb-btn:hover { background: rgba(24, 119, 242, 0.2); border-color: var(--facebook); }
+			.header-icon-btn.page-btn:hover { background: rgba(24, 119, 242, 0.2); border-color: var(--facebook); }
+			.about-btn:hover { background: rgba(245, 158, 11, 0.2); border-color: var(--warning); }
+			
+			.admin-toggle-btn {
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(212, 175, 55, 0.2);
+				color: #f59e0b;
+				width: 38px;
+				height: 38px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 14px;
+				cursor: pointer;
+				transition: all 0.3s;
+			}
+			.admin-toggle-btn:hover {
+				background: rgba(245, 158, 11, 0.15);
+				border-color: var(--warning);
 			}
 			.admin-toggle-btn.active {
 				background: var(--accent-gradient);
 				color: #0f172a;
-				box-shadow: 0 0 20px rgba(212,175,55,0.4);
+				box-shadow: 0 0 15px rgba(212,175,55,0.4);
+				border-color: transparent;
 			}
-
-			.contacts-bar {
-				display: flex;
-				gap: 12px;
-				margin-top: 25px;
-				border-top: 1px solid rgba(255, 255, 255, 0.08);
-				padding-top: 20px;
-			}
-
-			.contact-link {
-				flex: 1;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 10px;
-				background: rgba(255, 255, 255, 0.04);
-				color: #ffffff;
-				text-decoration: none;
-				font-size: 14px;
-				font-weight: 600;
-				padding: 14px 8px;
-				border-radius: 16px;
-				border: 1px solid rgba(255, 255, 255, 0.05);
-				transition: all 0.3s ease;
-			}
-			.contact-link i { font-size: 16px; }
-			.contact-link.tg-btn:hover { background: rgba(34, 158, 217, 0.15); border-color: var(--telegram); }
-			.contact-link.fb-btn:hover { background: rgba(24, 119, 242, 0.15); border-color: var(--facebook); }
 
 			.sticky-controls {
 				position: sticky !important;
@@ -264,10 +279,15 @@
 
 			.sort-zone {
 				display: flex;
-				justify-content: flex-end;
+				justify-content: space-between;
 				align-items: center;
 				gap: 8px;
 				width: 100%;
+			}
+			.sort-right-group {
+				display: flex;
+				align-items: center;
+				gap: 8px;
 			}
 			.sort-select {
 				padding: 8px 14px;
@@ -344,13 +364,29 @@
 			.font-title { font-weight: 700; font-size: 15px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 			.font-author { font-size: 11px; color: var(--text-muted); font-weight: 400; margin-top: 1px; }
 
-			.btn-fav { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; }
+			.btn-fav { background: transparent; border: none; font-size: 16px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; }
 			.btn-fav.active { color: #f59e0b; }
 
 			.image-container {
-				width: 100%; height: 160px; background-color: var(--img-placeholder); border-radius: 18px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); transition: background-color 0.4s ease;
+				width: 100%; height: 160px; background-color: var(--img-placeholder); border-radius: 18px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); position: relative; transition: background-color 0.4s ease;
 			}
 			.font-image-sample { width: 100%; height: 100%; object-fit: cover; }
+			
+			.personal-use-badge {
+				position: absolute;
+				top: 8px;
+				right: 10px;
+				background: rgba(15, 23, 42, 0.65);
+				backdrop-filter: blur(4px);
+				color: #ffffff;
+				font-size: 10px;
+				font-weight: 600;
+				padding: 2px 8px;
+				border-radius: 6px;
+				letter-spacing: 0.3px;
+				z-index: 10;
+				pointer-events: none;
+			}
 
 			.note-and-family-container { display: flex; flex-direction: column; gap: 8px; margin-top: auto; margin-bottom: 12px; width: 100%; }
 
@@ -555,25 +591,27 @@
 					</div>
 					
 					<div class="header-right-controls">
-						<div class="top-counter-badge" id="topCounter">សរុប: 0</div>
-						<button class="theme-btn" onclick="toggleTheme()" id="themeIcon">
-							<i class="fa-solid fa-moon"></i>
-						</button>
-						<button class="admin-toggle-btn" onclick="handleAdminToggle()" id="adminBtnIcon">
-							<i class="fa-solid fa-user-gear"></i>
-						</button>
+						<div class="header-row-top">
+							<button class="theme-btn" onclick="toggleTheme()" id="themeIcon" title="ប្តូរពណ៌ទំព័រ">
+								<i class="fa-solid fa-moon"></i>
+							</button>
+							<button class="about-btn" onclick="openAboutModal()" title="អំពីកម្មវិធី">
+								<i class="fa-solid fa-circle-exclamation" style="color: #f59e0b;"></i>
+							</button>
+						</div>
+						<div class="header-row-bottom">
+							<a href="https://t.me/YongYeang" target="_blank" class="header-icon-btn tg-btn" title="Telegram">
+								<i class="fa-brands fa-telegram" style="color: #229ED9;"></i>
+							</a>
+							<a href="https://m.me/ToathmorKH" target="_blank" class="header-icon-btn fb-btn" title="Facebook Messenger">
+								<i class="fa-brands fa-facebook-messenger" style="color: #1877F2;"></i>
+							</a>
+							<!-- ដូរពី icon flag (Facebook Page) មកជា icon facebook (fa-facebook-f) ធម្មតា -->
+							<a href="https://www.facebook.com/ToathmorKH" target="_blank" class="header-icon-btn page-btn" title="Facebook Page">
+								<i class="fa-brands fa-facebook-f" style="color: #1877F2;"></i>
+							</a>
+						</div>
 					</div>
-				</div>
-
-				<div class="contacts-bar">
-					<a href="https://t.me/YongYeang" target="_blank" class="contact-link tg-btn">
-						<i class="fa-brands fa-telegram" style="color: #229ED9;"></i>
-						Telegram
-					</a>
-					<a href="https://m.me/ToathmorKH" target="_blank" class="contact-link fb-btn">
-						<i class="fa-brands fa-facebook-messenger" style="color: #1877F2;"></i>
-						Facebook
-					</a>
 				</div>
 			</header>
 
@@ -585,22 +623,26 @@
 
 				<div class="tabs">
 					<button class="tab-btn active" onclick="switchTab('all', this)">ទាំងអស់</button>
-					<button class="tab-btn" onclick="switchTab('favorite', this)">📌 បានខ្ទាស់ទុក</button>
+					<button class="tab-btn" onclick="switchTab('favorite', this)"><i class="fa-solid fa-thumbtack" style="margin-right: 4px;"></i> បានខ្ទាស់ទុក</button>
 					<button class="tab-btn" onclick="switchTab('moul', this)">អក្សរមូល</button>
 					<button class="tab-btn" onclick="switchTab('chreang', this)">អក្សរជ្រៀង/ត្រង់</button>
 					<button class="tab-btn" onclick="switchTab('writing', this)">អក្សរដៃ</button>
 				</div>
 
 				<div class="sort-zone">
-					<span style="font-size: 13px; color: var(--text-muted);">តម្រៀបតាម៖</span>
-					<select id="sortSelect" class="sort-select" onchange="renderFonts()">
-						<option value="newest">ថ្មី - ចាស់</option>
-						<option value="oldest">ចាស់ - ថ្មី</option>
-						<option value="az">ឈ្មោះពុម្ព (A - Z)</option>
-					</select>
+					<div class="top-counter-badge" id="topCounter">សរុប: 0</div>
+					<div class="sort-right-group">
+						<span style="font-size: 13px; color: var(--text-muted);">តម្រៀបតាម៖</span>
+						<select id="sortSelect" class="sort-select" onchange="renderFonts()">
+							<option value="newest">ថ្មី - ចាស់</option>
+							<option value="oldest">ចាស់ - ថ្មី</option>
+							<option value="az">ឈ្មោះពុម្ព (A - Z)</option>
+						</select>
+					</div>
 				</div>
 			</div>
 
+			<!-- ផ្ទៃសម្រាប់បន្ថែមពុម្ពអក្សរថ្មី (បង្ហាញឡើងនៅពេលបើក Admin Mode) -->
 			<div class="admin-form-panel admin-only" id="adminFormPanel">
 				<h3 class="admin-form-title">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី</h3>
 				
@@ -638,6 +680,7 @@
 			<div class="font-list" id="listContainer"></div>
 		</div>
 
+		<!-- Edit Modal -->
 		<div class="edit-modal-overlay" id="editModal">
 			<div class="edit-modal-content" onclick="event.stopPropagation();">
 				<h3 style="margin: 0; font-size: 18px; font-weight: 700; color: var(--text-main);">📝 កែសម្រួលព័ត៌មានពុម្ពអក្សរ</h3>
@@ -697,6 +740,30 @@
 			</div>
 		</div>
 
+		<!-- About App Modal -->
+		<div class="edit-modal-overlay" id="aboutModal">
+			<div class="edit-modal-content" onclick="event.stopPropagation();">
+				<div style="display: flex; justify-content: space-between; align-items: center;">
+					<h3 style="margin: 0; font-size: 18px; font-weight: 700; color: var(--text-main);">ℹ️ អំពីកម្មវិធី Toathmor Fonts</h3>
+					<button class="admin-toggle-btn" onclick="handleAdminToggle()" id="adminBtnIcon" title="Admin Mode">
+						<i class="fa-solid fa-user-gear"></i>
+					</button>
+				</div>
+				
+				<div id="aboutTextView" style="font-size: 14px; color: var(--text-main); line-height: 1.6; white-space: pre-wrap; background: var(--bg-main); padding: 14px; border-radius: 14px; border: 1px solid var(--border);"></div>
+
+				<div class="admin-only" id="aboutEditSection" style="flex-direction: column; gap: 8px;">
+					<label class="modal-label">📝 កែប្រែអត្ថបទអំពីកម្មវិធី (Admin)</label>
+					<textarea id="editAboutText" class="admin-textarea" rows="5" style="-webkit-user-select:text; user-select:text;"></textarea>
+					<button class="btn-action btn-primary" onclick="saveAboutText()" style="background: var(--success); color: white; margin-top: 6px;">💾 រក្សាទុកអត្ថបទថ្មី</button>
+				</div>
+
+				<div style="display: flex; gap: 12px; margin-top: 6px;">
+					<button class="btn-action btn-secondary" onclick="closeAboutModal()" style="flex: 1;">បិទ</button>
+				</div>
+			</div>
+		</div>
+
 		<footer>
 			<p class="footer-brand">© 2026 <span>TOATHMOR FONTS</span>. All Rights Reserved.</p>
 			<p>បង្កើតឡើងដោយក្ដីស្រឡាញ់ចំពោះអក្សរសាស្ត្រ និងទម្រង់ពុម្ពអក្សរខ្មែរឌីជីថល</p>
@@ -719,13 +786,12 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "4.5.2"; 
+			let CURRENT_VERSION = "4.6.7"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
 				if (savedVersion !== CURRENT_VERSION) {
 					localStorage.setItem("toathmor_app_version", CURRENT_VERSION);
-					localStorage.removeItem("toathmor_custom_list");
 					if ('caches' in window) {
 						caches.keys().then(names => {
 							for (let name of names) caches.delete(name);
@@ -750,8 +816,10 @@
 			let isAdminLoggedIn = false;
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 
+			let defaultAboutText = "TOATHMOR FONTS គឺជាកម្មវិធីបង្ហាញ និងគ្រប់គ្រងតារាងពុម្ពអក្សរខ្មែរព្រីមៀម ដែលត្រូវបានបង្កើតឡើងដោយ យ៉ុង យាង (YONG YEANG / តោថ្ម)។ កម្មវិធីនេះជួយងាយស្រួលដល់បងប្អូនក្នុងការស្វែងរក មើលគំរូ និងកុម្ម៉ង់ទិញពុម្ពអក្សរខ្មែរឌីជីថលប្រកបដោយគុណភាពខ្ពស់។";
+
 			let defaultFonts = [
-				{
+	{
 		"name": "Toathmor... (Kh Watt Prey Chas)",
 		"price": "$",
 		"type": "chreang",
@@ -1727,21 +1795,41 @@
 		"family_note": ""
 	},
 	{
-					"name": "Toathmor Upcoming",
-					"price": "$ 0",
-					"type": "moul",
-					"img": "https://i.postimg.cc/L6PVdnj0/IMG-5187.png",
-					"discount": 0,
-					"discount_cash": 0,
-					"family_discount": 0,
-					"family_discount_cash": 0,
-					"family_note": "កំពុងរៀបចំ..."
-				}
+		"name": "Toathmor Upcoming",
+		"price": "$ 0",
+		"type": "moul",
+		"img": "https://i.postimg.cc/L6PVdnj0/IMG-5187.png",
+		"discount": 0,
+		"discount_cash": 0,
+		"family_discount": 0,
+		"family_discount_cash": 0,
+		"family_note": "កំពុងរៀបចំ..."
+	}
 			];
 
 			let customFonts = JSON.parse(localStorage.getItem("toathmor_custom_list"));
 			let fontsData = (customFonts && customFonts.length > 0) ? customFonts : defaultFonts;
 			let activeVariants = {};
+
+			function openAboutModal() {
+				let storedAbout = localStorage.getItem("toathmor_about_text") || defaultAboutText;
+				document.getElementById("aboutTextView").innerText = storedAbout;
+				document.getElementById("editAboutText").value = storedAbout;
+				document.getElementById("aboutModal").classList.add("show");
+			}
+
+			function closeAboutModal() {
+				document.getElementById("aboutModal").classList.remove("show");
+			}
+
+			function saveAboutText() {
+				const newText = document.getElementById("editAboutText").value.trim();
+				if(!newText) { alert("អត្ថបទមិនអាចទទេបានទេ។"); return; }
+				localStorage.setItem("toathmor_about_text", newText);
+				document.getElementById("aboutTextView").innerText = newText;
+				showToast("✨ បានរក្សាទុកអត្ថបទអំពីកម្មវិធីរួចរាល់!");
+				closeAboutModal();
+			}
 
 			async function hashPassword(string) {
 				const utf8 = new TextEncoder().encode(string);
@@ -1754,7 +1842,8 @@
 				if (isAdminLoggedIn) {
 					isAdminLoggedIn = false;
 					document.body.classList.remove("admin-mode-on");
-					document.getElementById("adminBtnIcon").classList.remove("active");
+					const iconBtn = document.getElementById("adminBtnIcon");
+					if(iconBtn) iconBtn.classList.remove("active");
 					showToast("🔒 បានចាកចេញពីមុខងារ Admin");
 				} else {
 					const pass = prompt("Admin : Toathmor");
@@ -1763,7 +1852,8 @@
 					if (hashed === "01909479fc1d9a5127c375d3075867fce826422a363fdeb4a7196eb644725b1d") {
 						isAdminLoggedIn = true;
 						document.body.classList.add("admin-mode-on");
-						document.getElementById("adminBtnIcon").classList.add("active");
+						const iconBtn = document.getElementById("adminBtnIcon");
+						if(iconBtn) iconBtn.classList.add("active");
 						showToast("🔓 បានចូលទៅក្នុងមុខងារ Admin ជោគជ័យ!");
 					} else {
 						alert("🔒 លេខសម្ងាត់មិនត្រឹមត្រូវទេ!");
@@ -2157,7 +2247,10 @@
 					if (!currentData) return;
 					
 					const imgContainer = card.querySelector('.image-container');
-					imgContainer.innerHTML = currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`;
+					imgContainer.innerHTML = `
+						<span class="personal-use-badge">Personal use</span>
+						${currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`}
+					`;
 					
 					const titleSpan = card.querySelector('.font-title');
 					titleSpan.innerText = currentData.name;
@@ -2274,7 +2367,10 @@
 					
 					const isNew = isNewFont(font);
 
-					const imgHtml = currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`;
+					const imgHtml = `
+						<span class="personal-use-badge">Personal use</span>
+						${currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:13px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`}
+					`;
 
 					const card = document.createElement("div");
 					card.className = `font-card ${isChecked ? 'selected' : ''} ${isNew ? 'new-font' : ''}`;
@@ -2282,8 +2378,8 @@
 					card.onclick = () => handleCardClick(actualIndex, card);
 					
 					const favIcon = isFav 
-						? `<i class="fa-solid fa-star"></i>`
-						: `<i class="fa-regular fa-star"></i>`;
+						? `<i class="fa-solid fa-thumbtack"></i>`
+						: `<i class="fa-solid fa-thumbtack"></i>`;
 
 					let fontNoteText = localStorage.getItem("toathmor_note_" + font.name) || font.family_note || "";
 					let noteAndFamilyHtml = "";
@@ -2395,7 +2491,7 @@
 									<span class="font-author">by Yong Yeang</span>
 								</div>
 							</div>
-							<button class="btn-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${font.name}')">${favIcon}</button>
+							<button class="btn-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${font.name}')" title="ខ្ទាស់ទុក">${favIcon}</button>
 						</div>
 
 						<div class="image-container">${imgHtml}</div>
