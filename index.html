@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.6.7</title>
+		<title>Toathmor Fonts App V4.7.1</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -85,29 +85,40 @@
 
 			.container {
 				width: 100%;
-				max-width: 1200px;
+				max-width: 1280px;
 				margin: 0 auto;
-				padding: 0 16px; 
+				padding: 0 20px; 
 				box-sizing: border-box;
 				min-height: calc(100vh - 180px);
+			}
+
+			@media (min-width: 1400px) {
+				.container {
+					max-width: 1440px;
+					padding: 0 32px;
+				}
 			}
 
 			header {
 				background: linear-gradient(145deg, #0f172a, #1e293b);
 				border-radius: 32px;
-				padding: 25px 20px; 
+				padding: 24px; 
 				box-shadow: var(--shadow-lg);
-				margin-bottom: 25px;
+				margin-bottom: 28px;
 				border: 1px solid rgba(212, 175, 55, 0.15);
 				position: relative;
 				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
 			}
 
-			.header-top {
+			/* ផ្នែកទី១៖ Brand Zone និងប៊ូតុងអំពីកម្មវិធីនៅជ្រុងខាងស្តាំលើ (ទំហំតូចល្មម និងរីករួមតាមទម្រង់អេក្រង់) */
+			.header-top-section {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				flex-wrap: wrap;
+				width: 100%;
 				gap: 16px;
 			}
 
@@ -118,10 +129,10 @@
 			}
 
 			.brand-logo {
-				width: 65px;
-				height: 65px;
+				width: clamp(55px, 5vw, 68px);
+				height: clamp(55px, 5vw, 68px);
 				object-fit: contain;
-				border-radius: 14px;
+				border-radius: 16px;
 				background: rgba(255, 255, 255, 0.05);
 				padding: 4px;
 				border: 1px solid rgba(212, 175, 55, 0.2);
@@ -130,7 +141,7 @@
 
 			.brand-text h1 {
 				margin: 0;
-				font-size: 28px; 
+				font-size: clamp(20px, 3.5vw, 30px); 
 				font-weight: 800;
 				letter-spacing: 1.5px;
 				color: #ffffff;
@@ -140,69 +151,92 @@
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
 			}
-			.brand-text p { margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; }
+			.brand-text p { margin: 3px 0 0 0; font-size: clamp(11px, 1.4vw, 13.5px); color: #94a3b8; }
 
-			.header-right-controls { 
-				display: flex; 
-				flex-direction: column; 
-				gap: 8px; 
-				align-items: flex-end;
-			}
-
-			.header-row-top {
+			.about-btn {
+				background: rgba(255, 255, 255, 0.06);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				color: #ffffff;
+				width: clamp(34px, 3.5vw, 40px);
+				height: clamp(34px, 3.5vw, 40px);
+				border-radius: 50%;
+				cursor: pointer;
 				display: flex;
 				align-items: center;
-				gap: 8px;
+				justify-content: center;
+				font-size: clamp(13px, 1.5vw, 15px);
+				transition: all 0.3s;
+				text-decoration: none;
+				flex-shrink: 0;
 			}
+			.about-btn:hover { background: rgba(245, 158, 11, 0.2); border-color: var(--warning); }
 
-			.header-row-bottom {
+			/* ផ្នែកទី២ (Line ខាងក្រោម)៖ ប្រមូលផ្តុំ Icons បណ្តាញសង្គម និង Icon Dark Mode នៅខាងស្តាំ */
+			.header-bottom-section {
 				display: flex;
 				align-items: center;
-				gap: 8px;
+				justify-content: space-between;
+				border-top: 1px solid rgba(255, 255, 255, 0.08);
+				padding-top: 14px;
+				flex-wrap: wrap;
+				gap: 12px;
+			}
+
+			.social-group-bar {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+
+			.header-bottom-right {
+				display: flex;
+				align-items: center;
+				gap: 10px;
 			}
 
 			.top-counter-badge {
 				background: rgba(212, 175, 55, 0.12);
 				border: 1px solid rgba(212, 175, 55, 0.3);
 				color: #f59e0b;
-				padding: 8px 14px;
+				padding: 10px 16px;
 				border-radius: 14px;
 				font-size: 14px;
 				font-weight: 600;
 				white-space: nowrap;
 			}
 
-			.theme-btn, .admin-toggle-btn, .header-icon-btn, .about-btn {
+			.theme-btn, .admin-toggle-btn, .header-icon-btn {
 				background: rgba(255, 255, 255, 0.06);
 				border: 1px solid rgba(255, 255, 255, 0.1);
 				color: #ffffff;
-				width: 36px;
-				height: 36px;
+				width: clamp(36px, 3.8vw, 40px);
+				height: clamp(36px, 3.8vw, 40px);
 				border-radius: 50%;
 				cursor: pointer;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size: 14px;
+				font-size: clamp(13px, 1.5vw, 15px);
 				transition: all 0.3s;
 				text-decoration: none;
 			}
 			.header-icon-btn.tg-btn:hover { background: rgba(34, 158, 217, 0.2); border-color: var(--telegram); }
 			.header-icon-btn.fb-btn:hover { background: rgba(24, 119, 242, 0.2); border-color: var(--facebook); }
 			.header-icon-btn.page-btn:hover { background: rgba(24, 119, 242, 0.2); border-color: var(--facebook); }
-			.about-btn:hover { background: rgba(245, 158, 11, 0.2); border-color: var(--warning); }
+			.theme-btn:hover { background: rgba(245, 158, 11, 0.2); border-color: var(--warning); }
 			
 			.admin-toggle-btn {
 				background: rgba(255, 255, 255, 0.08);
 				border: 1px solid rgba(212, 175, 55, 0.2);
 				color: #f59e0b;
-				width: 38px;
-				height: 38px;
+				width: 40px;
+				height: 40px;
 				border-radius: 50%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size: 14px;
+				font-size: 15px;
 				cursor: pointer;
 				transition: all 0.3s;
 			}
@@ -222,21 +256,21 @@
 				top: 0 !important;
 				background: var(--bg-main) !important; 
 				z-index: 200 !important;
-				padding: calc(12px + env(safe-area-inset-top)) 0 14px 0 !important;
+				padding: calc(14px + env(safe-area-inset-top)) 0 16px 0 !important;
 				display: flex !important;
 				flex-direction: column !important;
-				gap: 12px !important;
+				gap: 14px !important;
 				box-sizing: border-box;
 				transition: background 0.4s ease;
 			}
 			
 			.input-box { position: relative; width: 100%; box-sizing: border-box; }
 			.input-box i {
-				position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #64748b; z-index: 5; font-size: 16px;
+				position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #64748b; z-index: 5; font-size: 16px;
 			}
 			.input-box input {
 				width: 100%;
-				padding: 16px 16px 16px 48px;
+				padding: 16px 18px 16px 50px;
 				border: 1px solid var(--border);
 				border-radius: 20px;
 				font-size: 15px;
@@ -255,7 +289,7 @@
 
 			.tabs { 
 				display: flex; 
-				gap: 8px; 
+				gap: 10px; 
 				overflow-x: auto; 
 				padding-bottom: 4px;
 				width: 100%;
@@ -269,7 +303,7 @@
 				background: var(--bg-card);
 				color: var(--text-muted);
 				border: 1px solid var(--border);
-				padding: 10px 20px;
+				padding: 11px 22px;
 				border-radius: 30px;
 				font-size: 14px;
 				font-weight: 500;
@@ -281,21 +315,21 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				gap: 8px;
+				gap: 12px;
 				width: 100%;
 			}
 			.sort-right-group {
 				display: flex;
 				align-items: center;
-				gap: 8px;
+				gap: 10px;
 			}
 			.sort-select {
-				padding: 8px 14px;
+				padding: 10px 16px;
 				border-radius: 12px;
 				border: 1px solid var(--border);
 				background: var(--bg-card);
 				color: var(--text-main);
-				font-size: 13px;
+				font-size: 14px;
 				outline: none;
 				transition: background 0.4s ease, color 0.4s ease;
 			}
@@ -305,7 +339,7 @@
 				border: 2px dashed var(--accent);
 				border-radius: var(--radius-card);
 				padding: 24px;
-				margin-bottom: 25px;
+				margin-bottom: 28px;
 				display: flex;
 				flex-direction: column;
 				gap: 16px;
@@ -325,12 +359,29 @@
 			.btn-add-font:active { opacity: 0.85; }
 			.admin-panel-footer-buttons { display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; margin-top: 4px; }
 
-			.font-list { display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; box-sizing: border-box; }
-			@media (min-width: 600px) { .font-list { grid-template-columns: repeat(2, 1fr); } } 
-			@media (min-width: 1024px) { .font-list { grid-template-columns: repeat(3, 1fr); } } 
+			.font-list { 
+				display: grid; 
+				grid-template-columns: 1fr; 
+				gap: 24px; 
+				width: 100%; 
+				box-sizing: border-box; 
+			}
+			@media (min-width: 650px) { 
+				.font-list { grid-template-columns: repeat(2, 1fr); } 
+			} 
+			@media (min-width: 1024px) { 
+				.font-list { grid-template-columns: repeat(3, 1fr); } 
+			} 
+			@media (min-width: 1350px) { 
+				.font-list { grid-template-columns: repeat(4, 1fr); } 
+			}
 
 			.font-card {
-				background: var(--bg-card); border-radius: var(--radius-card); padding: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-md); display: flex; flex-direction: column; justify-content: space-between; position: relative; box-sizing: border-box; overflow: hidden; transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+				background: var(--bg-card); border-radius: var(--radius-card); padding: 22px; border: 1px solid var(--border); box-shadow: var(--shadow-md); display: flex; flex-direction: column; justify-content: space-between; position: relative; box-sizing: border-box; overflow: hidden; transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, transform 0.2s ease;
+			}
+			.font-card:hover {
+				transform: translateY(-3px);
+				box-shadow: var(--shadow-lg);
 			}
 			.font-card.selected { border-color: var(--accent); background: var(--accent-light); }
 
@@ -368,7 +419,7 @@
 			.btn-fav.active { color: #f59e0b; }
 
 			.image-container {
-				width: 100%; height: 160px; background-color: var(--img-placeholder); border-radius: 18px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); position: relative; transition: background-color 0.4s ease;
+				width: 100%; height: 170px; background-color: var(--img-placeholder); border-radius: 18px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); position: relative; transition: background-color 0.4s ease;
 			}
 			.font-image-sample { width: 100%; height: 100%; object-fit: cover; }
 			
@@ -580,7 +631,8 @@
 	<body>
 		<div class="container">
 			<header>
-				<div class="header-top">
+				<!-- ផ្នែកទី១៖ Brand Zone និងប៊ូតុងអំពីកម្មវិធី (សញ្ញាឧទាន ℹ️) នៅជ្រុងខាងស្តាំលើ ចន្លោះរីករួមតាមអេក្រង់ -->
+				<div class="header-top-section">
 					<div class="brand-zone">
 						<img src="https://i.postimg.cc/fT4zYqJV/IMG-3128.png" alt="Toathmor Logo" class="brand-logo" />
 						<div class="brand-text">
@@ -590,27 +642,29 @@
 						</div>
 					</div>
 					
-					<div class="header-right-controls">
-						<div class="header-row-top">
-							<button class="theme-btn" onclick="toggleTheme()" id="themeIcon" title="ប្តូរពណ៌ទំព័រ">
-								<i class="fa-solid fa-moon"></i>
-							</button>
-							<button class="about-btn" onclick="openAboutModal()" title="អំពីកម្មវិធី">
-								<i class="fa-solid fa-circle-exclamation" style="color: #f59e0b;"></i>
-							</button>
-						</div>
-						<div class="header-row-bottom">
-							<a href="https://t.me/YongYeang" target="_blank" class="header-icon-btn tg-btn" title="Telegram">
-								<i class="fa-brands fa-telegram" style="color: #229ED9;"></i>
-							</a>
-							<a href="https://m.me/ToathmorKH" target="_blank" class="header-icon-btn fb-btn" title="Facebook Messenger">
-								<i class="fa-brands fa-facebook-messenger" style="color: #1877F2;"></i>
-							</a>
-							<!-- ដូរពី icon flag (Facebook Page) មកជា icon facebook (fa-facebook-f) ធម្មតា -->
-							<a href="https://www.facebook.com/ToathmorKH" target="_blank" class="header-icon-btn page-btn" title="Facebook Page">
-								<i class="fa-brands fa-facebook-f" style="color: #1877F2;"></i>
-							</a>
-						</div>
+					<button class="about-btn" onclick="openAboutModal()" title="អំពីកម្មវិធី">
+						<i class="fa-solid fa-circle-exclamation" style="color: #f59e0b;"></i>
+					</button>
+				</div>
+
+				<!-- ផ្នែកទី២ (Line ខាងក្រោម)៖ ប្រមូលផ្តុំ Icons បណ្តាញសង្គមនៅខាងឆ្វេង និង Icon Dark Mode នៅខាងស្តាំ -->
+				<div class="header-bottom-section">
+					<div class="social-group-bar">
+						<a href="https://t.me/YongYeang" target="_blank" class="header-icon-btn tg-btn" title="Telegram">
+							<i class="fa-brands fa-telegram" style="color: #229ED9;"></i>
+						</a>
+						<a href="https://m.me/ToathmorKH" target="_blank" class="header-icon-btn fb-btn" title="Facebook Messenger">
+							<i class="fa-brands fa-facebook-messenger" style="color: #1877F2;"></i>
+						</a>
+						<a href="https://www.facebook.com/ToathmorKH" target="_blank" class="header-icon-btn page-btn" title="Facebook">
+							<i class="fa-brands fa-facebook-f" style="color: #1877F2;"></i>
+						</a>
+					</div>
+
+					<div class="header-bottom-right">
+						<button class="theme-btn" onclick="toggleTheme()" id="themeIcon" title="ប្តូរពណ៌ទំព័រ">
+							<i class="fa-solid fa-moon"></i>
+						</button>
 					</div>
 				</div>
 			</header>
@@ -786,7 +840,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "4.6.7"; 
+			let CURRENT_VERSION = "4.7.1"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -819,7 +873,7 @@
 			let defaultAboutText = "TOATHMOR FONTS គឺជាកម្មវិធីបង្ហាញ និងគ្រប់គ្រងតារាងពុម្ពអក្សរខ្មែរព្រីមៀម ដែលត្រូវបានបង្កើតឡើងដោយ យ៉ុង យាង (YONG YEANG / តោថ្ម)។ កម្មវិធីនេះជួយងាយស្រួលដល់បងប្អូនក្នុងការស្វែងរក មើលគំរូ និងកុម្ម៉ង់ទិញពុម្ពអក្សរខ្មែរឌីជីថលប្រកបដោយគុណភាពខ្ពស់។";
 
 			let defaultFonts = [
-	{
+				{
 		"name": "Toathmor... (Kh Watt Prey Chas)",
 		"price": "$",
 		"type": "chreang",
