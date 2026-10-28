@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.8.9</title>
+		<title>Toathmor Fonts App V4.9.1</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -215,12 +215,10 @@
 				max-height: 180px;
 				opacity: 1;
 				overflow: hidden;
-				/* កែសម្រួល Animation ឱ្យរលូនទន់ភ្លន់ទាំងពេលលាក់ និងពេលបង្ហាញឡើងវិញ */
 				transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 				will-change: max-height, opacity, transform, margin;
 			}
 
-			/* ចលនាពេលលាក់/បង្ហាញ Slide លើ Mobile យ៉ាងរលូន */
 			@media (max-width: 767px) {
 				.hero-slide-wrapper.hide-slide-mobile {
 					max-height: 0;
@@ -838,7 +836,7 @@
 			</header>
 
 			<div class="sticky-controls">
-				<!-- ----------------- HERO SLIDE BANNER (មាន Animation រលូនពេលលាក់/បង្ហាញ) ----------------- -->
+				<!-- ----------------- HERO SLIDE BANNER ----------------- -->
 				<div class="hero-slide-wrapper" id="heroSlideWrapper">
 					<div class="hero-slide-container" id="heroSlideContainer" onmouseenter="stopAutoSlide()" onmouseleave="startAutoSlide()">
 						<div class="slide-track" id="slideTrack"></div>
@@ -847,7 +845,7 @@
 						<div class="slide-dots" id="slideDots"></div>
 					</div>
 				</div>
-				<!-- ---------------------------------------------------------------------------------------------------------------- -->
+				<!-- ---------------------------------------------------- -->
 
 				<div class="input-box">
 					<i class="fa-solid fa-magnifying-glass"></i>
@@ -875,7 +873,7 @@
 				</div>
 			</div>
 
-			<!-- ផ្ទៃសម្រាប់បន្ថែមពុម្ពអក្សរថ្មី (មានបង្ហាញជួរកំណត់វិនាទី Slide សម្រាប់ Admin) -->
+			<!-- ផ្ទៃសម្រាប់បន្ថែមពុម្ពអក្សរថ្មី -->
 			<div class="admin-form-panel admin-only" id="adminFormPanel">
 				<h3 class="admin-form-title">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី និងកំណត់ Slide</h3>
 				
@@ -1024,7 +1022,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "4.8.9"; 
+			let CURRENT_VERSION = "4.9.1"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -1048,7 +1046,6 @@
 				searchInput.addEventListener("blur", () => { document.body.classList.remove("keyboard-open"); });
 			}
 
-			// --- JavaScript លាក់/បង្ហាញ Slide លើ Mobile ជាមួយ Animation រលូនពេល Scroll ---
 			let ticking = false;
 			window.addEventListener("scroll", function() {
 				let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -2079,14 +2076,16 @@
 				const dotsContainer = document.getElementById("slideDots");
 				if(!track || !dotsContainer) return;
 
-				// ជ្រើសរើសយកត្រឹម ១០ ពុម្ពដំបូងដែលមានរូបភាព
-				let slideItems = fontsData.filter(f => f.img && f.img.trim() !== "");
-				if(slideItems.length === 0) {
-					slideItems = fontsData; 
-				}
-				
-				// កំណត់ឱ្យបង្ហាញត្រឹមតែ ១០ ពុម្ពក្នុង Slide តាមសំណើ
-				slideItems = slideItems.slice(0, 10);
+				let allWithImg = fontsData.filter(f => f.img && f.img.trim() !== "");
+				if(allWithImg.length === 0) allWithImg = fontsData;
+
+				let sortedNewest = [...allWithImg].reverse();
+
+				let top5New = sortedNewest.slice(0, 5);
+				let remainingOld = sortedNewest.slice(5);
+				let top5Old = remainingOld.slice(0, 5);
+
+				let slideItems = [...top5New, ...top5Old];
 
 				track.innerHTML = "";
 				dotsContainer.innerHTML = "";
@@ -2097,10 +2096,12 @@
 					slideDiv.onclick = () => {
 						window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + item.name + ' (តម្លៃ: ' + item.price + ')')}`, '_blank');
 					};
-					// បង្ហាញស្លាកលេខរៀង (១ ដល់ ៥ ឆ្លាស់គ្នា)
-					let displayNum = (idx % 5) + 1;
+					
+					// កែសម្រួលស្លាកបង្ហាញត្រឹម NEW ឬ POPULAR ដោយគ្មានសញ្ញា #
+					let badgeText = idx < 5 ? "NEW" : "POPULAR";
+
 					slideDiv.innerHTML = `
-						<span class="slide-badge-new">NEW #${displayNum}</span>
+						<span class="slide-badge-new">${badgeText}</span>
 						<img src="${item.img || 'https://i.postimg.cc/T2HdVp8k/IMG-3118.png'}" alt="${item.name}">
 						<div class="slide-caption">
 							<div>
