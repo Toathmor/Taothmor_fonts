@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.9.3</title>
+		<title>Toathmor Fonts App V4.9.6</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -635,6 +635,7 @@
 				box-sizing: border-box;
 				margin-bottom: 2px;
 				transition: all 0.3s ease;
+				cursor: pointer;
 			}
 			[data-theme="dark"] .family-total-wrapper {
 				background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(217, 119, 6, 0.02));
@@ -916,7 +917,7 @@
 			<div class="font-list" id="listContainer"></div>
 		</div>
 
-		<!-- Slide Purchase Confirmation Modal -->
+		<!-- Purchase Confirmation Modal (សម្រាប់ Slide, Card, Family Package និង Multi-Select) -->
 		<div class="edit-modal-overlay" id="slideConfirmModal">
 			<div class="edit-modal-content" onclick="event.stopPropagation();" style="text-align: center; gap: 16px;">
 				<div style="width: 50px; height: 50px; border-radius: 50%; background: var(--accent-light); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto; color: var(--warning); font-size: 22px;">
@@ -924,8 +925,8 @@
 				</div>
 				<div>
 					<h3 style="margin: 0 0 6px 0; font-size: 18px; font-weight: 700; color: var(--text-main);">🛒 បញ្ជាក់ការបញ្ជាទិញពុម្ពអក្សរ</h3>
-					<p id="slideConfirmFontName" style="margin: 0; font-size: 14.5px; font-weight: 700; color: var(--warning);"></p>
-					<p id="slideConfirmFontPrice" style="margin: 4px 0 0 0; font-size: 13px; color: var(--text-muted);"></p>
+					<p id="slideConfirmFontName" style="margin: 0; font-size: 14.5px; font-weight: 700; color: var(--warning); line-height: 1.5; white-space: pre-wrap;"></p>
+					<p id="slideConfirmFontPrice" style="margin: 6px 0 0 0; font-size: 14px; color: var(--danger); font-weight: 700;"></p>
 				</div>
 				<div style="display: flex; gap: 10px; margin-top: 6px;">
 					<button class="btn-action btn-secondary" onclick="closeSlideConfirmModal()" style="flex: 1; padding: 12px;">✕ ទេ (បោះបង់)</button>
@@ -1030,7 +1031,7 @@
 			</div>
 			<div class="multi-actions-row">
 				<button class="btn-action btn-secondary" onclick="clearAllSelections()">✕ លុបចោល</button>
-				<button class="btn-action btn-primary" onclick="sendMultiOrder()">
+				<button class="btn-action btn-primary" onclick="openMultiOrderConfirm()">
 					<i class="fa-brands fa-telegram" style="margin-right:2px;"></i>
 					កុម្ម៉ង់ពុម្ពដែលបានជ្រើសរើស
 				</button>
@@ -1040,7 +1041,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "4.9.3"; 
+			let CURRENT_VERSION = "4.9.6"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -1090,7 +1091,7 @@
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 
 			let slideTimerSeconds = parseInt(localStorage.getItem("toathmor_slide_seconds")) || 10;
-			let pendingSlideItem = null; // រក្សាទុកទិន្នន័យ Slide ដែលរង់ចាំបញ្ជាក់ការទិញ
+			let pendingPurchaseData = null; // រក្សាទុកព័ត៌មានទិញសម្រាប់ Slide, Card, Family Package និង Multi-Select
 
 			let defaultAboutText = "TOATHMOR FONTS គឺជាកម្មវិធីបង្ហាញ និងគ្រប់គ្រងតារាងពុម្ពអក្សរខ្មែរព្រីមៀម ដែលត្រូវបានបង្កើតឡើងដោយ យ៉ុង យាង (YONG YEANG / តោថ្ម)។ កម្មវិធីនេះជួយងាយស្រួលដល់បងប្អូនក្នុងការស្វែងរក មើលគំរូ និងកុម្ម៉ង់ទិញពុម្ពអក្សរខ្មែរឌីជីថលប្រកបដោយគុណភាពខ្ពស់។";
 
@@ -2123,10 +2124,10 @@
 					slideDiv.className = "slide-item";
 					
 					let displaySlidePrice = formatPriceForSlide(item.price);
+					let telegramText = `ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ${item.name} (តម្លៃ: ${displaySlidePrice})`;
 
-					// កែសម្រួល៖ ពេលចុចលើ Slide ឲ្យបង្ហាញ Popup បញ្ជាក់ការទិញ (ទិញ / ទេ) ជំនួសឱ្យការចូល Telegram ភ្លាមៗ
 					slideDiv.onclick = () => {
-						openSlideConfirmModal(item, displaySlidePrice);
+						openSlideConfirmModal(`ពុម្ព៖ ${item.name}`, `តម្លៃ៖ ${displaySlidePrice}`, telegramText);
 					};
 					
 					let badgeText = idx < 5 ? "NEW" : "POPULAR";
@@ -2156,25 +2157,23 @@
 				startAutoSlide();
 			}
 
-			function openSlideConfirmModal(item, displayPrice) {
-				pendingSlideItem = { item: item, displayPrice: displayPrice };
-				document.getElementById("slideConfirmFontName").innerText = `ពុម្ព៖ ${item.name}`;
-				document.getElementById("slideConfirmFontPrice").innerText = `តម្លៃ៖ ${displayPrice}`;
+			function openSlideConfirmModal(fontNameText, priceText, telegramText) {
+				pendingPurchaseData = telegramText;
+				document.getElementById("slideConfirmFontName").innerText = fontNameText;
+				document.getElementById("slideConfirmFontPrice").innerText = priceText;
 				document.getElementById("slideConfirmModal").classList.add("show");
 			}
 
 			function closeSlideConfirmModal() {
-				pendingSlideItem = null;
+				pendingPurchaseData = null;
 				document.getElementById("slideConfirmModal").classList.remove("show");
 			}
 
 			function confirmSlidePurchase() {
-				if (!pendingSlideItem) return;
-				let item = pendingSlideItem.item;
-				let displayPrice = pendingSlideItem.displayPrice;
-				
+				if (!pendingPurchaseData) return;
+				let textToOpen = pendingPurchaseData;
 				closeSlideConfirmModal();
-				window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + item.name + ' (តម្លៃ: ' + displayPrice + ')')}`, '_blank');
+				window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent(textToOpen)}`, '_blank');
 			}
 
 			function updateSlidePosition() {
@@ -2716,7 +2715,12 @@
 							ទិញពុម្ពនេះ <span class="divider-inside">•</span> $ ${finalPrice.toFixed(2)}
 						`;
 					}
-					buyBtn.href = `https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + currentData.name + ' (' + orderPriceText + ')')}`;
+					
+					let cardTelegramText = `ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ${currentData.name} (${orderPriceText})`;
+					buyBtn.onclick = (e) => {
+						e.stopPropagation();
+						openSlideConfirmModal(`ពុម្ព៖ ${currentData.name}`, `តម្លៃ៖ ${orderPriceText}`, cardTelegramText);
+					};
 					
 					card.querySelectorAll('.variant-badge').forEach((b, bIdx) => {
 						if(bIdx === variantIdx) b.classList.add('active');
@@ -2842,11 +2846,11 @@
 							familyTelegramText += ` (បានបញ្ចុះតម្លៃពិសេសពី $ ${familyCalc.originalSum.toFixed(2)})`;
 						}
 						
-						let tgFamilyUrl = `https://t.me/${telegramUser}?text=${encodeURIComponent(familyTelegramText)}`;
+						let familyDisplayPriceStr = `$ ${familyCalc.finalFamilyTotal.toFixed(2)}`;
 
 						if (familyCalc.hasFamilyDiscount) {
 							familyTotalHtml = `
-								<div class="family-total-wrapper" onclick="event.stopPropagation();">
+								<div class="family-total-wrapper" onclick="event.stopPropagation(); openSlideConfirmModal('កញ្ចប់គ្រួសារ៖ ${font.name}', 'តម្លៃ៖ ${familyDisplayPriceStr} (បញ្ចុះពី $ ${familyCalc.originalSum.toFixed(2)})', \`${familyTelegramText}\`)">
 									<div class="family-final-row">
 										<span class="family-box-label">កញ្ចប់គ្រួសារ៖</span>
 										<div class="family-box-prices">
@@ -2854,22 +2858,22 @@
 											$ ${familyCalc.finalFamilyTotal.toFixed(2)}
 										</div>
 									</div>
-									<a href="${tgFamilyUrl}" target="_blank" class="family-buy-link">
+									<div class="family-buy-link">
 										ជាវកញ្ចប់
-									</a>
+									</div>
 								</div>`;
 						} else {
 							familyTotalHtml = `
-								<div class="family-total-wrapper" onclick="event.stopPropagation();">
+								<div class="family-total-wrapper" onclick="event.stopPropagation(); openSlideConfirmModal('កញ្ចប់គ្រួសារ៖ ${font.name}', 'តម្លៃ៖ ${familyDisplayPriceStr}', \`${familyTelegramText}\`)">
 									<div class="family-final-row">
 										<span class="family-box-label">កញ្ចប់គ្រួសារ៖</span>
 										<div class="family-box-prices family-box-prices-normal">
 											$ ${familyCalc.finalFamilyTotal.toFixed(2)}
 										</div>
 									</div>
-									<a href="${tgFamilyUrl}" target="_blank" class="family-buy-link">
+									<div class="family-buy-link">
 										ជាវកញ្ចប់
-									</a>
+									</div>
 								</div>`;
 						}
 					}
@@ -2923,6 +2927,8 @@
 						`;
 					}
 
+					let cardTelegramText = `ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ${currentData.name} (${orderPriceStr})`;
+
 					card.innerHTML = `
 						<div class="card-top">
 							<div class="font-title-wrapper">
@@ -2951,9 +2957,9 @@
 						${noteAndFamilyHtml}
 
 						<div class="card-acts-row" onclick="event.stopPropagation();">
-							<a href="https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + currentData.name + ' (' + orderPriceStr + ')')}" target="_blank" class="btn-primary">
+							<button class="btn-primary" onclick="openSlideConfirmModal('ពុម្ព៖ ${currentData.name}', 'តម្លៃ៖ ${orderPriceStr}', \`${cardTelegramText}\`)">
 								${innerButtonContent}
-							</a>
+							</button>
 						</div>
 					`;
 					container.appendChild(card);
@@ -3055,17 +3061,19 @@
 				setTimeout(() => { toast.classList.remove("show"); }, 2500);
 			}
 
-			function sendMultiOrder() {
+			function openMultiOrderConfirm() {
 				if(selectedFonts.length === 0) return;
 				let total = selectedFonts.reduce((sum, item) => sum + item.price, 0);
 				
 				let text = "ខ្ញុំចង់កុម្ម៉ង់ទិញពុម្ពអក្សរដូចខាងក្រោម៖\n";
+				let namesListStr = "";
 				selectedFonts.forEach((item, i) => { 
 					text += `${i+1}. ${item.name} ($ ${item.price.toFixed(2)})\n`; 
+					namesListStr += `• ${item.name} ($ ${item.price.toFixed(2)})\n`;
 				});
 				text += `\n------------------------\n💰 តម្លៃសរុបចុងក្រោយ៖ $ ${total.toFixed(2)}`;
 				
-				window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent(text)}`, '_blank');
+				openSlideConfirmModal(`បញ្ជីពុម្ពដែលបានជ្រើសរើស (${selectedFonts.length})៖\n${namesListStr}`, `តម្លៃសរុប៖ $ ${total.toFixed(2)}`, text);
 			}
 		</script>
 	</body>
