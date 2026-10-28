@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.9.6</title>
+		<title>Toathmor Fonts App V4.9.9</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -219,15 +219,13 @@
 				will-change: max-height, opacity, transform, margin;
 			}
 
-			@media (max-width: 767px) {
-				.hero-slide-wrapper.hide-slide-mobile {
-					max-height: 0;
-					opacity: 0;
-					transform: translateY(-20px);
-					margin-top: 0 !important;
-					margin-bottom: 0 !important;
-					pointer-events: none;
-				}
+			.hero-slide-wrapper.hide-slide-mobile {
+				max-height: 0;
+				opacity: 0;
+				transform: translateY(-20px);
+				margin-top: 0 !important;
+				margin-bottom: 0 !important;
+				pointer-events: none;
 			}
 
 			.hero-slide-container {
@@ -586,11 +584,72 @@
 			.btn-fav { background: transparent; border: none; font-size: 15px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; }
 			.btn-fav.active { color: #f59e0b; }
 
+			/* Card Image Slider Container */
 			.image-container {
 				width: 100%; height: 150px; background-color: var(--img-placeholder); border-radius: 16px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); position: relative; transition: background-color 0.4s ease;
 			}
+			
+			.card-slide-track {
+				display: flex;
+				width: 100%;
+				height: 100%;
+				transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+			}
+			.card-slide-item {
+				min-width: 100%;
+				height: 100%;
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: var(--img-placeholder);
+			}
 			.font-image-sample { width: 100%; height: 100%; object-fit: cover; }
 			
+			.card-slide-arrow {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				background: rgba(15, 23, 42, 0.6);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				color: #ffffff;
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				z-index: 10;
+				font-size: 9px;
+				transition: background 0.3s;
+			}
+			.card-slide-arrow:hover { background: rgba(15, 23, 42, 0.9); border-color: var(--accent); }
+			.card-slide-prev { left: 6px; }
+			.card-slide-next { right: 6px; }
+
+			.card-slide-dots {
+				position: absolute;
+				bottom: 6px;
+				right: 10px;
+				display: flex;
+				gap: 3px;
+				z-index: 10;
+			}
+			.card-slide-dot {
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.5);
+				cursor: pointer;
+				transition: all 0.3s;
+			}
+			.card-slide-dot.active {
+				width: 12px;
+				border-radius: 3px;
+				background: var(--accent);
+			}
+
 			.personal-use-badge {
 				position: absolute;
 				top: 8px;
@@ -1041,7 +1100,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "4.9.6"; 
+			let CURRENT_VERSION = "4.9.9"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -1071,7 +1130,7 @@
 				if (!ticking) {
 					window.requestAnimationFrame(function() {
 						let slideWrapper = document.getElementById("heroSlideWrapper");
-						if(slideWrapper && window.innerWidth < 768) {
+						if(slideWrapper) {
 							if (currentScroll > 15) {
 								slideWrapper.classList.add("hide-slide-mobile");
 							} else {
@@ -1091,7 +1150,7 @@
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 
 			let slideTimerSeconds = parseInt(localStorage.getItem("toathmor_slide_seconds")) || 10;
-			let pendingPurchaseData = null; // រក្សាទុកព័ត៌មានទិញសម្រាប់ Slide, Card, Family Package និង Multi-Select
+			let pendingPurchaseData = null; 
 
 			let defaultAboutText = "TOATHMOR FONTS គឺជាកម្មវិធីបង្ហាញ និងគ្រប់គ្រងតារាងពុម្ពអក្សរខ្មែរព្រីមៀម ដែលត្រូវបានបង្កើតឡើងដោយ យ៉ុង យាង (YONG YEANG / តោថ្ម)។ កម្មវិធីនេះជួយងាយស្រួលដល់បងប្អូនក្នុងការស្វែងរក មើលគំរូ និងកុម្ម៉ង់ទិញពុម្ពអក្សរខ្មែរឌីជីថលប្រកបដោយគុណភាពខ្ពស់។";
 
@@ -1883,7 +1942,7 @@
 		"name": "Toathmor Satya",
 		"price": "$ 15",
 		"type": "chreang",
-		"img": "https://i.postimg.cc/FsWNryQr/phonto.png",
+		"img": "https://i.postimg.cc/tgcyVwQS/phonto.png",
 		"family_note": "",
 		"discount": 0,
 		"discount_cash": 0,
@@ -1891,10 +1950,10 @@
 		"family_discount_cash": 0
 	},
 	{
-		"name": "Toathmor Angkeara Text",
+		"name": "Toathmor Angeara Text",
 		"price": "$ 15",
 		"type": "chreang",
-		"img": "https://i.postimg.cc/NG3Hv4gZ/phonto.png",
+		"img": "https://i.postimg.cc/zXtb2r18/phonto.png",
 		"family_note": "កំពុងរៀបចំ..."
 	},
 	{
@@ -2053,7 +2112,7 @@
 		"name": "Toathmor Kakir Thom",
 		"price": "20",
 		"type": "chreang",
-		"img": "https://i.postimg.cc/BbL35xF7/phonto.png",
+		"img": "https://i.postimg.cc/d0LbjQcB/phonto.png",
 		"discount": 0,
 		"discount_cash": 5,
 		"family_discount": 0,
@@ -2072,8 +2131,8 @@
 		"family_note": ""
 	},
 	{
-		"name": "Toathmor Upcoming",
-		"price": "$ 0",
+		"name": "Toathmor ...",
+		"price": "$00",
 		"type": "moul",
 		"img": "https://i.postimg.cc/L6PVdnj0/IMG-5187.png",
 		"discount": 0,
@@ -2087,6 +2146,8 @@
 			let customFonts = JSON.parse(localStorage.getItem("toathmor_custom_list"));
 			let fontsData = (customFonts && customFonts.length > 0) ? customFonts : defaultFonts;
 			let activeVariants = {};
+			let cardSlideIndices = {}; 
+			let cardSlideIntervals = {}; // រក្សាទុក Timer សម្រាប់ Card Slide នីមួយៗ
 
 			let currentSlideIdx = 0;
 			let slideInterval = null;
@@ -2235,6 +2296,7 @@
 				slideTimerSeconds = sec;
 				localStorage.setItem("toathmor_slide_seconds", slideTimerSeconds);
 				resetAutoSlide();
+				renderFonts(); // បង្កើត Card Slide timers ឡើងវិញតាមវិនាទីថ្មី
 				showToast(`⏱️ បានកែសម្រួល Slide ទៅ ${slideTimerSeconds} វិនាទី!`);
 			}
 
@@ -2677,57 +2739,140 @@
 				return parseFloat(num) || 0;
 			}
 
+			// មុខងារប្ដូរម៉ូដ និងប្ដូរ Slide រូបភាពក្នុង Card ព្រមគ្នា
 			function switchVariant(actualIndex, variantIdx, event) {
 				if(event) event.stopPropagation();
 				activeVariants[actualIndex] = variantIdx;
+				cardSlideIndices[actualIndex] = variantIdx; 
 				
 				const card = document.getElementById(`card-${actualIndex}`);
 				if(card) {
-					const font = fontsData[actualIndex];
-					let currentData = (variantIdx === 0) ? font : font.variants[variantIdx - 1];
-					if (!currentData) return;
-					
-					const imgContainer = card.querySelector('.image-container');
-					imgContainer.innerHTML = `
-						<span class="personal-use-badge">Personal use</span>
-						${currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:12.5px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`}
-					`;
-					
-					const titleSpan = card.querySelector('.font-title');
-					titleSpan.innerText = currentData.name;
-					
-					let basePrice = parsePriceToNumber(currentData.price);
-					let discountPercent = currentData.discount || 0;
-					let discountCash = currentData.discount_cash || 0;
-					let finalPrice = getDiscountedPrice(basePrice, discountPercent, discountCash);
+					updateCardDisplay(actualIndex);
+				}
+				restartCardAutoSlide(actualIndex);
+			}
 
-					const buyBtn = card.querySelector('.btn-primary');
-					let orderPriceText = `$ ${finalPrice.toFixed(2)}`;
-					if (discountPercent > 0 || discountCash > 0) {
-						orderPriceText += ` (តម្លៃពិសេសបញ្ចុះពី $ ${basePrice.toFixed(2)})`;
-						buyBtn.innerHTML = `
-							<i class="fa-solid fa-paper-plane"></i>
-							ទិញពុម្ពនេះ <span class="divider-inside">•</span> <span class="strike-price-inside">$ ${basePrice.toFixed(2)}</span> $ ${finalPrice.toFixed(2)}
-						`;
-					} else {
-						buyBtn.innerHTML = `
-							<i class="fa-solid fa-paper-plane"></i>
-							ទិញពុម្ពនេះ <span class="divider-inside">•</span> $ ${finalPrice.toFixed(2)}
-						`;
+			// មុខងារអូស Slide ក្នុង Card ដោយផ្ទាល់ដោយដៃ
+			function moveCardSlide(actualIndex, direction, event) {
+				if(event) event.stopPropagation();
+				const font = fontsData[actualIndex];
+				let totalSlides = 1 + (font.variants ? font.variants.length : 0);
+				
+				if(cardSlideIndices[actualIndex] === undefined) cardSlideIndices[actualIndex] = 0;
+				cardSlideIndices[actualIndex] += direction;
+				
+				if(cardSlideIndices[actualIndex] >= totalSlides) cardSlideIndices[actualIndex] = 0;
+				if(cardSlideIndices[actualIndex] < 0) cardSlideIndices[actualIndex] = totalSlides - 1;
+
+				activeVariants[actualIndex] = cardSlideIndices[actualIndex];
+				updateCardDisplay(actualIndex);
+				restartCardAutoSlide(actualIndex);
+			}
+
+			function goToCardSlide(actualIndex, slideIdx, event) {
+				if(event) event.stopPropagation();
+				cardSlideIndices[actualIndex] = slideIdx;
+				activeVariants[actualIndex] = slideIdx;
+				updateCardDisplay(actualIndex);
+				restartCardAutoSlide(actualIndex);
+			}
+
+			// ចាប់ផ្ដើម Auto Slide សម្រាប់ Card នីមួយៗដែលមាន Variants លើសពី ១
+			function initCardAutoSlide(actualIndex) {
+				const font = fontsData[actualIndex];
+				let totalSlides = 1 + (font.variants ? font.variants.length : 0);
+				if (totalSlides <= 1) return;
+
+				if (cardSlideIntervals[actualIndex]) {
+					clearInterval(cardSlideIntervals[actualIndex]);
+				}
+
+				cardSlideIntervals[actualIndex] = setInterval(() => {
+					if(cardSlideIndices[actualIndex] === undefined) cardSlideIndices[actualIndex] = 0;
+					cardSlideIndices[actualIndex]++;
+					if(cardSlideIndices[actualIndex] >= totalSlides) {
+						cardSlideIndices[actualIndex] = 0;
 					}
-					
-					let cardTelegramText = `ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ${currentData.name} (${orderPriceText})`;
-					buyBtn.onclick = (e) => {
-						e.stopPropagation();
-						openSlideConfirmModal(`ពុម្ព៖ ${currentData.name}`, `តម្លៃ៖ ${orderPriceText}`, cardTelegramText);
-					};
-					
-					card.querySelectorAll('.variant-badge').forEach((b, bIdx) => {
-						if(bIdx === variantIdx) b.classList.add('active');
-						else b.classList.remove('active');
-					});
+					activeVariants[actualIndex] = cardSlideIndices[actualIndex];
+					updateCardDisplay(actualIndex);
+				}, slideTimerSeconds * 1000);
+			}
 
-					const chk = card.querySelector('.font-checkbox');
+			function stopCardAutoSlide(actualIndex) {
+				if (cardSlideIntervals[actualIndex]) {
+					clearInterval(cardSlideIntervals[actualIndex]);
+					cardSlideIntervals[actualIndex] = null;
+				}
+			}
+
+			function restartCardAutoSlide(actualIndex) {
+				stopCardAutoSlide(actualIndex);
+				initCardAutoSlide(actualIndex);
+			}
+
+			function updateCardDisplay(actualIndex) {
+				const card = document.getElementById(`card-${actualIndex}`);
+				if(!card) return;
+				const font = fontsData[actualIndex];
+				const currentSlideIdx = cardSlideIndices[actualIndex] || 0;
+				activeVariants[actualIndex] = currentSlideIdx;
+
+				let allFamilyItems = [{ name: font.name, price: font.price, img: font.img, discount: font.discount, discount_cash: font.discount_cash }];
+				if(font.variants) {
+					font.variants.forEach(v => allFamilyItems.push(v));
+				}
+
+				let currentData = allFamilyItems[currentSlideIdx] || allFamilyItems[0];
+
+				const track = card.querySelector('.card-slide-track');
+				const dotsContainer = card.querySelector('.card-slide-dots');
+				
+				if(track && dotsContainer) {
+					track.style.transform = `translateX(-${currentSlideIdx * 100}%)`;
+					
+					const dots = dotsContainer.querySelectorAll('.card-slide-dot');
+					dots.forEach((dot, dIdx) => {
+						if(dIdx === currentSlideIdx) dot.classList.add('active');
+						else dot.classList.remove('active');
+					});
+				}
+
+				const titleSpan = card.querySelector('.font-title');
+				if(titleSpan) titleSpan.innerText = currentData.name;
+
+				let basePrice = parsePriceToNumber(currentData.price);
+				let discountPercent = currentData.discount || 0;
+				let discountCash = currentData.discount_cash || 0;
+				let finalPrice = getDiscountedPrice(basePrice, discountPercent, discountCash);
+
+				const buyBtn = card.querySelector('.btn-primary');
+				let orderPriceText = `$ ${finalPrice.toFixed(2)}`;
+				if (discountPercent > 0 || discountCash > 0) {
+					orderPriceText += ` (តម្លៃពិសេសបញ្ចុះពី $ ${basePrice.toFixed(2)})`;
+					buyBtn.innerHTML = `
+						<i class="fa-solid fa-paper-plane"></i>
+						ទិញពុម្ពនេះ <span class="divider-inside">•</span> <span class="strike-price-inside">$ ${basePrice.toFixed(2)}</span> $ ${finalPrice.toFixed(2)}
+					`;
+				} else {
+					buyBtn.innerHTML = `
+						<i class="fa-solid fa-paper-plane"></i>
+						ទិញពុម្ពនេះ <span class="divider-inside">•</span> $ ${finalPrice.toFixed(2)}
+					`;
+				}
+				
+				let cardTelegramText = `ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ${currentData.name} (${orderPriceText})`;
+				buyBtn.onclick = (e) => {
+					e.stopPropagation();
+					openSlideConfirmModal(`ពុម្ព៖ ${currentData.name}`, `តម្លៃ៖ ${orderPriceText}`, cardTelegramText);
+				};
+
+				card.querySelectorAll('.variant-badge').forEach((b, bIdx) => {
+					if(bIdx === currentSlideIdx) b.classList.add('active');
+					else b.classList.remove('active');
+				});
+
+				const chk = card.querySelector('.font-checkbox');
+				if(chk) {
 					const existsIndex = selectedFonts.findIndex(item => item.name === currentData.name);
 					if(existsIndex !== -1) {
 						chk.checked = true;
@@ -2773,6 +2918,10 @@
 			}
 
 			function renderFonts() {
+				// បោសសម្អាត Timer ចាស់ៗទាំងអស់មុនពេល Render ថ្មី
+				Object.keys(cardSlideIntervals).forEach(key => stopCardAutoSlide(key));
+				cardSlideIntervals = {};
+
 				const container = document.getElementById("listContainer");
 				if(!container) return;
 				container.innerHTML = "";
@@ -2799,6 +2948,7 @@
 				filtered.forEach((font, idx) => {
 					const actualIndex = fontsData.indexOf(font);
 					if (activeVariants[actualIndex] === undefined) activeVariants[actualIndex] = 0;
+					if (cardSlideIndices[actualIndex] === undefined) cardSlideIndices[actualIndex] = 0;
 					
 					const currentVariantIdx = activeVariants[actualIndex];
 					let currentData = (currentVariantIdx === 0) ? font : font.variants[currentVariantIdx - 1];
@@ -2811,26 +2961,54 @@
 
 					const isFav = favoriteFonts.includes(font.name);
 					const isChecked = selectedFonts.some(item => item.name === currentData.name);
-					
 					const isNew = isNewFont(font);
 
-					const imgHtml = `
-						<span class="personal-use-badge">Personal use</span>
-						${currentData.img ? `<img src="${currentData.img}" class="font-image-sample" />` : `<span style="font-size:12.5px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`}
-					`;
+					let allFamilyItems = [{ name: font.name, price: font.price, img: font.img, discount: font.discount, discount_cash: font.discount_cash }];
+					if(font.variants) {
+						font.variants.forEach(v => allFamilyItems.push(v));
+					}
+
+					let slideTracksHtml = `<div class="card-slide-track" style="transform: translateX(-${currentVariantIdx * 100}%);">`;
+					allFamilyItems.forEach(item => {
+						slideTracksHtml += `
+							<div class="card-slide-item">
+								<span class="personal-use-badge">Personal use</span>
+								${item.img ? `<img src="${item.img}" class="font-image-sample" />` : `<span style="font-size:12.5px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`}
+							</div>
+						`;
+					});
+					slideTracksHtml += `</div>`;
+
+					let slideControlsHtml = '';
+					if (allFamilyItems.length > 1) {
+						slideTracksHtml += `
+							<button class="card-slide-arrow card-slide-prev" onclick="moveCardSlide(${actualIndex}, -1, event)"><i class="fa-solid fa-chevron-left"></i></button>
+							<button class="card-slide-arrow card-slide-next" onclick="moveCardSlide(${actualIndex}, 1, event)"><i class="fa-solid fa-chevron-right"></i></button>
+						`;
+						
+						let dotsHtml = `<div class="card-slide-dots">`;
+						allFamilyItems.forEach((_, sIdx) => {
+							dotsHtml += `<div class="card-slide-dot ${sIdx === currentVariantIdx ? 'active' : ''}" onclick="goToCardSlide(${actualIndex}, ${sIdx}, event)"></div>`;
+						});
+						dotsHtml += `</div>`;
+						slideTracksHtml += dotsHtml;
+					} else {
+						slideTracksHtml += `<span class="personal-use-badge">Personal use</span>`;
+					}
 
 					const card = document.createElement("div");
 					card.className = `font-card ${isChecked ? 'selected' : ''} ${isNew ? 'new-font' : ''}`;
 					card.id = `card-${actualIndex}`;
 					card.onclick = () => handleCardClick(actualIndex, card);
+
+					// បន្ថែម Event ដាក់ Mouse លើ Card ដើម្បី Pause Auto Slide និងដកចេញដើម្បី Play វិញ
+					card.onmouseenter = () => stopCardAutoSlide(actualIndex);
+					card.onmouseleave = () => initCardAutoSlide(actualIndex);
 					
-					const favIcon = isFav 
-						? `<i class="fa-solid fa-thumbtack"></i>`
-						: `<i class="fa-solid fa-thumbtack"></i>`;
+					const favIcon = `<i class="fa-solid fa-thumbtack"></i>`;
 
 					let fontNoteText = localStorage.getItem("toathmor_note_" + font.name) || font.family_note || "";
 					let noteAndFamilyHtml = "";
-					
 					let familyTotalHtml = "";
 					let hasVariants = font.variants && font.variants.length > 0;
 					
@@ -2943,7 +3121,7 @@
 							<button class="btn-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${font.name}')" title="ខ្ទាស់ទុក">${favIcon}</button>
 						</div>
 
-						<div class="image-container">${imgHtml}</div>
+						<div class="image-container">${slideTracksHtml}</div>
 
 						${familySwitcherHtml}
 
@@ -2963,6 +3141,11 @@
 						</div>
 					`;
 					container.appendChild(card);
+
+					// ចាប់ផ្ដើម Auto Slide សម្រាប់ Card នេះ ប្រសិនបើវាមានម៉ូដច្រើនជាង ១
+					if (allFamilyItems.length > 1) {
+						initCardAutoSlide(actualIndex);
+					}
 				});
 			}
 
