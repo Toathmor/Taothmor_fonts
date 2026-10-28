@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.9.9</title>
+		<title>Toathmor Fonts App V5.0.0</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -500,7 +500,32 @@
 				gap: 14px;
 				box-sizing: border-box;
 			}
+			.admin-form-header-row {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
+			}
 			.admin-form-title { margin: 0; font-size: 17px; font-weight: 700; }
+			.admin-panel-close-btn {
+				background: rgba(239, 68, 68, 0.1);
+				border: 1px solid rgba(239, 68, 68, 0.2);
+				color: var(--danger);
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				font-size: 12px;
+				transition: all 0.3s;
+			}
+			.admin-panel-close-btn:hover {
+				background: var(--danger);
+				color: #ffffff;
+			}
+
 			.admin-grid-inputs { display: grid; grid-template-columns: 1fr; gap: 14px; width: 100%; box-sizing: border-box; }
 			@media (min-width: 600px) { .admin-grid-inputs { grid-template-columns: repeat(2, 1fr); } }
 			.admin-input, .admin-select, .admin-textarea {
@@ -935,7 +960,12 @@
 
 			<!-- ផ្ទៃសម្រាប់បន្ថែមពុម្ពអក្សរថ្មី -->
 			<div class="admin-form-panel admin-only" id="adminFormPanel">
-				<h3 class="admin-form-title">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី និងកំណត់ Slide</h3>
+				<div class="admin-form-header-row">
+					<h3 class="admin-form-title">✨ បន្ថែមពុម្ពអក្សរតោថ្មថ្មី និងកំណត់ Slide</h3>
+					<button class="admin-panel-close-btn" onclick="closeAdminFormPanel()" title="បិទផ្ទាំង Admin">
+						<i class="fa-solid fa-xmark"></i>
+					</button>
+				</div>
 				
 				<div class="admin-grid-inputs">
 					<input type="text" id="newFontName" class="admin-input" placeholder="ឈ្មោះពុម្ព (ឧ៖ Toathmor New)" autocomplete="off">
@@ -1100,7 +1130,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "4.9.9"; 
+			let CURRENT_VERSION = "5.0.0"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -2141,13 +2171,13 @@
 		"family_discount_cash": 0,
 		"family_note": "កំពុងរៀបចំ..."
 	}
-			];
+];
 
 			let customFonts = JSON.parse(localStorage.getItem("toathmor_custom_list"));
 			let fontsData = (customFonts && customFonts.length > 0) ? customFonts : defaultFonts;
 			let activeVariants = {};
 			let cardSlideIndices = {}; 
-			let cardSlideIntervals = {}; // រក្សាទុក Timer សម្រាប់ Card Slide នីមួយៗ
+			let cardSlideIntervals = {};
 
 			let currentSlideIdx = 0;
 			let slideInterval = null;
@@ -2296,7 +2326,7 @@
 				slideTimerSeconds = sec;
 				localStorage.setItem("toathmor_slide_seconds", slideTimerSeconds);
 				resetAutoSlide();
-				renderFonts(); // បង្កើត Card Slide timers ឡើងវិញតាមវិនាទីថ្មី
+				renderFonts();
 				showToast(`⏱️ បានកែសម្រួល Slide ទៅ ${slideTimerSeconds} វិនាទី!`);
 			}
 
@@ -2355,6 +2385,16 @@
 				renderFonts();
 			}
 
+			// មុខងារបិទផ្ទាំង Admin Panel ពេលចុចសញ្ញា X
+			function closeAdminFormPanel() {
+				isAdminLoggedIn = false;
+				document.body.classList.remove("admin-mode-on");
+				const iconBtn = document.getElementById("adminBtnIcon");
+				if(iconBtn) iconBtn.classList.remove("active");
+				renderFonts();
+				showToast("🔒 បានបិទផ្ទាំង Admin រួចរាល់!");
+			}
+
 			function adminAddNewFont() {
 				if (!isAdminLoggedIn) return;
 				const nameInput = document.getElementById("newFontName");
@@ -2407,9 +2447,16 @@
 				fontsData.push(newFont);
 				saveData();
 				nameInput.value = ""; priceInput.value = ""; imgInput.value = ""; variantsInput.value = "";
+				
+				// បិទផ្ទាំង Admin Panel ដោយស្វ័យប្រវត្តិបន្ទាប់ពីរៀបចំរក្សាទុករួច
+				isAdminLoggedIn = false;
+				document.body.classList.remove("admin-mode-on");
+				const iconBtn = document.getElementById("adminBtnIcon");
+				if(iconBtn) iconBtn.classList.remove("active");
+
 				renderFonts();
 				initHeroSlider();
-				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មីរួចរាល់!");
+				showToast("➕ បានបន្ថែមពុម្ពអក្សរថ្មី និងបិទផ្ទាំង Admin រួចរាល់!");
 			}
 
 			function isNewFont(font) {
@@ -2739,7 +2786,6 @@
 				return parseFloat(num) || 0;
 			}
 
-			// មុខងារប្ដូរម៉ូដ និងប្ដូរ Slide រូបភាពក្នុង Card ព្រមគ្នា
 			function switchVariant(actualIndex, variantIdx, event) {
 				if(event) event.stopPropagation();
 				activeVariants[actualIndex] = variantIdx;
@@ -2752,7 +2798,6 @@
 				restartCardAutoSlide(actualIndex);
 			}
 
-			// មុខងារអូស Slide ក្នុង Card ដោយផ្ទាល់ដោយដៃ
 			function moveCardSlide(actualIndex, direction, event) {
 				if(event) event.stopPropagation();
 				const font = fontsData[actualIndex];
@@ -2777,7 +2822,6 @@
 				restartCardAutoSlide(actualIndex);
 			}
 
-			// ចាប់ផ្ដើម Auto Slide សម្រាប់ Card នីមួយៗដែលមាន Variants លើសពី ១
 			function initCardAutoSlide(actualIndex) {
 				const font = fontsData[actualIndex];
 				let totalSlides = 1 + (font.variants ? font.variants.length : 0);
@@ -2918,7 +2962,6 @@
 			}
 
 			function renderFonts() {
-				// បោសសម្អាត Timer ចាស់ៗទាំងអស់មុនពេល Render ថ្មី
 				Object.keys(cardSlideIntervals).forEach(key => stopCardAutoSlide(key));
 				cardSlideIntervals = {};
 
@@ -3001,7 +3044,6 @@
 					card.id = `card-${actualIndex}`;
 					card.onclick = () => handleCardClick(actualIndex, card);
 
-					// បន្ថែម Event ដាក់ Mouse លើ Card ដើម្បី Pause Auto Slide និងដកចេញដើម្បី Play វិញ
 					card.onmouseenter = () => stopCardAutoSlide(actualIndex);
 					card.onmouseleave = () => initCardAutoSlide(actualIndex);
 					
@@ -3142,7 +3184,6 @@
 					`;
 					container.appendChild(card);
 
-					// ចាប់ផ្ដើម Auto Slide សម្រាប់ Card នេះ ប្រសិនបើវាមានម៉ូដច្រើនជាង ១
 					if (allFamilyItems.length > 1) {
 						initCardAutoSlide(actualIndex);
 					}
