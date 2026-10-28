@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.9.1</title>
+		<title>Toathmor Fonts App V4.9.3</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -916,6 +916,24 @@
 			<div class="font-list" id="listContainer"></div>
 		</div>
 
+		<!-- Slide Purchase Confirmation Modal -->
+		<div class="edit-modal-overlay" id="slideConfirmModal">
+			<div class="edit-modal-content" onclick="event.stopPropagation();" style="text-align: center; gap: 16px;">
+				<div style="width: 50px; height: 50px; border-radius: 50%; background: var(--accent-light); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto; color: var(--warning); font-size: 22px;">
+					<i class="fa-solid fa-cart-shopping"></i>
+				</div>
+				<div>
+					<h3 style="margin: 0 0 6px 0; font-size: 18px; font-weight: 700; color: var(--text-main);">🛒 បញ្ជាក់ការបញ្ជាទិញពុម្ពអក្សរ</h3>
+					<p id="slideConfirmFontName" style="margin: 0; font-size: 14.5px; font-weight: 700; color: var(--warning);"></p>
+					<p id="slideConfirmFontPrice" style="margin: 4px 0 0 0; font-size: 13px; color: var(--text-muted);"></p>
+				</div>
+				<div style="display: flex; gap: 10px; margin-top: 6px;">
+					<button class="btn-action btn-secondary" onclick="closeSlideConfirmModal()" style="flex: 1; padding: 12px;">✕ ទេ (បោះបង់)</button>
+					<button class="btn-action btn-primary" onclick="confirmSlidePurchase()" style="flex: 1; padding: 12px; background: var(--success); color: white;">✓ បាទ/ចាស៎ (ទិញ)</button>
+				</div>
+			</div>
+		</div>
+
 		<!-- Edit Modal -->
 		<div class="edit-modal-overlay" id="editModal">
 			<div class="edit-modal-content" onclick="event.stopPropagation();">
@@ -1022,7 +1040,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "4.9.1"; 
+			let CURRENT_VERSION = "4.9.3"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -1072,6 +1090,7 @@
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 
 			let slideTimerSeconds = parseInt(localStorage.getItem("toathmor_slide_seconds")) || 10;
+			let pendingSlideItem = null; // រក្សាទុកទិន្នន័យ Slide ដែលរង់ចាំបញ្ជាក់ការទិញ
 
 			let defaultAboutText = "TOATHMOR FONTS គឺជាកម្មវិធីបង្ហាញ និងគ្រប់គ្រងតារាងពុម្ពអក្សរខ្មែរព្រីមៀម ដែលត្រូវបានបង្កើតឡើងដោយ យ៉ុង យាង (YONG YEANG / តោថ្ម)។ កម្មវិធីនេះជួយងាយស្រួលដល់បងប្អូនក្នុងការស្វែងរក មើលគំរូ និងកុម្ម៉ង់ទិញពុម្ពអក្សរខ្មែរឌីជីថលប្រកបដោយគុណភាពខ្ពស់។";
 
@@ -2071,6 +2090,15 @@
 			let currentSlideIdx = 0;
 			let slideInterval = null;
 
+			function formatPriceForSlide(priceStr) {
+				if (!priceStr || priceStr.trim() === "" || priceStr.trim() === "$") return "$ 10.00";
+				let trimmed = priceStr.trim();
+				if (trimmed.includes("$")) return trimmed;
+				let num = parseFloat(trimmed);
+				if (!isNaN(num)) return `$ ${num.toFixed(2)}`;
+				return `$ ${trimmed}`;
+			}
+
 			function initHeroSlider() {
 				const track = document.getElementById("slideTrack");
 				const dotsContainer = document.getElementById("slideDots");
@@ -2093,11 +2121,14 @@
 				slideItems.forEach((item, idx) => {
 					let slideDiv = document.createElement("div");
 					slideDiv.className = "slide-item";
+					
+					let displaySlidePrice = formatPriceForSlide(item.price);
+
+					// កែសម្រួល៖ ពេលចុចលើ Slide ឲ្យបង្ហាញ Popup បញ្ជាក់ការទិញ (ទិញ / ទេ) ជំនួសឱ្យការចូល Telegram ភ្លាមៗ
 					slideDiv.onclick = () => {
-						window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + item.name + ' (តម្លៃ: ' + item.price + ')')}`, '_blank');
+						openSlideConfirmModal(item, displaySlidePrice);
 					};
 					
-					// កែសម្រួលស្លាកបង្ហាញត្រឹម NEW ឬ POPULAR ដោយគ្មានសញ្ញា #
 					let badgeText = idx < 5 ? "NEW" : "POPULAR";
 
 					slideDiv.innerHTML = `
@@ -2108,7 +2139,7 @@
 								<p class="slide-title">✨ ${item.name}</p>
 								<p class="slide-subtitle">រចនាដោយ យ៉ុង យាង</p>
 							</div>
-							<div class="slide-price-tag">${item.price || '$ 10.00'}</div>
+							<div class="slide-price-tag">${displaySlidePrice}</div>
 						</div>
 					`;
 					track.appendChild(slideDiv);
@@ -2123,6 +2154,27 @@
 				});
 
 				startAutoSlide();
+			}
+
+			function openSlideConfirmModal(item, displayPrice) {
+				pendingSlideItem = { item: item, displayPrice: displayPrice };
+				document.getElementById("slideConfirmFontName").innerText = `ពុម្ព៖ ${item.name}`;
+				document.getElementById("slideConfirmFontPrice").innerText = `តម្លៃ៖ ${displayPrice}`;
+				document.getElementById("slideConfirmModal").classList.add("show");
+			}
+
+			function closeSlideConfirmModal() {
+				pendingSlideItem = null;
+				document.getElementById("slideConfirmModal").classList.remove("show");
+			}
+
+			function confirmSlidePurchase() {
+				if (!pendingSlideItem) return;
+				let item = pendingSlideItem.item;
+				let displayPrice = pendingSlideItem.displayPrice;
+				
+				closeSlideConfirmModal();
+				window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + item.name + ' (តម្លៃ: ' + displayPrice + ')')}`, '_blank');
 			}
 
 			function updateSlidePosition() {
