@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V4.8.7</title>
+		<title>Toathmor Fonts App V4.8.9</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -212,18 +212,22 @@
 				margin: 0 auto;
 				box-sizing: border-box;
 				display: block;
-				transition: transform 0.25s ease-out, opacity 0.2s ease-out, height 0.25s ease-out, margin 0.25s ease-out;
-				will-change: transform, opacity;
+				max-height: 180px;
+				opacity: 1;
+				overflow: hidden;
+				/* កែសម្រួល Animation ឱ្យរលូនទន់ភ្លន់ទាំងពេលលាក់ និងពេលបង្ហាញឡើងវិញ */
+				transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+				will-change: max-height, opacity, transform, margin;
 			}
 
-			/* លាក់ slide เฉพาะบน Mobile เท่านั้น (หน้าจอ < 768px) */
+			/* ចលនាពេលលាក់/បង្ហាញ Slide លើ Mobile យ៉ាងរលូន */
 			@media (max-width: 767px) {
 				.hero-slide-wrapper.hide-slide-mobile {
-					transform: translateY(-180px);
+					max-height: 0;
 					opacity: 0;
-					height: 0;
-					margin: 0 auto !important;
-					overflow: hidden;
+					transform: translateY(-20px);
+					margin-top: 0 !important;
+					margin-bottom: 0 !important;
 					pointer-events: none;
 				}
 			}
@@ -543,7 +547,6 @@
 				position: relative; 
 				box-sizing: border-box; 
 				overflow: hidden; 
-				/* ធានាគ្មានចលនារុញ ឬលោតពេលចុចធីក */
 				transform: none !important;
 				transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 			}
@@ -835,7 +838,7 @@
 			</header>
 
 			<div class="sticky-controls">
-				<!-- ----------------- HERO SLIDE BANNER (លាក់เฉพาะบน Mobile ពេល Scroll ចុះក្រោម) ----------------- -->
+				<!-- ----------------- HERO SLIDE BANNER (មាន Animation រលូនពេលលាក់/បង្ហាញ) ----------------- -->
 				<div class="hero-slide-wrapper" id="heroSlideWrapper">
 					<div class="hero-slide-container" id="heroSlideContainer" onmouseenter="stopAutoSlide()" onmouseleave="startAutoSlide()">
 						<div class="slide-track" id="slideTrack"></div>
@@ -1021,7 +1024,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "4.8.7"; 
+			let CURRENT_VERSION = "4.8.9"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -1045,8 +1048,7 @@
 				searchInput.addEventListener("blur", () => { document.body.classList.remove("keyboard-open"); });
 			}
 
-			// --- JavaScript លាក់ Slide  เฉพาะលើ Mobile ពេល Scroll ចុះក្រោម ---
-			let lastScrollTop = 0;
+			// --- JavaScript លាក់/បង្ហាញ Slide លើ Mobile ជាមួយ Animation រលូនពេល Scroll ---
 			let ticking = false;
 			window.addEventListener("scroll", function() {
 				let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -1054,13 +1056,12 @@
 					window.requestAnimationFrame(function() {
 						let slideWrapper = document.getElementById("heroSlideWrapper");
 						if(slideWrapper && window.innerWidth < 768) {
-							if (currentScroll > lastScrollTop && currentScroll > 25) {
+							if (currentScroll > 15) {
 								slideWrapper.classList.add("hide-slide-mobile");
 							} else {
 								slideWrapper.classList.remove("hide-slide-mobile");
 							}
 						}
-						lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 						ticking = false;
 					});
 					ticking = true;
@@ -2078,10 +2079,14 @@
 				const dotsContainer = document.getElementById("slideDots");
 				if(!track || !dotsContainer) return;
 
+				// ជ្រើសរើសយកត្រឹម ១០ ពុម្ពដំបូងដែលមានរូបភាព
 				let slideItems = fontsData.filter(f => f.img && f.img.trim() !== "");
 				if(slideItems.length === 0) {
 					slideItems = fontsData; 
 				}
+				
+				// កំណត់ឱ្យបង្ហាញត្រឹមតែ ១០ ពុម្ពក្នុង Slide តាមសំណើ
+				slideItems = slideItems.slice(0, 10);
 
 				track.innerHTML = "";
 				dotsContainer.innerHTML = "";
@@ -2092,8 +2097,10 @@
 					slideDiv.onclick = () => {
 						window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent('ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ' + item.name + ' (តម្លៃ: ' + item.price + ')')}`, '_blank');
 					};
+					// បង្ហាញស្លាកលេខរៀង (១ ដល់ ៥ ឆ្លាស់គ្នា)
+					let displayNum = (idx % 5) + 1;
 					slideDiv.innerHTML = `
-						<span class="slide-badge-new">NEW FONT</span>
+						<span class="slide-badge-new">NEW #${displayNum}</span>
 						<img src="${item.img || 'https://i.postimg.cc/T2HdVp8k/IMG-3118.png'}" alt="${item.name}">
 						<div class="slide-caption">
 							<div>
