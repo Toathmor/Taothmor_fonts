@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V5.0.0</title>
+		<title>Toathmor Fonts App V5.0.1</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -302,7 +302,7 @@
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				max-width: 210px;
+				max-width: 200px;
 			}
 			.slide-subtitle {
 				font-size: 10.5px;
@@ -312,11 +312,20 @@
 			.slide-price-tag {
 				background: var(--accent-gradient);
 				color: #0f172a;
-				padding: 3px 8px;
+				padding: 4px 9px;
 				border-radius: 8px;
 				font-weight: 700;
 				font-size: 11px;
 				white-space: nowrap;
+				display: flex;
+				align-items: center;
+				gap: 4px;
+			}
+			.slide-price-tag .strike-price-inside {
+				text-decoration: line-through;
+				opacity: 0.65;
+				font-size: 9.5px;
+				font-weight: 400;
 			}
 
 			.slide-arrow {
@@ -1130,7 +1139,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "5.0.0"; 
+			let CURRENT_VERSION = "5.0.1"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -2182,13 +2191,41 @@
 			let currentSlideIdx = 0;
 			let slideInterval = null;
 
-			function formatPriceForSlide(priceStr) {
-				if (!priceStr || priceStr.trim() === "" || priceStr.trim() === "$") return "$ 10.00";
-				let trimmed = priceStr.trim();
-				if (trimmed.includes("$")) return trimmed;
-				let num = parseFloat(trimmed);
-				if (!isNaN(num)) return `$ ${num.toFixed(2)}`;
-				return `$ ${trimmed}`;
+			function getDiscountedPrice(basePrice, discountPercent, discountCash) {
+				let finalPrice = basePrice;
+				if (discountPercent > 0) {
+					finalPrice = basePrice - (basePrice * (discountPercent / 100));
+				} else if (discountCash > 0) {
+					finalPrice = basePrice - discountCash;
+				}
+				return finalPrice < 0 ? 0 : finalPrice;
+			}
+
+			function parsePriceToNumber(str) {
+				if(!str) return 0;
+				let num = str.toString().replace(/[^0-9.]/g, '');
+				return parseFloat(num) || 0;
+			}
+
+			function formatPriceForSlide(item) {
+				let baseP = parsePriceToNumber(item.price);
+				let discountPercent = item.discount || 0;
+				let discountCash = item.discount_cash || 0;
+				let finalPrice = getDiscountedPrice(baseP, discountPercent, discountCash);
+
+				if (discountPercent > 0 || discountCash > 0) {
+					return {
+						displayStr: `<span class="strike-price-inside">$ ${baseP.toFixed(2)}</span> $ ${finalPrice.toFixed(2)}`,
+						orderPriceStr: `$ ${finalPrice.toFixed(2)} (តម្លៃពិសេសបញ្ចុះពី $ ${baseP.toFixed(2)})`
+					};
+				} else {
+					let formatted = `$ ${baseP.toFixed(2)}`;
+					if (!item.price || item.price.trim() === "" || item.price.trim() === "$") formatted = "$ 10.00";
+					return {
+						displayStr: formatted,
+						orderPriceStr: formatted
+					};
+				}
 			}
 
 			function initHeroSlider() {
@@ -2214,11 +2251,11 @@
 					let slideDiv = document.createElement("div");
 					slideDiv.className = "slide-item";
 					
-					let displaySlidePrice = formatPriceForSlide(item.price);
-					let telegramText = `ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ${item.name} (តម្លៃ: ${displaySlidePrice})`;
+					let priceObj = formatPriceForSlide(item);
+					let telegramText = `ខ្ញុំចង់ទិញពុម្ពអក្សរ៖ ${item.name} (តម្លៃ: ${priceObj.orderPriceStr})`;
 
 					slideDiv.onclick = () => {
-						openSlideConfirmModal(`ពុម្ព៖ ${item.name}`, `តម្លៃ៖ ${displaySlidePrice}`, telegramText);
+						openSlideConfirmModal(`ពុម្ព៖ ${item.name}`, `តម្លៃ៖ ${priceObj.orderPriceStr}`, telegramText);
 					};
 					
 					let badgeText = idx < 5 ? "NEW" : "POPULAR";
@@ -2231,7 +2268,7 @@
 								<p class="slide-title">✨ ${item.name}</p>
 								<p class="slide-subtitle">រចនាដោយ យ៉ុង យាង</p>
 							</div>
-							<div class="slide-price-tag">${displaySlidePrice}</div>
+							<div class="slide-price-tag">${priceObj.displayStr}</div>
 						</div>
 					`;
 					track.appendChild(slideDiv);
@@ -2385,7 +2422,6 @@
 				renderFonts();
 			}
 
-			// មុខងារបិទផ្ទាំង Admin Panel ពេលចុចសញ្ញា X
 			function closeAdminFormPanel() {
 				isAdminLoggedIn = false;
 				document.body.classList.remove("admin-mode-on");
@@ -2448,7 +2484,6 @@
 				saveData();
 				nameInput.value = ""; priceInput.value = ""; imgInput.value = ""; variantsInput.value = "";
 				
-				// បិទផ្ទាំង Admin Panel ដោយស្វ័យប្រវត្តិបន្ទាប់ពីរៀបចំរក្សាទុករួច
 				isAdminLoggedIn = false;
 				document.body.classList.remove("admin-mode-on");
 				const iconBtn = document.getElementById("adminBtnIcon");
@@ -2740,16 +2775,6 @@
 				});
 			}
 
-			function getDiscountedPrice(basePrice, discountPercent, discountCash) {
-				let finalPrice = basePrice;
-				if (discountPercent > 0) {
-					finalPrice = basePrice - (basePrice * (discountPercent / 100));
-				} else if (discountCash > 0) {
-					finalPrice = basePrice - discountCash;
-				}
-				return finalPrice < 0 ? 0 : finalPrice;
-			}
-
 			function calculateFamilyTotal(font) {
 				let originalSum = 0;
 				
@@ -2778,12 +2803,6 @@
 					finalFamilyTotal: finalFamilyTotal < 0 ? 0 : finalFamilyTotal,
 					hasFamilyDiscount: (fDiscountPercent > 0 || fDiscountCash > 0)
 				};
-			}
-
-			function parsePriceToNumber(str) {
-				if(!str) return 0;
-				let num = str.toString().replace(/[^0-9.]/g, '');
-				return parseFloat(num) || 0;
 			}
 
 			function switchVariant(actualIndex, variantIdx, event) {
