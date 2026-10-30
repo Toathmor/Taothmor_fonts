@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V5.0.1</title>
+		<title>Toathmor Fonts App V5.0.2</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -1139,7 +1139,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "5.0.1"; 
+			let CURRENT_VERSION = "5.0.2"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -1989,10 +1989,10 @@
 		"family_discount_cash": 0
 	},
 	{
-		"name": "Toathmor Angeara Text",
+		"name": "Toathmor Angkeara Text",
 		"price": "$ 15",
 		"type": "chreang",
-		"img": "https://i.postimg.cc/zXtb2r18/phonto.png",
+		"img": "https://i.postimg.cc/NG3Hv4gZ/phonto.png",
 		"family_note": "កំពុងរៀបចំ..."
 	},
 	{
@@ -3075,6 +3075,7 @@
 					
 					if(hasVariants) {
 						let familyCalc = calculateFamilyTotal(font);
+						let totalStylesCount = 1 + font.variants.length; // រាប់ចំនួន Styles សរុបក្នុង Family
 						
 						let familyTelegramText = `ខ្ញុំចង់ជាវពុម្ពអក្សរជាកញ្ចប់គ្រួសារ (Family Package) នៃពុម្ពអក្សរ៖\n• ${font.name}\n`;
 						if(font.variants) {
@@ -3089,9 +3090,9 @@
 
 						if (familyCalc.hasFamilyDiscount) {
 							familyTotalHtml = `
-								<div class="family-total-wrapper" onclick="event.stopPropagation(); openSlideConfirmModal('កញ្ចប់គ្រួសារ៖ ${font.name}', 'តម្លៃ៖ ${familyDisplayPriceStr} (បញ្ចុះពី $ ${familyCalc.originalSum.toFixed(2)})', \`${familyTelegramText}\`)">
+								<div class="family-total-wrapper" onclick="event.stopPropagation(); openSlideConfirmModal('កញ្ចប់គ្រួសារ៖ ${font.name} (${totalStylesCount} Styles)', 'តម្លៃ៖ ${familyDisplayPriceStr} (បញ្ចុះពី $ ${familyCalc.originalSum.toFixed(2)})', \`${familyTelegramText}\`)">
 									<div class="family-final-row">
-										<span class="family-box-label">កញ្ចប់គ្រួសារ៖</span>
+										<span class="family-box-label">កញ្ចប់គ្រួសារ (${totalStylesCount} Styles)៖</span>
 										<div class="family-box-prices">
 											<span class="family-original-strike">$ ${familyCalc.originalSum.toFixed(2)}</span>
 											$ ${familyCalc.finalFamilyTotal.toFixed(2)}
@@ -3103,9 +3104,9 @@
 								</div>`;
 						} else {
 							familyTotalHtml = `
-								<div class="family-total-wrapper" onclick="event.stopPropagation(); openSlideConfirmModal('កញ្ចប់គ្រួសារ៖ ${font.name}', 'តម្លៃ៖ ${familyDisplayPriceStr}', \`${familyTelegramText}\`)">
+								<div class="family-total-wrapper" onclick="event.stopPropagation(); openSlideConfirmModal('កញ្ចប់គ្រួសារ៖ ${font.name} (${totalStylesCount} Styles)', 'តម្លៃ៖ ${familyDisplayPriceStr}', \`${familyTelegramText}\`)">
 									<div class="family-final-row">
-										<span class="family-box-label">កញ្ចប់គ្រួសារ៖</span>
+										<span class="family-box-label">កញ្ចប់គ្រួសារ (${totalStylesCount} Styles)៖</span>
 										<div class="family-box-prices family-box-prices-normal">
 											$ ${familyCalc.finalFamilyTotal.toFixed(2)}
 										</div>
