@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
 		/>
-		<title>Toathmor Fonts App V5.0.2</title>
+		<title>Toathmor Fonts App V5.0.5</title>
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="https://i.postimg.cc/T2HdVp8k/IMG-3118.png" />
@@ -684,6 +684,7 @@
 				background: var(--accent);
 			}
 
+			/* Personal use badge នៅនឹងថ្កល់ដាច់ដោយឡែក (មិនរត់តាមស្លាយ) */
 			.personal-use-badge {
 				position: absolute;
 				top: 8px;
@@ -696,7 +697,24 @@
 				padding: 2px 8px;
 				border-radius: 6px;
 				letter-spacing: 0.3px;
-				z-index: 10;
+				z-index: 15;
+				pointer-events: none;
+			}
+
+			/* Styles count badge នៅនឹងថ្កល់ជ្រុងខាងលើខាងឆ្វេង (មិនរត់តាមស្លាយ) */
+			.styles-count-badge {
+				position: absolute;
+				top: 8px;
+				left: 10px;
+				background: rgba(15, 23, 42, 0.65);
+				backdrop-filter: blur(4px);
+				color: #ffffff;
+				font-size: 10px;
+				font-weight: 600;
+				padding: 2px 8px;
+				border-radius: 6px;
+				letter-spacing: 0.3px;
+				z-index: 15;
 				pointer-events: none;
 			}
 
@@ -1139,7 +1157,7 @@
 		<div id="toast">បានចម្លងរួចរាល់!</div>
 
 		<script>
-			let CURRENT_VERSION = "5.0.2"; 
+			let CURRENT_VERSION = "5.0.5"; 
 
 			function checkAppVersion() {
 				const savedVersion = localStorage.getItem("toathmor_app_version");
@@ -1981,7 +1999,7 @@
 		"name": "Toathmor Satya",
 		"price": "$ 15",
 		"type": "chreang",
-		"img": "https://i.postimg.cc/tgcyVwQS/phonto.png",
+		"img": "https://i.postimg.cc/FsWNryQr/phonto.png",
 		"family_note": "",
 		"discount": 0,
 		"discount_cash": 0,
@@ -3030,11 +3048,13 @@
 						font.variants.forEach(v => allFamilyItems.push(v));
 					}
 
+					let totalStylesCount = 1 + (font.variants ? font.variants.length : 0);
+					let stylesBadgeHtml = totalStylesCount > 1 ? `<span class="styles-count-badge">${totalStylesCount} Styles</span>` : '';
+
 					let slideTracksHtml = `<div class="card-slide-track" style="transform: translateX(-${currentVariantIdx * 100}%);">`;
 					allFamilyItems.forEach(item => {
 						slideTracksHtml += `
 							<div class="card-slide-item">
-								<span class="personal-use-badge">Personal use</span>
 								${item.img ? `<img src="${item.img}" class="font-image-sample" />` : `<span style="font-size:12.5px; color:var(--text-muted);">មិនទាន់មានរូបភាពគំរូ</span>`}
 							</div>
 						`;
@@ -3054,8 +3074,6 @@
 						});
 						dotsHtml += `</div>`;
 						slideTracksHtml += dotsHtml;
-					} else {
-						slideTracksHtml += `<span class="personal-use-badge">Personal use</span>`;
 					}
 
 					const card = document.createElement("div");
@@ -3075,7 +3093,6 @@
 					
 					if(hasVariants) {
 						let familyCalc = calculateFamilyTotal(font);
-						let totalStylesCount = 1 + font.variants.length; // រាប់ចំនួន Styles សរុបក្នុង Family
 						
 						let familyTelegramText = `ខ្ញុំចង់ជាវពុម្ពអក្សរជាកញ្ចប់គ្រួសារ (Family Package) នៃពុម្ពអក្សរ៖\n• ${font.name}\n`;
 						if(font.variants) {
@@ -3092,7 +3109,7 @@
 							familyTotalHtml = `
 								<div class="family-total-wrapper" onclick="event.stopPropagation(); openSlideConfirmModal('កញ្ចប់គ្រួសារ៖ ${font.name} (${totalStylesCount} Styles)', 'តម្លៃ៖ ${familyDisplayPriceStr} (បញ្ចុះពី $ ${familyCalc.originalSum.toFixed(2)})', \`${familyTelegramText}\`)">
 									<div class="family-final-row">
-										<span class="family-box-label">កញ្ចប់គ្រួសារ (${totalStylesCount} Styles)៖</span>
+										<span class="family-box-label">កញ្ចប់គ្រួសារ (${totalStylesCount})៖</span>
 										<div class="family-box-prices">
 											<span class="family-original-strike">$ ${familyCalc.originalSum.toFixed(2)}</span>
 											$ ${familyCalc.finalFamilyTotal.toFixed(2)}
@@ -3106,7 +3123,7 @@
 							familyTotalHtml = `
 								<div class="family-total-wrapper" onclick="event.stopPropagation(); openSlideConfirmModal('កញ្ចប់គ្រួសារ៖ ${font.name} (${totalStylesCount} Styles)', 'តម្លៃ៖ ${familyDisplayPriceStr}', \`${familyTelegramText}\`)">
 									<div class="family-final-row">
-										<span class="family-box-label">កញ្ចប់គ្រួសារ (${totalStylesCount} Styles)៖</span>
+										<span class="family-box-label">កញ្ចប់គ្រួសារ (${totalStylesCount})៖</span>
 										<div class="family-box-prices family-box-prices-normal">
 											$ ${familyCalc.finalFamilyTotal.toFixed(2)}
 										</div>
@@ -3183,7 +3200,11 @@
 							<button class="btn-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${font.name}')" title="ខ្ទាស់ទុក">${favIcon}</button>
 						</div>
 
-						<div class="image-container">${slideTracksHtml}</div>
+						<div class="image-container">
+							<span class="personal-use-badge">Personal use</span>
+							${stylesBadgeHtml}
+							${slideTracksHtml}
+						</div>
 
 						${familySwitcherHtml}
 
